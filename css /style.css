@@ -1,9 +1,4 @@
-
-/* ===== styles.css ===== */
-/* Smile Royale Dental Home - Premium Edition */
-/* Cinematic storytelling, cubic-bezier smoothness, micro-interactions */
-
-/* ---------- base & reset ---------- */
+/* === styles.css (premium transitions) === */
 * {
     margin: 0;
     padding: 0;
@@ -18,59 +13,41 @@ body {
     overflow-x: hidden;
 }
 
+/* smooth scroll & reveal baseline */
 html {
     scroll-behavior: smooth;
 }
 
-/* ---------- premium transitions (cubic-bezier) ---------- */
-.nav-menu,
-.menu-icon,
-.logo,
-.cta-btn,
-.service-card,
-.why-card,
-.video-box,
-.appointment-form,
-.hero-content *,
-.btn,
-.nav-links a,
-.appointment-submit {
+/* ---- cubic-bezier transitions (professional smoothness) ---- */
+.nav-menu, .menu-icon, .logo, .cta-btn, .service-card, .why-card, .video-box, .appointment-form, .hero-content * {
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* micro-interactions */
-.btn,
-.menu-icon i,
-.close-btn i,
-.nav-links a,
-.appointment-submit {
+/* micro-interactions: buttons, icons */
+.btn, .menu-icon i, .close-btn i, .nav-links a, .appointment-submit {
     transition: transform 0.2s ease, background 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s;
 }
-
-.btn:hover,
-.appointment-submit:hover {
+.btn:hover, .appointment-submit:hover {
     transform: scale(1.02) translateY(-2px);
     box-shadow: 0 12px 24px -8px rgba(0, 70, 150, 0.25);
 }
-
 .nav-links a:hover {
     color: #b88b4a;
     transform: translateY(-1px);
 }
 
-/* ---------- scroll-triggered reveal (base hidden state) ---------- */
+/* ===== scroll-triggered reveal ===== */
 .reveal {
     opacity: 0;
     transform: translateY(36px);
     transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
 }
-
 .reveal.active {
     opacity: 1;
     transform: translateY(0);
 }
 
-/* ---------- header / navigation ---------- */
+/* header / nav */
 header {
     background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(8px);
@@ -90,14 +67,12 @@ header {
     align-items: center;
     gap: 1rem;
 }
-
 .logo img {
     height: 56px;
     width: auto;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0,0,0,0.03);
 }
-
 .contact-header {
     display: flex;
     align-items: center;
@@ -105,12 +80,10 @@ header {
     color: #2c3e4e;
     font-weight: 450;
 }
-
 .contact-header i {
     color: #b18b5e;
     font-size: 1.2rem;
 }
-
 .menu-icon {
     font-size: 2rem;
     cursor: pointer;
@@ -118,12 +91,11 @@ header {
     margin-left: 1rem;
     transition: color 0.2s;
 }
-
 .menu-icon:hover {
     color: #b88b4a;
 }
 
-/* ---------- three-dash slide-in overlay ---------- */
+/* slide-in navigation overlay */
 .nav-overlay {
     position: fixed;
     top: 0;
@@ -140,18 +112,15 @@ header {
     display: flex;
     flex-direction: column;
 }
-
 .nav-overlay.open {
     right: 0;
 }
-
 .close-btn {
     text-align: right;
     font-size: 2rem;
     cursor: pointer;
     margin-bottom: 2.5rem;
 }
-
 .nav-links {
     display: flex;
     flex-direction: column;
@@ -159,7 +128,6 @@ header {
     font-size: 1.3rem;
     font-weight: 450;
 }
-
 .nav-links a {
     text-decoration: none;
     color: #1f2a36;
@@ -169,17 +137,14 @@ header {
     border-bottom: 1px solid transparent;
     transition: border-color 0.2s, padding-left 0.2s;
 }
-
 .nav-links a i {
     width: 28px;
     color: #b18b5e;
 }
-
 .nav-links a:hover {
     border-bottom-color: #b88b4a;
     padding-left: 8px;
 }
-
 .book-in-menu {
     margin-top: 2rem;
     background: #1f2a36;
@@ -190,14 +155,13 @@ header {
     font-weight: 600;
     border: none;
 }
-
 .book-in-menu:hover {
     background: #b88b4a;
     color: white;
     padding-left: 1.5rem !important;
 }
 
-/* ---------- hero section ---------- */
+/* hero */
 .hero {
     min-height: 85vh;
     background: linear-gradient(112deg, #f3eee9 0%, #faf7f2 100%);
@@ -207,11 +171,9 @@ header {
     padding: 2rem 5%;
     flex-wrap: wrap;
 }
-
 .hero-content {
     flex: 1 1 400px;
 }
-
 .hero-content .motto {
     font-size: clamp(2.2rem, 6vw, 4.3rem);
     font-weight: 600;
@@ -219,26 +181,22 @@ header {
     color: #1f2a36;
     text-shadow: 0 2px 5px rgba(255,215,140,0.3);
 }
-
 .hero-content .motto span {
     color: #b88b4a;
     display: block;
     font-weight: 300;
     font-style: italic;
 }
-
 .hero-image {
     flex: 1 1 400px;
     display: flex;
     justify-content: center;
     animation: float 5s cubic-bezier(0.23,1,0.32,1) infinite alternate;
 }
-
 @keyframes float {
     0% { transform: translateY(0px); }
     100% { transform: translateY(-15px); }
 }
-
 .hero-image img {
     max-width: 100%;
     width: 500px;
@@ -246,13 +204,12 @@ header {
     box-shadow: 0 35px 60px -20px rgba(80,50,20,0.3);
 }
 
-/* ---------- global section styling ---------- */
+/* section general */
 .section {
     padding: 5rem 5%;
     max-width: 1400px;
     margin: 0 auto;
 }
-
 .section-title {
     font-size: 2.5rem;
     font-weight: 550;
@@ -260,7 +217,6 @@ header {
     position: relative;
     display: inline-block;
 }
-
 .section-title:after {
     content: '';
     position: absolute;
@@ -272,14 +228,13 @@ header {
     border-radius: 4px;
 }
 
-/* ---------- about video row (simultaneous playback) ---------- */
+/* about videos */
 .video-row {
     display: flex;
     gap: 2rem;
     flex-wrap: wrap;
     margin: 2rem 0 3rem;
 }
-
 .video-box {
     flex: 1 1 280px;
     border-radius: 32px;
@@ -288,15 +243,13 @@ header {
     border: 2px solid rgba(255,255,240,0.6);
     background: #1a1a1a;
 }
-
 .video-box video {
     width: 100%;
     height: 280px;
     object-fit: cover;
     display: block;
-    pointer-events: none; /* ensures autoplay uninterrupted */
+    pointer-events: none;
 }
-
 .about-text {
     background: #ffffffc7;
     backdrop-filter: blur(4px);
@@ -307,14 +260,13 @@ header {
     border: 1px solid rgba(184,139,74,0.2);
 }
 
-/* ---------- services cards (aesthetic grid) ---------- */
+/* services cards */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
     gap: 2rem;
     margin-top: 2.5rem;
 }
-
 .service-card {
     background: white;
     padding: 2rem 1.5rem;
@@ -323,18 +275,15 @@ header {
     text-align: center;
     border: 1px solid rgba(184,139,74,0.1);
 }
-
 .service-card i {
     font-size: 2.4rem;
     color: #b88b4a;
     margin-bottom: 1rem;
 }
-
 .service-card h3 {
     font-weight: 550;
     margin-bottom: 0.5rem;
 }
-
 .service-card:hover {
     background: #fbf6ef;
     border-color: #b88b4a;
@@ -342,14 +291,13 @@ header {
     box-shadow: 0 24px 36px -16px #b88b4a60;
 }
 
-/* ---------- why choose us (blended images + text) ---------- */
+/* why choose us */
 .why-row {
     display: flex;
     gap: 2rem;
     flex-wrap: wrap;
     align-items: center;
 }
-
 .why-gallery {
     flex: 1.2 1 400px;
     display: flex;
@@ -357,7 +305,6 @@ header {
     flex-wrap: wrap;
     justify-content: center;
 }
-
 .why-gallery img {
     width: calc(50% - 0.75rem);
     min-width: 200px;
@@ -365,12 +312,10 @@ header {
     box-shadow: 0 20px 30px -10px #1f2a3650;
     transition: all 0.3s cubic-bezier(0.23,1,0.32,1);
 }
-
 .why-gallery img:hover {
     transform: scale(1.02) rotate(0.5deg);
     box-shadow: 0 30px 40px -10px #b88b4a;
 }
-
 .why-content {
     flex: 1 1 320px;
     background: #fefcf8;
@@ -379,7 +324,7 @@ header {
     box-shadow: inset 0 -2px 0 #b88b4a20, 0 12px 30px -20px;
 }
 
-/* ---------- appointment section (form + image) ---------- */
+/* appointment section */
 .appointment-row {
     display: flex;
     gap: 3rem;
@@ -389,11 +334,9 @@ header {
     padding: 2.5rem;
     box-shadow: 0 20px 35px -10px #b88b4a20;
 }
-
 .appointment-img {
     flex: 1 1 280px;
 }
-
 .appointment-img img {
     width: 100%;
     height: 100%;
@@ -401,7 +344,6 @@ header {
     border-radius: 48px;
     box-shadow: 0 20px 30px -10px #1a1a1a40;
 }
-
 .appointment-form {
     flex: 2 1 380px;
     background: rgba(255,255,255,0.7);
@@ -409,13 +351,10 @@ header {
     padding: 2rem 2.2rem;
     border-radius: 48px;
 }
-
 .form-group {
     margin-bottom: 1.5rem;
 }
-
-.form-group input,
-.form-group select {
+.form-group input, .form-group select {
     width: 100%;
     padding: 1rem 1.5rem;
     border: 1px solid #ddd0c0;
@@ -425,13 +364,10 @@ header {
     outline: none;
     transition: 0.2s;
 }
-
-.form-group input:focus,
-.form-group select:focus {
+.form-group input:focus, .form-group select:focus {
     border-color: #b88b4a;
     box-shadow: 0 0 0 4px #b88b4a30;
 }
-
 .appointment-submit {
     background: #1f2a36;
     color: white;
@@ -444,7 +380,7 @@ header {
     cursor: pointer;
 }
 
-/* ---------- footer ---------- */
+/* footer */
 footer {
     background: #17212b;
     color: #ccc;
@@ -452,24 +388,8 @@ footer {
     text-align: center;
 }
 
-/* ---------- responsive adjustments ---------- */
+/* responsiveness */
 @media (max-width: 700px) {
-    .contact-header span {
-        display: none;
-    }
-    .hero {
-        flex-direction: column;
-    }
-    .why-gallery img {
-        width: 100%;
-    }
-    .appointment-row {
-        padding: 1.5rem;
-    }
-}
-
-/* ---------- micro detail: smooth class for observer (optional) ---------- */
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
+    .contact-header span { display: none; }
+    .hero { flex-direction: column; }
 }
