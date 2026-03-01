@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smile Royale Dental Home | Premium Dental Care in Lagos</title>
+    <title>Smile Royale Dental Home | Your Smile. Our Passion. Our Pride.</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <!-- Google Fonts - Professional typography -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital@0;1&display=swap" rel="stylesheet">
     
     <style>
@@ -18,15 +18,13 @@
         }
 
         :root {
-            --primary: #0B4F6C;      /* Deep medical blue */
+            --primary: #0B4F6C;
             --primary-light: #1A6B8C;
-            --secondary: #D4A373;    /* Warm accent */
-            --accent: #E9C46A;        /* Soft gold */
+            --secondary: #D4A373;
             --text-dark: #1D3557;
             --text-body: #2F3E46;
             --text-light: #6B7F8C;
             --bg-light: #F8F9FA;
-            --bg-cream: #FEF9F2;
             --white: #FFFFFF;
             --shadow-sm: 0 4px 6px -2px rgba(0, 32, 64, 0.08);
             --shadow-md: 0 12px 24px -8px rgba(0, 32, 64, 0.12);
@@ -48,10 +46,7 @@
             letter-spacing: -0.02em;
         }
 
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
+        h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
 
         .section-subhead {
             font-size: 1.125rem;
@@ -96,24 +91,9 @@
         }
 
         .logo-area img {
-            height: 48px;
+            height: 56px;
             width: auto;
             border-radius: 8px;
-        }
-
-        .logo-text {
-            font-weight: 600;
-            font-size: 1.25rem;
-            color: var(--text-dark);
-            line-height: 1.3;
-        }
-
-        .logo-text span {
-            font-size: 0.875rem;
-            color: var(--primary);
-            display: block;
-            font-weight: 400;
-            letter-spacing: 0.3px;
         }
 
         .nav-links {
@@ -142,13 +122,8 @@
             transition: var(--transition);
         }
 
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-links a:hover:after {
-            width: 100%;
-        }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a:hover:after { width: 100%; }
 
         .btn-nav {
             background: var(--primary);
@@ -157,22 +132,33 @@
             border-radius: 40px;
             font-weight: 600 !important;
         }
+        .btn-nav:hover { background: var(--primary-light); transform: translateY(-2px); }
+        .btn-nav:hover:after { display: none; }
 
-        .btn-nav:hover {
-            background: var(--primary-light);
-            transform: translateY(-2px);
-        }
-
-        .btn-nav:hover:after {
-            display: none;
-        }
-
-        .mobile-menu {
-            display: none;
+        .menu-icon {
             font-size: 1.5rem;
             color: var(--primary);
             cursor: pointer;
+            display: none;
         }
+
+        /* slide-in navigation overlay (three-dash menu for mobile) */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            right: -280px;
+            width: 280px;
+            height: 100vh;
+            background: white;
+            box-shadow: var(--shadow-md);
+            padding: 2rem;
+            z-index: 200;
+            transition: right 0.3s ease;
+        }
+        .nav-overlay.open { right: 0; }
+        .close-btn { text-align: right; font-size: 1.5rem; cursor: pointer; margin-bottom: 2rem; }
+        .overlay-links { display: flex; flex-direction: column; gap: 1.5rem; }
+        .overlay-links a { text-decoration: none; color: var(--text-dark); font-weight: 500; }
 
         /* ===== HERO SECTION ===== */
         .hero {
@@ -190,55 +176,26 @@
             align-items: center;
         }
 
-        .hero-content {
-            animation: fadeUp 0.8s ease;
-        }
-
+        .hero-content { animation: fadeUp 0.8s ease; }
         .hero-content h1 {
             font-size: 3.5rem;
             font-weight: 700;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
             color: var(--text-dark);
             line-height: 1.1;
         }
-
-        .hero-content h1 span {
-            color: var(--primary);
-            display: block;
+        .hero-content .motto-line {
             font-size: 2rem;
             font-weight: 400;
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            margin-top: 0.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
         }
-
         .hero-content p {
             font-size: 1.125rem;
             color: var(--text-light);
             margin-bottom: 2rem;
-            max-width: 90%;
-        }
-
-        .hero-stats {
-            display: flex;
-            gap: 2rem;
-            margin-top: 2.5rem;
-        }
-
-        .stat-item {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        .stat-label {
-            font-size: 0.875rem;
-            color: var(--text-light);
         }
 
         .hero-image {
@@ -246,16 +203,13 @@
             overflow: hidden;
             box-shadow: var(--shadow-md);
             height: 500px;
-            background: url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;
+            /* YOUR HERO IMAGE LINK */
+            background: url('https://image2url.com/r2/default/images/1772302836223-16273978-d4c2-4d92-8b5f-37c34f8b67e7.png') center/cover;
             animation: fadeIn 1s ease;
         }
 
         /* ===== ABOUT SECTION ===== */
-        .about-section {
-            padding: 6rem 0;
-            background: var(--white);
-        }
-
+        .about-section { padding: 6rem 0; background: var(--white); }
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -263,46 +217,29 @@
             align-items: center;
         }
 
-        .about-images {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        .video-row {
+            display: flex;
             gap: 1.5rem;
+            flex-wrap: wrap;
         }
-
-        .about-img-main {
-            grid-column: span 2;
+        .video-box {
+            flex: 1 1 250px;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+        }
+        .video-box video {
+            width: 100%;
             height: 280px;
-            background: url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;
-            border-radius: 20px;
+            object-fit: cover;
+            display: block;
         }
 
-        .about-img-small {
-            height: 180px;
-            background: url('https://images.unsplash.com/photo-1606811971618-4486d14f3f4d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;
-            border-radius: 20px;
-        }
-
-        .about-img-small:last-child {
-            background: url('https://images.unsplash.com/photo-1629909615184-74f495363b67?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;
-        }
-
-        .about-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
+        .about-content h2 { font-size: 2.5rem; margin-bottom: 1.5rem; }
         .about-content p {
             color: var(--text-light);
             margin-bottom: 1.5rem;
             font-size: 1.05rem;
-        }
-
-        .signature {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.25rem;
-            color: var(--primary);
-            margin-top: 2rem;
         }
 
         /* ===== SERVICES SECTION ===== */
@@ -310,19 +247,16 @@
             padding: 6rem 0;
             background: var(--bg-light);
         }
-
         .services-header {
             text-align: center;
             max-width: 700px;
             margin: 0 auto 3rem;
         }
-
         .services-grid {
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
         }
-
         .service-card {
             background: var(--white);
             padding: 2rem;
@@ -331,149 +265,93 @@
             transition: var(--transition);
             border: 1px solid rgba(11, 79, 108, 0.06);
         }
-
         .service-card:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-md);
             border-color: var(--primary-light);
         }
-
         .service-icon {
-            width: 56px;
-            height: 56px;
+            width: 56px; height: 56px;
             background: rgba(11, 79, 108, 0.08);
             border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             margin-bottom: 1.5rem;
         }
-
-        .service-icon i {
-            font-size: 1.75rem;
-            color: var(--primary);
-        }
-
-        .service-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .service-card p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
+        .service-icon i { font-size: 1.75rem; color: var(--primary); }
+        .service-card h3 { font-size: 1.25rem; margin-bottom: 0.5rem; }
+        .service-card p { color: var(--text-light); font-size: 0.95rem; }
 
         /* ===== WHY CHOOSE US ===== */
-        .why-section {
-            padding: 6rem 0;
-            background: var(--white);
-        }
-
+        .why-section { padding: 6rem 0; background: var(--white); }
         .why-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
         }
-
-        .why-content {
-            padding-right: 2rem;
-        }
-
-        .benefits-list {
-            margin-top: 2rem;
-        }
-
+        .why-content { padding-right: 2rem; }
+        .benefits-list { margin-top: 2rem; }
         .benefit-item {
             display: flex;
             gap: 1rem;
             margin-bottom: 1.5rem;
         }
-
         .benefit-icon {
-            width: 32px;
-            height: 32px;
+            width: 32px; height: 32px;
             background: rgba(212, 163, 115, 0.1);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             color: var(--secondary);
         }
-
-        .benefit-text h4 {
-            font-size: 1.1rem;
-            margin-bottom: 0.25rem;
-        }
-
-        .benefit-text p {
-            color: var(--text-light);
-            font-size: 0.95rem;
-        }
-
         .why-images {
             display: grid;
             gap: 1.5rem;
         }
-
+        /* YOUR WHY CHOOSE US IMAGES */
         .why-img-main {
             height: 300px;
-            background: url('https://images.unsplash.com/photo-1629909615184-74f495363b67?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;
+            background: url('https://image2url.com/r2/default/images/1772302060708-f272d0c1-e6fd-41b0-8458-0c7867d9f4d1.jpg') center/cover;
             border-radius: 24px;
         }
-
         .why-img-small {
             height: 180px;
-            background: url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80') center/cover;
+            background: url('https://image2url.com/r2/default/images/1772302595283-4bbe909a-66e8-4050-a5af-99b1d62eda46.jpg') center/cover;
             border-radius: 24px;
         }
 
-        /* ===== CONTACT/APPOINTMENT SECTION ===== */
+        /* ===== BOOK APPOINTMENT SECTION ===== */
         .contact-section {
             padding: 6rem 0;
             background: linear-gradient(135deg, #0B4F6C 0%, #1A6B8C 100%);
             color: white;
         }
-
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 4rem;
             align-items: center;
         }
-
-        .contact-info h2 {
-            color: white;
-            margin-bottom: 1.5rem;
-        }
-
-        .contact-info p {
-            color: rgba(255, 255, 255, 0.9);
-            margin-bottom: 2rem;
-            font-size: 1.1rem;
-        }
-
-        .contact-details {
-            margin-top: 2rem;
-        }
-
+        .contact-info h2 { color: white; margin-bottom: 1.5rem; }
+        .contact-info p { color: rgba(255, 255, 255, 0.9); margin-bottom: 2rem; }
         .contact-detail {
             display: flex;
             gap: 1rem;
             margin-bottom: 1.25rem;
             align-items: center;
         }
-
         .contact-detail i {
-            width: 40px;
-            height: 40px;
+            width: 40px; height: 40px;
             background: rgba(255, 255, 255, 0.1);
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.25rem;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .appointment-img {
+            border-radius: 24px;
+            overflow: hidden;
+            height: 400px;
+            /* YOUR APPOINTMENT IMAGE */
+            background: url('https://image2url.com/r2/default/images/1772300907886-e5e9254a-d3da-4a3b-9e5c-501e2dc50b3a.jpg') center/cover;
         }
 
         .appointment-form {
@@ -482,19 +360,9 @@
             border-radius: 32px;
             box-shadow: var(--shadow-md);
         }
-
-        .appointment-form h3 {
-            color: var(--text-dark);
-            margin-bottom: 1.5rem;
-            font-size: 1.5rem;
-        }
-
-        .form-group {
-            margin-bottom: 1.25rem;
-        }
-
-        .form-group input,
-        .form-group select {
+        .appointment-form h3 { color: var(--text-dark); margin-bottom: 1.5rem; font-size: 1.5rem; }
+        .form-group { margin-bottom: 1.25rem; }
+        .form-group input, .form-group select {
             width: 100%;
             padding: 1rem 1.25rem;
             border: 1px solid #E2E8F0;
@@ -503,15 +371,12 @@
             transition: var(--transition);
             background: #F8FAFC;
         }
-
-        .form-group input:focus,
-        .form-group select:focus {
+        .form-group input:focus, .form-group select:focus {
             outline: none;
             border-color: var(--primary);
             background: white;
             box-shadow: 0 0 0 3px rgba(11, 79, 108, 0.1);
         }
-
         .btn-submit {
             width: 100%;
             padding: 1rem;
@@ -520,128 +385,31 @@
             border: none;
             border-radius: 12px;
             font-weight: 600;
-            font-size: 1rem;
             cursor: pointer;
             transition: var(--transition);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             gap: 0.75rem;
         }
-
         .btn-submit:hover {
             background: var(--primary-light);
             transform: translateY(-2px);
             box-shadow: var(--shadow-md);
         }
 
-        /* ===== FOOTER ===== */
-        footer {
-            background: #1A2A36;
-            color: rgba(255, 255, 255, 0.8);
-            padding: 3rem 0;
-        }
-
-        .footer-grid {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 3rem;
-        }
-
-        .footer-brand p {
-            margin: 1rem 0;
-            font-size: 0.95rem;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1rem;
-        }
-
-        .social-links a {
-            color: white;
-            opacity: 0.7;
-            transition: var(--transition);
-        }
-
-        .social-links a:hover {
-            opacity: 1;
-        }
-
-        .footer-links h4 {
-            color: white;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
-        }
-
-        .footer-links ul {
-            list-style: none;
-        }
-
-        .footer-links li {
-            margin-bottom: 0.75rem;
-        }
-
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: var(--transition);
-        }
-
-        .footer-links a:hover {
-            color: white;
-        }
-
-        .copyright {
-            max-width: 1280px;
-            margin: 2rem auto 0;
-            padding: 2rem 2rem 0;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            text-align: center;
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.6);
-        }
-
         /* ===== ANIMATIONS ===== */
         @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         /* ===== RESPONSIVE ===== */
         @media (max-width: 1024px) {
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .footer-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
         }
-
         @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-            
-            .mobile-menu {
-                display: block;
-            }
-            
+            .nav-links { display: none; }
+            .menu-icon { display: block; }
             .hero-container,
             .about-grid,
             .why-grid,
@@ -649,18 +417,9 @@
                 grid-template-columns: 1fr;
                 gap: 2rem;
             }
-            
-            .hero-content h1 {
-                font-size: 2.5rem;
-            }
-            
-            h2 {
-                font-size: 2rem;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
+            .hero-content h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; }
+            .services-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -669,11 +428,8 @@
     <nav class="sticky-nav">
         <div class="nav-container">
             <div class="logo-area">
-                <img src="https://image2url.com/r2/default/images/1772301779607-5498a4b5-72f6-45a0-9f99-06c5d6b10bf9.jpg" alt="Smile Royale">
-                <div class="logo-text">
-                    Smile Royale
-                    <span>Dental Home</span>
-                </div>
+                <!-- YOUR LOGO IMAGE -->
+                <img src="https://image2url.com/r2/default/images/1772301779607-5498a4b5-72f6-45a0-9f99-06c5d6b10bf9.jpg" alt="Smile Royale Dental Home">
             </div>
             
             <div class="nav-links">
@@ -684,59 +440,57 @@
                 <a href="#book-appointment" class="btn-nav">Book Now</a>
             </div>
             
-            <div class="mobile-menu">
+            <div class="menu-icon" id="menuToggle">
                 <i class="fas fa-bars"></i>
             </div>
         </div>
     </nav>
 
+    <!-- Mobile Navigation Overlay (Three-Dash Menu) -->
+    <div class="nav-overlay" id="navOverlay">
+        <div class="close-btn" id="closeNav"><i class="fas fa-times"></i></div>
+        <div class="overlay-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#contact">Contact</a>
+            <a href="#book-appointment">Book Appointment</a>
+        </div>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero" id="home">
         <div class="hero-container">
             <div class="hero-content">
-                <span class="section-subhead">Welcome to Smile Royale</span>
-                <h1>
-                    Your Smile
-                    <span>Our Passion. Our Pride.</span>
-                </h1>
-                <p>Experience premium dental care in a warm, professional environment. Our expert team combines clinical excellence with genuine compassion.</p>
-                
-                <div class="hero-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">15+</span>
-                        <span class="stat-label">Years Experience</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">5000+</span>
-                        <span class="stat-label">Happy Patients</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">4.9</span>
-                        <span class="stat-label">Patient Rating</span>
-                    </div>
-                </div>
+                <span class="section-subhead">Smile Royale Dental Home</span>
+                <h1>Your Smile.</h1>
+                <div class="motto-line">Our Passion. Our Pride.</div>
+                <p>Expert dental care in Lagos — where your comfort meets excellence. Experience compassionate dentistry in a modern, welcoming environment.</p>
             </div>
-            
-            <div class="hero-image" role="img" aria-label="Modern dental clinic interior"></div>
+            <div class="hero-image" role="img" aria-label="Dental clinic interior"></div>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- About Section with Videos -->
     <section class="about-section" id="about">
         <div class="container">
             <div class="about-grid">
-                <div class="about-images">
-                    <div class="about-img-main" role="img" aria-label="Dentist with patient"></div>
-                    <div class="about-img-small" role="img" aria-label="Dental equipment"></div>
-                    <div class="about-img-small" role="img" aria-label="Happy patient"></div>
+                <div class="video-row">
+                    <!-- YOUR TWO ABOUT VIDEOS -->
+                    <div class="video-box">
+                        <video src="https://image2url.com/r2/default/videos/1772267772402-c2d5e3e2-0eab-40d9-bba1-5c2280211b07.mp4" autoplay muted loop playsinline></video>
+                    </div>
+                    <div class="video-box">
+                        <video src="https://image2url.com/r2/default/videos/1772267035727-6a27cf7e-1efb-4a06-a8ef-1162122d3d62.mp4" autoplay muted loop playsinline></video>
+                    </div>
                 </div>
                 
                 <div class="about-content">
-                    <span class="section-subhead">About Us</span>
-                    <h2>Where Clinical Excellence Meets Compassionate Care</h2>
-                    <p>At Smile Royale Dental Home, we believe that exceptional dental care goes beyond technical expertise. Our practice is built on a foundation of trust, comfort, and personalized attention.</p>
-                    <p>Led by a team of experienced specialists, we provide comprehensive dental services in a calming environment. From routine check-ups to complex procedures, every patient receives care tailored to their unique needs.</p>
-                    <p class="signature">— Dr. Adebayo Williams, Lead Dentist</p>
+                    <span class="section-subhead">About Smile Royale</span>
+                    <h2>Where Expertise Meets Compassion</h2>
+                    <p>A professional dental home providing routine and restorative care. We mix clinical expertise with a deep passion for patient smiles. Our preventative focus saves lives, and our outreach programs spread healthy smiles across Lagos.</p>
+                    <p>Our team of specialized professionals delivers the highest standard of dental care in a calming, supportive atmosphere. From your first consultation to complex procedures, we're with you every step of the way.</p>
+                    <p><strong style="color: var(--primary);">#HappyPatients #SmileRoyale</strong></p>
                 </div>
             </div>
         </div>
@@ -748,105 +502,96 @@
             <div class="services-header">
                 <span class="section-subhead">Our Services</span>
                 <h2>Comprehensive Dental Care</h2>
-                <p>From preventive care to restorative treatments, we offer a full range of dental services using the latest techniques and technology.</p>
+                <p>From preventive care to restorative treatments, we offer a full range of dental services using the latest techniques.</p>
             </div>
             
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-tooth"></i></div>
-                    <h3>Consultation</h3>
-                    <p>Comprehensive exam & personalized treatment planning</p>
+                    <h3>Discounted Consultation</h3>
+                    <p>First exam & professional advice</p>
                 </div>
-                
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-brush"></i></div>
                     <h3>Scaling & Polishing</h3>
-                    <p>Professional cleaning for optimal oral health</p>
+                    <p>Deep clean for optimal oral health</p>
                 </div>
-                
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-star"></i></div>
                     <h3>Teeth Whitening</h3>
-                    <p>Safe, effective treatments for a brighter smile</p>
+                    <p>Radiant smile in just one hour</p>
                 </div>
-                
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-crown"></i></div>
-                    <h3>Crowns & Bridges</h3>
-                    <p>Restore damaged teeth with natural-looking solutions</p>
+                    <h3>Crowns</h3>
+                    <p>Restore damaged teeth naturally</p>
                 </div>
-                
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-wrench"></i></div>
-                    <h3>Root Canal (RCT)</h3>
-                    <p>Pain-free treatment to save natural teeth</p>
+                    <h3>RCT (Root Canal)</h3>
+                    <p>Pain-free treatment to save teeth</p>
                 </div>
-                
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-cut"></i></div>
                     <h3>Surgical Extractions</h3>
-                    <p>Gentle, precise tooth removal when necessary</p>
+                    <p>Gentle, precise tooth removal</p>
                 </div>
-                
                 <div class="service-card">
-                    <div class="service-icon"><i class="fas fa-teeth"></i></div>
-                    <h3>General Dentistry</h3>
-                    <p>Complete routine and preventive dental care</p>
+                    <div class="service-icon"><i class="fas fa-clinic-medical"></i></div>
+                    <h3>General Procedures</h3>
+                    <p>Complete routine dental care</p>
                 </div>
-                
                 <div class="service-card">
                     <div class="service-icon"><i class="fas fa-heart"></i></div>
-                    <h3>Emergency Care</h3>
-                    <p>Prompt attention for dental emergencies</p>
+                    <h3>Preventative Care</h3>
+                    <p>Focus on long-term oral health</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Why Choose Us -->
+    <!-- Why Choose Us Section -->
     <section class="why-section">
         <div class="container">
             <div class="why-grid">
                 <div class="why-content">
-                    <span class="section-subhead">Why Choose Us</span>
-                    <h2>Excellence You Can Trust</h2>
+                    <span class="section-subhead">Why Choose Smile Royale</span>
+                    <h2>"Saving Lives Through Prevention"</h2>
                     
                     <div class="benefits-list">
                         <div class="benefit-item">
                             <div class="benefit-icon"><i class="fas fa-check"></i></div>
                             <div class="benefit-text">
                                 <h4>Preventative Focus</h4>
-                                <p>We emphasize early detection and prevention to maintain your oral health</p>
+                                <p>Emphasis on early detection and oral health education</p>
                             </div>
                         </div>
-                        
                         <div class="benefit-item">
                             <div class="benefit-icon"><i class="fas fa-users"></i></div>
                             <div class="benefit-text">
-                                <h4>Community Outreach</h4>
-                                <p>Active in local dental health education and community programs</p>
+                                <h4>Outreach Programs</h4>
+                                <p>Active in community dental health initiatives</p>
                             </div>
                         </div>
-                        
                         <div class="benefit-item">
                             <div class="benefit-icon"><i class="fas fa-smile"></i></div>
                             <div class="benefit-text">
                                 <h4>Happy Patients</h4>
-                                <p>Thousands of satisfied patients and proven clinical results</p>
+                                <p>Thousands of satisfied patients with proven results</p>
                             </div>
                         </div>
-                        
                         <div class="benefit-item">
                             <div class="benefit-icon"><i class="fas fa-stethoscope"></i></div>
                             <div class="benefit-text">
                                 <h4>Professional Excellence</h4>
-                                <p>Specialized staff in clinical settings with ongoing training</p>
+                                <p>Clinical setting with specialized staff in scrubs</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="why-images">
+                    <!-- YOUR TWO WHY CHOOSE US IMAGES -->
                     <div class="why-img-main" role="img" aria-label="Dental professional with patient"></div>
                     <div class="why-img-small" role="img" aria-label="Modern dental equipment"></div>
                 </div>
@@ -854,147 +599,84 @@
         </div>
     </section>
 
-    <!-- Contact/Appointment Section -->
+    <!-- Book Appointment Section -->
     <section class="contact-section" id="contact">
         <div class="container">
             <div class="contact-grid">
                 <div class="contact-info">
-                    <h2>Book Your Visit</h2>
-                    <p>Take the first step toward a healthier smile. We're here to answer your questions and schedule your appointment at a time that works for you.</p>
+                    <h2>Reserve Your Smile Moment</h2>
+                    <p>Take the first step toward a healthier, brighter smile. We're here to answer your questions and schedule your visit.</p>
                     
                     <div class="contact-details">
                         <div class="contact-detail">
                             <i class="fas fa-map-marker-alt"></i>
-                            <div>23 Admiralty Way, Lekki Phase 1<br>Lagos, Nigeria</div>
+                            <div>Lagos, Nigeria</div>
                         </div>
-                        
                         <div class="contact-detail">
                             <i class="fas fa-phone-alt"></i>
-                            <div>+234 (0) 800 123 4567<br>+234 (0) 812 345 6789</div>
+                            <div>+234 800 123 4567</div>
                         </div>
-                        
                         <div class="contact-detail">
                             <i class="fas fa-envelope"></i>
-                            <div>care@smileroyale.ng<br>appointments@smileroyale.ng</div>
-                        </div>
-                        
-                        <div class="contact-detail">
-                            <i class="fas fa-clock"></i>
-                            <div>Mon-Fri: 8am - 6pm<br>Sat: 9am - 2pm</div>
+                            <div>@smileroyale.ng</div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="appointment-form" id="book-appointment">
-                    <h3>Request an Appointment</h3>
+                    <h3>Book via WhatsApp</h3>
                     
                     <div class="form-group">
                         <input type="text" id="patientName" placeholder="Your full name" value="David">
                     </div>
                     
                     <div class="form-group">
-                        <input type="email" id="patientEmail" placeholder="Email address">
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="tel" id="patientPhone" placeholder="Phone number">
-                    </div>
-                    
-                    <div class="form-group">
                         <select id="serviceType">
-                            <option value="">Select a service</option>
-                            <option value="Consultation">Consultation</option>
+                            <option value="Consultation">Discounted Consultation</option>
                             <option value="Scaling">Scaling & Polishing</option>
                             <option value="Whitening">Teeth Whitening</option>
-                            <option value="Crowns">Crowns & Bridges</option>
-                            <option value="RCT">Root Canal (RCT)</option>
-                            <option value="Extractions">Extractions</option>
-                            <option value="General">General Dentistry</option>
+                            <option value="Crowns">Crowns</option>
+                            <option value="RCT">RCT (Root Canal)</option>
+                            <option value="Extractions">Surgical Extractions</option>
+                            <option value="General">General Procedures</option>
                         </select>
                     </div>
                     
-                    <div class="form-group">
-                        <input type="date" id="preferredDate" min="2024-01-01">
-                    </div>
-                    
                     <button class="btn-submit" id="bookWhatsappBtn">
-                        <i class="fab fa-whatsapp"></i> Book via WhatsApp
+                        <i class="fab fa-whatsapp"></i> Send appointment → WhatsApp
                     </button>
-                    <p style="margin-top:1rem; font-size:0.875rem; color:#6B7F8C; text-align:center;">We'll confirm within 30 minutes</p>
+                    <p style="margin-top:1rem; font-size:0.875rem; color:#6B7F8C; text-align:center;">We'll reply within 30 minutes</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-grid">
-            <div class="footer-brand">
-                <img src="https://image2url.com/r2/default/images/1772301779607-5498a4b5-72f6-45a0-9f99-06c5d6b10bf9.jpg" alt="Smile Royale" style="height: 48px; border-radius: 8px;">
-                <p>Your smile is our passion. Experience premium dental care in a warm, professional environment.</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                </div>
-            </div>
-            
-            <div class="footer-links">
-                <h4>Quick Links</h4>
-                <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-links">
-                <h4>Services</h4>
-                <ul>
-                    <li><a href="#">Consultation</a></li>
-                    <li><a href="#">Scaling & Polishing</a></li>
-                    <li><a href="#">Teeth Whitening</a></li>
-                    <li><a href="#">Root Canal</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-links">
-                <h4>Legal</h4>
-                <ul>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms of Use</a></li>
-                    <li><a href="#">Patient Rights</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="copyright">
-            <p>© 2024 Smile Royale Dental Home. All rights reserved. @smileroyale.ng</p>
-        </div>
-    </footer>
-
     <!-- JavaScript -->
     <script>
         (function() {
-            // Mobile menu toggle (simple version)
-            const mobileMenu = document.querySelector('.mobile-menu');
-            const navLinks = document.querySelector('.nav-links');
+            // Three-dash menu functionality
+            const menuIcon = document.getElementById('menuToggle');
+            const navOverlay = document.getElementById('navOverlay');
+            const closeNav = document.getElementById('closeNav');
             
-            if (mobileMenu) {
-                mobileMenu.addEventListener('click', function() {
-                    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-                    navLinks.style.flexDirection = 'column';
-                    navLinks.style.position = 'absolute';
-                    navLinks.style.top = '100%';
-                    navLinks.style.left = '0';
-                    navLinks.style.right = '0';
-                    navLinks.style.background = 'white';
-                    navLinks.style.padding = '2rem';
-                    navLinks.style.boxShadow = '0 4px 6px -2px rgba(0,0,0,0.1)';
+            if (menuIcon) {
+                menuIcon.addEventListener('click', function() {
+                    navOverlay.classList.add('open');
                 });
             }
+            
+            if (closeNav) {
+                closeNav.addEventListener('click', function() {
+                    navOverlay.classList.remove('open');
+                });
+            }
+            
+            // Close overlay when clicking a link
+            document.querySelectorAll('.overlay-links a').forEach(link => {
+                link.addEventListener('click', function() {
+                    navOverlay.classList.remove('open');
+                });
+            });
 
             // WhatsApp Booking
             const whatsappBtn = document.getElementById('bookWhatsappBtn');
@@ -1019,7 +701,7 @@
                 });
             }
 
-            // Smooth scroll for navigation
+            // Smooth scroll for all anchor links
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
                     e.preventDefault();
