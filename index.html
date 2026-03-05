@@ -173,43 +173,59 @@
       display: block;
     }
 
-    /* ===== HERO — FULLY RESPONSIVE TYPOGRAPHY ===== */
+    /* ===== HERO — MAXIMUM VISIBILITY & CONTRAST ===== */
     .hero {
       position: relative;
       min-height: 90vh;
       display: flex;
       align-items: center;
       background: 
-        linear-gradient(105deg, 
-          rgba(0,20,45,0.98) 0%, 
-          rgba(0,40,70,0.92) 30%, 
-          rgba(0,60,95,0.75) 70%),
+        linear-gradient(107deg, 
+          rgba(0,15,35,0.98) 0%, 
+          rgba(0,30,55,0.95) 30%, 
+          rgba(0,50,80,0.85) 60%,
+          rgba(0,70,105,0.75) 100%),
         url('https://image2url.com/r2/default/images/1772699317530-e1044922-661b-44a6-a80f-30d440553d52.jpg') center/cover no-repeat;
       background-blend-mode: overlay;
       padding: 4rem 0;
     }
+    /* Add an extra dark overlay for maximum text pop */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.15);
+      z-index: 1;
+      pointer-events: none;
+    }
     .hero .container { 
       position: relative; 
-      z-index: 3;
+      z-index: 5;
       width: 100%;
     }
     .hero-content { 
       max-width: 850px;
       width: 100%;
+      position: relative;
+      z-index: 6;
     }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 0.7rem;
-      background: rgba(255,255,255,0.18);
-      padding: 0.7rem 1.8rem;
+      background: rgba(255,255,255,0.25);
+      padding: 0.8rem 2rem;
       border-radius: 60px;
       margin-bottom: 2rem;
       font-weight: 600;
       color: white;
-      border: 1px solid rgba(255,255,255,0.3);
+      border: 1px solid rgba(255,255,255,0.4);
       font-size: 1rem;
       letter-spacing: 0.5px;
       backdrop-filter: blur(8px);
-      box-shadow: 0 8px 22px rgba(0,0,0,0.4);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     .hero .motto-line {
       display: flex;
@@ -218,62 +234,64 @@
       margin-bottom: 1.5rem;
     }
     
-    /* Responsive hero typography - scales perfectly on all devices */
+    /* Hero text with enhanced contrast and visibility */
     .hero h1 {
-      font-size: clamp(2.8rem, 8vw, 4.2rem);
+      font-size: clamp(3rem, 9vw, 4.8rem);
       font-weight: 800;
       line-height: 1.1;
-      text-shadow: 0 8px 28px rgba(0,0,0,0.8);
+      text-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.9);
       color: white;
       letter-spacing: -0.01em;
       margin: 0;
     }
     .hero h2 {
-      font-size: clamp(2.4rem, 7vw, 3.6rem);
+      font-size: clamp(2.6rem, 8vw, 4rem);
       font-weight: 700;
-      color: #d1e5ff;
+      color: #e0f0ff; /* even brighter blue */
       line-height: 1.2;
-      text-shadow: 0 6px 24px rgba(0,0,0,0.8);
+      text-shadow: 0 8px 28px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.5);
       margin: 0.25rem 0 0 0;
     }
     .hero p {
-      font-size: clamp(1.1rem, 3vw, 1.4rem);
-      margin: 1.5rem 0 2.5rem 0;
-      max-width: 700px;
-      color: rgba(255,255,255,0.98);
-      text-shadow: 0 4px 18px rgba(0,0,0,0.7);
+      font-size: clamp(1.2rem, 3.5vw, 1.5rem);
+      margin: 1.8rem 0 2.8rem 0;
+      max-width: 750px;
+      color: rgba(255,255,255,1);
+      text-shadow: 0 4px 20px rgba(0,0,0,0.8), 0 1px 2px rgba(0,0,0,0.9);
       font-weight: 400;
       line-height: 1.6;
     }
     
-    /* Responsive button sizes */
+    /* Buttons with better visibility */
     .hero-buttons { display: flex; flex-wrap: wrap; gap: 1.2rem; }
     .btn {
-      padding: clamp(0.8rem, 2vw, 1rem) clamp(1.8rem, 4vw, 2.5rem);
+      padding: clamp(0.9rem, 2vw, 1.2rem) clamp(2rem, 4vw, 2.8rem);
       border-radius: 60px;
       font-weight: 600;
       text-decoration: none;
       display: inline-flex; align-items: center; gap: 0.6rem;
       transition: 0.25s;
-      font-size: clamp(0.95rem, 2.5vw, 1.05rem);
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
       border: none;
       cursor: pointer;
+      box-shadow: 0 15px 30px -6px #000000;
     }
     .btn-primary {
       background: var(--bright-blue);
       color: white;
-      box-shadow: 0 15px 30px -6px #001d33;
-      border: 1px solid rgba(255,255,255,0.25);
+      border: 1px solid rgba(255,255,255,0.3);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
-    .btn-primary:hover { background: #0d5bbd; transform: translateY(-3px); }
+    .btn-primary:hover { background: #0d5bbd; transform: translateY(-3px); box-shadow: 0 20px 35px -8px #000; }
     .btn-outline-light {
       border: 2px solid white;
       color: white;
-      background: rgba(0,0,0,0.25);
-      backdrop-filter: blur(8px);
-      box-shadow: 0 8px 22px rgba(0,0,0,0.4);
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
     }
-    .btn-outline-light:hover { background: white; color: var(--deep-blue); border-color: white; transform: translateY(-2px); }
+    .btn-outline-light:hover { background: white; color: var(--deep-blue); border-color: white; transform: translateY(-2px); box-shadow: 0 15px 30px -5px #000; }
 
     /* section titles - responsive */
     .section-title {
@@ -524,15 +542,14 @@
     </div>
   </header>
 
-  <!-- HERO with responsive typography -->
+  <!-- HERO with maximum visibility and contrast -->
   <section id="hero" class="hero">
     <div class="container">
       <div class="hero-content" data-aos="fade-up" data-aos-duration="900">
         <div class="hero-badge"><i class="fas fa-tooth"></i> Your smile is our passion</div>
         <div class="motto-line">
           <h1>Your Smile.</h1>
-          <h2>Our Passion.</h2>
-          <h3>Our Pride.</h3>
+          <h2>Our Passion. Our Pride.</h2>
         </div>
         <p>Experience professional dental care tailored to your needs. From routine checkups to advanced procedures, we are committed to giving you a reason to smile.</p>
         <div class="hero-buttons">
@@ -628,12 +645,12 @@
   <!-- footer -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-tagline">Your Smile. Our Passion. Our Pride. <span></span></div>
+      <div class="footer-tagline">Your Smile. Our Passion. Our Pride. <span>❤️</span></div>
       <div class="social">
         <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         <span><a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" style="color: #9ac7ff; text-decoration: none;">@smileroyale.ng</a></span>
       </div>
-      <div class="copyright">© 2026 Smile Royale Dental Office. All rights reserved.</div>
+      <div class="copyright">© 2025 Smile Royale Dental Office. All rights reserved.</div>
     </div>
   </footer>
 
@@ -668,7 +685,7 @@
       const today = new Date();
       const formattedDate = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
 
-      const message = `Hello Doctor,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}`;
+      const message = `Hello Doctor,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate} (flexible). My phone: ${phone}. Thank you!`;
 
       const whatsappURL = `https://wa.me/2348103564479?text=${message}`;
       window.open(whatsappURL, '_blank');
