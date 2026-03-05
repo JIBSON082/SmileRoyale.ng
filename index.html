@@ -17,8 +17,8 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --deep-blue: #002b4a;      /* rich navy */
-      --bright-blue: #1a73e8;    /* vibrant accent */
+      --deep-blue: #002b4a;
+      --bright-blue: #1a73e8;
       --pure-white: #ffffff;
       --off-white: #f5f9ff;
       --light-border: #e9ecf0;
@@ -33,14 +33,18 @@
       line-height: 1.5;
     }
     .container {
-      max-width: 1280px;
+      width: 100%;
+      max-width: 1400px;    /* increased to allow more horizontal space */
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 3rem;      /* slightly increased side padding */
     }
     .section { padding: 5.5rem 0; }
-    @media (max-width: 640px) { .section { padding: 4rem 0; } }
+    @media (max-width: 640px) { 
+      .container { padding: 0 1.5rem; }
+      .section { padding: 4rem 0; } 
+    }
 
-    /* top bar with Instagram and phone */
+    /* top bar with Instagram and phone (WhatsApp only) */
     .top-bar {
       background: var(--deep-blue);
       color: white;
@@ -162,7 +166,7 @@
       text-decoration: none;
     }
 
-    /* ===== HERO — perfectly aligned motto, balanced size ===== */
+    /* ===== HERO — full width content, spacious ===== */
     .hero {
       position: relative;
       min-height: 90vh;
@@ -177,8 +181,15 @@
       background-blend-mode: overlay;
       padding: 4rem 0;
     }
-    .hero .container { position: relative; z-index: 3; }
-    .hero-content { max-width: 750px; }
+    .hero .container { 
+      position: relative; 
+      z-index: 3;
+      width: 100%;
+    }
+    .hero-content { 
+      max-width: 850px;      /* wider to utilize space */
+      width: 100%;
+    }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 0.7rem;
       background: rgba(255,255,255,0.18);
@@ -193,7 +204,6 @@
       backdrop-filter: blur(8px);
       box-shadow: 0 8px 22px rgba(0,0,0,0.4);
     }
-    /* Motto - perfectly aligned, refined size */
     .hero .motto-line {
       display: flex;
       flex-direction: column;
@@ -201,7 +211,7 @@
       margin-bottom: 1.5rem;
     }
     .hero h1 {
-      font-size: 3.8rem;
+      font-size: 4.2rem;      /* slightly larger for desktop */
       font-weight: 800;
       line-height: 1.1;
       text-shadow: 0 8px 28px rgba(0,0,0,0.8);
@@ -210,7 +220,7 @@
       margin: 0;
     }
     .hero h2 {
-      font-size: 3.2rem;
+      font-size: 3.6rem;
       font-weight: 700;
       color: #d1e5ff;
       line-height: 1.2;
@@ -218,9 +228,9 @@
       margin: 0.25rem 0 0 0;
     }
     .hero p {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       margin: 1.5rem 0 2.5rem 0;
-      max-width: 600px;
+      max-width: 700px;
       color: rgba(255,255,255,0.98);
       text-shadow: 0 4px 18px rgba(0,0,0,0.7);
       font-weight: 400;
@@ -254,7 +264,7 @@
     }
     .btn-outline-light:hover { background: white; color: var(--deep-blue); border-color: white; transform: translateY(-2px); }
 
-    /* section titles — elegant underline */
+    /* section titles */
     .section-title {
       font-size: 2.8rem;
       font-weight: 700;
@@ -369,7 +379,19 @@
     }
     .booking-info h3 { font-size: 2.2rem; margin-bottom: 1rem; font-weight: 700; }
     .booking-info p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
-    .booking-highlight { font-size: 1.2rem; background: rgba(255,255,255,0.12); display: inline-block; padding: 0.5rem 1.5rem; border-radius: 40px; }
+    .booking-highlight {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.12);
+      padding: 0.5rem 1.5rem;
+      border-radius: 40px;
+      font-size: 1.2rem;
+      color: white;
+      text-decoration: none;
+    }
+    .booking-highlight i { color: var(--bright-blue); }
+    .booking-highlight:hover { background: rgba(255,255,255,0.2); }
     .booking-form {
       padding: 3rem 2.8rem;
       background: white;
@@ -432,6 +454,15 @@
       transition: background 0.2s;
     }
     .social a:hover { background: var(--bright-blue); }
+    .social span a {
+      color: #9ac7ff;
+      text-decoration: none;
+      background: transparent;
+      width: auto;
+      height: auto;
+      font-size: 1.2rem;
+    }
+    .social span a:hover { text-decoration: underline; background: transparent; }
     .copyright {
       border-top: 1px solid #20587a;
       padding-top: 1.8rem;
@@ -442,11 +473,11 @@
 </head>
 <body x-data="{ mobileMenu: false, otherService: false, serviceValue: '' }" @keydown.window.escape="mobileMenu = false">
 
-  <!-- top bar with Instagram and phone -->
+  <!-- top bar with Instagram and WhatsApp-only number -->
   <div class="top-bar">
     <div class="container">
       <div class="top-contact">
-        <a href="tel:+2348103564479"><i class="fas fa-phone-alt"></i> 08103564479</a>
+        <a href="https://wa.me/2348103564479" target="_blank"><i class="fab fa-whatsapp"></i> 08103564479</a>
         <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank"><i class="fab fa-instagram"></i> @smileroyale.ng</a>
       </div>
     </div>
@@ -480,7 +511,7 @@
     </div>
   </header>
 
-  <!-- HERO with perfectly aligned, balanced motto -->
+  <!-- HERO with expanded desktop layout -->
   <section id="hero" class="hero">
     <div class="container">
       <div class="hero-content" data-aos="fade-up" data-aos-duration="900">
@@ -504,10 +535,10 @@
       <div data-aos="zoom-in-up" data-aos-duration="800">
         <div class="about-video-grid">
           <video autoplay muted loop playsinline>
-            <source src="https://image2url.com/r2/default/videos/1772715970572-d9d8d2d6-29d3-4aa7-9450-7e3ae433aec7.mp4" type="video/mp4">
+            <source src="https://image2url.com/r2/default/videos/1772267035727-6a27cf7e-1efb-4a06-a8ef-1162122d3d62.mp4" type="video/mp4">
           </video>
           <video autoplay muted loop playsinline>
-            <source src="https://image2url.com/r2/default/videos/1772716102573-be632a4c-6946-44ec-bcb4-1dd7e4d028a9.mp4" type="video/mp4">
+            <source src="https://image2url.com/r2/default/videos/1772267772402-c2d5e3e2-0eab-40d9-bba1-5c2280211b07.mp4" type="video/mp4">
           </video>
         </div>
       </div>
@@ -546,14 +577,14 @@
     </div>
   </section>
 
-  <!-- BOOKING section with WhatsApp integration -->
+  <!-- BOOKING section with WhatsApp number (no phone call) -->
   <section id="booking" class="section" style="background: #f2f6fc;">
     <div class="container">
       <div class="booking-grid" data-aos="fade-up" data-aos-duration="900">
         <div class="booking-info">
           <h3>Ready to Transform Your Smile?</h3>
           <p>Don't wait for a dental emergency. Schedule your visit with us today and experience the Smile Royale difference.</p>
-          <div class="booking-highlight"><i class="fas fa-phone-alt"></i> 08103564479</div>
+          <a href="https://wa.me/2348103564479" target="_blank" class="booking-highlight"><i class="fab fa-whatsapp"></i> 08103564479</a>
         </div>
         <div class="booking-form">
           <form id="waForm" @submit.prevent="sendToWhatsApp">
@@ -580,15 +611,15 @@
     </div>
   </section>
 
-  <!-- footer -->
+  <!-- footer with functional Instagram -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-tagline">Your Smile. Our Passion. Our Pride. <span></span></div>
+      <div class="footer-tagline">Your Smile. Our Passion. Our Pride. <span>❤️</span></div>
       <div class="social">
         <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <span style="color:#c3d9ec;">@smileroyale.ng</span>
+        <span><a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" style="color: #9ac7ff; text-decoration: none;">@smileroyale.ng</a></span>
       </div>
-      <div class="copyright">© 2026 Smile Royale Dental Office. All rights reserved.</div>
+      <div class="copyright">© 2025 Smile Royale Dental Office. All rights reserved.</div>
     </div>
   </footer>
 
@@ -620,17 +651,15 @@
         return;
       }
 
-      // Format date nicely (current date as placeholder)
       const today = new Date();
       const formattedDate = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
 
-      const message = `Hello Doctor,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}`;
+      const message = `Hello Doctor,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate} (flexible). My phone: ${phone}. Thank you!`;
 
       const whatsappURL = `https://wa.me/2348103564479?text=${message}`;
       window.open(whatsappURL, '_blank');
     }
 
-    // expose function to Alpine scope
     document.addEventListener('alpine:init', () => {
       Alpine.data('waForm', () => ({
         otherService: false,
