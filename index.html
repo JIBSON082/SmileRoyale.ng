@@ -162,13 +162,13 @@
       text-decoration: none;
     }
 
-    /* ===== HERO — improved contrast overlay ===== */
+    /* ===== HERO — maximum contrast ===== */
     .hero {
       position: relative;
       min-height: 85vh;
       display: flex;
       align-items: center;
-      background: linear-gradient(97deg, rgba(0,39,68,0.95) 0%, rgba(0,49,83,0.75) 50%, rgba(0,65,102,0.6) 100%), 
+      background: linear-gradient(97deg, rgba(0,20,40,0.98) 0%, rgba(0,40,70,0.9) 40%, rgba(0,60,100,0.7) 100%), 
                   url('https://image2url.com/r2/default/images/1772699317530-e1044922-661b-44a6-a80f-30d440553d52.jpg') center/cover no-repeat;
       background-blend-mode: overlay;
       padding: 4rem 0;
@@ -177,41 +177,42 @@
     .hero-content { max-width: 700px; color: white; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 0.6rem;
-      background: rgba(255,255,255,0.18);
-      padding: 0.5rem 1.3rem;
+      background: rgba(255,255,255,0.2);
+      padding: 0.6rem 1.5rem;
       border-radius: 60px;
       margin-bottom: 2rem;
       font-weight: 600;
       color: white;
-      border: 1px solid rgba(255,255,255,0.25);
-      font-size: 0.9rem;
-      letter-spacing: 0.3px;
-      backdrop-filter: blur(6px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      border: 1px solid rgba(255,255,255,0.3);
+      font-size: 0.95rem;
+      letter-spacing: 0.4px;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.3);
     }
     .hero h1 {
-      font-size: 4rem;
+      font-size: 4.2rem;
       font-weight: 800;
       line-height: 1.1;
       margin-bottom: 0.5rem;
-      text-shadow: 0 6px 20px rgba(0,0,0,0.5);
+      text-shadow: 0 8px 28px rgba(0,0,0,0.7);
       color: white;
     }
     .hero h2 {
-      font-size: 3rem;
+      font-size: 3.2rem;
       font-weight: 700;
-      color: #b8d6ff; /* lighter blue for better contrast */
+      color: #c4ddff; /* much lighter blue for max readability */
       margin-bottom: 1.5rem;
       line-height: 1.2;
-      text-shadow: 0 4px 18px rgba(0,0,0,0.5);
+      text-shadow: 0 6px 22px rgba(0,0,0,0.7);
     }
     .hero p {
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       margin-bottom: 2.5rem;
       max-width: 600px;
-      color: rgba(255,255,255,0.98);
-      text-shadow: 0 3px 12px rgba(0,0,0,0.5);
+      color: white;
+      text-shadow: 0 4px 16px rgba(0,0,0,0.7);
       font-weight: 400;
+      line-height: 1.5;
     }
     .hero-buttons { display: flex; flex-wrap: wrap; gap: 1.2rem; }
     .btn {
@@ -228,20 +229,22 @@
     .btn-primary {
       background: var(--bright-blue);
       color: white;
-      box-shadow: 0 10px 22px -6px #001f3f;
-      border: 1px solid rgba(255,255,255,0.2);
+      box-shadow: 0 12px 28px -6px #000c1a;
+      border: 1px solid rgba(255,255,255,0.25);
+      font-weight: 600;
     }
     .btn-primary:hover { background: #0d5bbd; transform: translateY(-2px); }
     .btn-outline-light {
       border: 2px solid white;
       color: white;
-      background: rgba(0,0,0,0.25);
-      backdrop-filter: blur(6px);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      background: rgba(0,0,0,0.3);
+      backdrop-filter: blur(8px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+      font-weight: 600;
     }
-    .btn-outline-light:hover { background: white; color: var(--deep-blue); }
+    .btn-outline-light:hover { background: white; color: var(--deep-blue); border-color: white; }
 
-    /* section titles — with elegant underline */
+    /* section titles — with elegant underline, NO plus marks */
     .section-title {
       font-size: 2.8rem;
       font-weight: 700;
@@ -260,13 +263,6 @@
       height: 4px;
       background: linear-gradient(90deg, var(--bright-blue), rgba(26,115,232,0.3));
       border-radius: 4px;
-    }
-    .section-title .plus-marks {
-      color: var(--bright-blue);
-      font-weight: 300;
-      font-size: 2rem;
-      margin-left: 0.5rem;
-      opacity: 0.4;
     }
     .section-subhead {
       font-size: 1.2rem;
@@ -474,7 +470,7 @@
     </div>
   </header>
 
-  <!-- HERO with improved contrast overlay and AOS -->
+  <!-- HERO with maximum contrast overlay and AOS -->
   <section id="hero" class="hero">
     <div class="container">
       <div class="hero-content" data-aos="fade-up" data-aos-duration="900">
@@ -490,7 +486,7 @@
     </div>
   </section>
 
-  <!-- About: two videos + text (titles now have underline) -->
+  <!-- About: two videos + text (titles now have underline, no plus) -->
   <section id="about" class="section">
     <div class="container">
       <div data-aos="zoom-in-up" data-aos-duration="800">
@@ -504,7 +500,7 @@
         </div>
       </div>
       <div data-aos="fade-right" data-aos-delay="150">
-        <h2 class="section-title">Professional Care for Your Perfect Smile <span class="plus-marks">++</span></h2>
+        <h2 class="section-title">Professional Care for Your Perfect Smile</h2>
         <p class="section-subhead">At Smile Royale, we believe that a healthy smile is a reflection of your overall well-being. We are a dedicated Dental Office providing a wide range of oral health solutions in a comfortable and professional environment. Our team of expert dentists is driven by a single mission: to provide high-quality dental care with passion and excellence.</p>
       </div>
     </div>
@@ -513,7 +509,7 @@
   <!-- SERVICES -->
   <section id="services" class="section" style="background: var(--off-white);">
     <div class="container">
-      <h2 class="section-title" data-aos="fade-down">Comprehensive Dental Solutions <span class="plus-marks">+</span></h2>
+      <h2 class="section-title" data-aos="fade-down">Comprehensive Dental Solutions</h2>
       <p class="section-subhead" data-aos="fade-down" data-aos-delay="50">We offer a full suite of dental treatments to keep your teeth healthy and your smile bright.</p>
       <div class="services-grid">
         <div class="service-card" data-aos="flip-left"><div class="service-icon"><i class="fas fa-comments"></i></div><h3>Discounted Consultations</h3><p>Professional dental advice and examinations at affordable rates.</p></div>
@@ -528,7 +524,7 @@
   <!-- WHY SMILE ROYALE -->
   <section id="why" class="section">
     <div class="container">
-      <h2 class="section-title" data-aos="fade-up">The Smile Royale Advantage <span class="plus-marks">++</span></h2>
+      <h2 class="section-title" data-aos="fade-up">The Smile Royale Advantage</h2>
       <div class="advantage-grid">
         <div class="advantage-card" data-aos="zoom-in"><i class="fas fa-heart"></i><h4>Passion-Driven Care</h4><p>"Your Smile is Our Passion." We care about the person behind the teeth.</p></div>
         <div class="advantage-card" data-aos="zoom-in" data-aos-delay="80"><i class="fas fa-user-md"></i><h4>Expert Dentists</h4><p>Highly skilled professionals dedicated to the latest dental practices.</p></div>
@@ -538,7 +534,7 @@
     </div>
   </section>
 
-  <!-- BOOKING section with WhatsApp integration -->
+  <!-- BOOKING section with WhatsApp integration - button text changed -->
   <section id="booking" class="section" style="background: #f2f6fc;">
     <div class="container">
       <div class="booking-grid" data-aos="fade-up" data-aos-duration="900">
@@ -565,7 +561,7 @@
             <div class="form-group" x-show="otherService" x-transition>
               <textarea id="waOtherText" placeholder="Please describe the service you need" rows="2"></textarea>
             </div>
-            <button type="submit" class="btn-submit">Confirm via WhatsApp</button>
+            <button type="submit" class="btn-submit">Confirm Appointment</button>
           </form>
         </div>
       </div>
