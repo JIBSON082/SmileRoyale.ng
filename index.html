@@ -45,7 +45,7 @@
       .section { padding: 4rem 0; } 
     }
 
-    /* top bar */
+    /* top bar with refined layout */
     .top-bar {
       background: var(--deep-blue);
       color: white;
@@ -70,7 +70,7 @@
     .top-contact i { color: var(--bright-blue); width: 1.2rem; }
     .top-contact a:hover { text-decoration: underline; }
 
-    /* header with new logo */
+    /* header with refined logo and typography */
     .header {
       position: sticky;
       top: 0;
@@ -90,14 +90,15 @@
       gap: 0.75rem;
     }
     .logo-icon {
-      width: 48px;
-      height: 48px;
+      width: 52px;
+      height: 52px;
       background: transparent;
-      border-radius: 14px;
+      border-radius: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
       overflow: hidden;
+      box-shadow: 0 4px 10px rgba(0,43,74,0.08);
     }
     .logo-icon img {
       width: 100%;
@@ -106,17 +107,22 @@
       filter: drop-shadow(0 2px 4px rgba(0,43,74,0.1));
     }
     .logo-text {
-      font-size: 1.7rem;
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+    .logo-text .main {
+      font-size: 1.9rem;
       font-weight: 800;
       color: var(--deep-blue);
       letter-spacing: -0.02em;
-      line-height: 1.1;
     }
-    .logo-text span {
+    .logo-text .sub {
       color: var(--bright-blue);
       font-weight: 500;
       font-size: 0.9rem;
-      display: block;
+      letter-spacing: 0.3px;
+      margin-top: -2px;
     }
 
     .nav { display: none; }
@@ -421,7 +427,7 @@
     }
     .advantage-card h4 { font-size: 1.3rem; color: var(--deep-blue); margin-bottom: 0.6rem; font-weight: 700; }
 
-    /* booking form with date field */
+    /* booking form with date field labeled */
     .booking-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -458,6 +464,13 @@
       background: white;
     }
     .form-group { margin-bottom: 1.4rem; }
+    .form-label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      color: var(--deep-blue);
+      font-size: 0.95rem;
+    }
     input, select, textarea {
       width: 100%;
       padding: 1rem 1.5rem;
@@ -485,57 +498,149 @@
     .btn-submit:hover { background: #0d5bbd; }
     @media (max-width:700px){ .booking-grid{ grid-template-columns:1fr; } }
 
-    /* footer */
+    /* footer with quick links - enriched */
     .footer {
       background: var(--deep-blue);
       color: #d0e0f0;
       padding: 3.5rem 0 2rem;
       margin-top: 3rem;
     }
-    .footer-tagline {
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      font-weight: 700;
-      color: white;
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1.5fr;
+      gap: 2.5rem;
+      margin-bottom: 2.5rem;
+    }
+    @media (max-width: 768px) {
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    .footer-brand .footer-logo {
+      display: flex;
+      flex-direction: column;
       margin-bottom: 1rem;
     }
-    .footer-tagline span { color: #9ac7ff; }
-    .social {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-      margin: 1.8rem 0;
-      flex-wrap: wrap;
+    .footer-brand .footer-logo .main {
+      font-size: 2rem;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
     }
-    .social a {
+    .footer-brand .footer-logo .sub {
+      color: #9ac7ff;
+      font-weight: 500;
+      font-size: 1rem;
+    }
+    .footer-contact {
+      margin-top: 1.5rem;
+    }
+    .footer-contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 0.8rem;
+    }
+    .footer-contact-item i {
+      color: var(--bright-blue);
+      width: 1.2rem;
+    }
+    .footer-contact-item a, .footer-contact-item span {
+      color: #d0e0f0;
+      text-decoration: none;
+    }
+    .footer-contact-item a:hover { color: white; text-decoration: underline; }
+    
+    .footer-links h4 {
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    .footer-links h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--bright-blue);
+      border-radius: 2px;
+    }
+    .footer-links ul {
+      list-style: none;
+    }
+    .footer-links li {
+      margin-bottom: 0.7rem;
+    }
+    .footer-links a {
+      color: #d0e0f0;
+      text-decoration: none;
+      transition: color 0.2s;
+      display: inline-block;
+    }
+    .footer-links a:hover {
+      color: white;
+      transform: translateX(3px);
+    }
+    
+    .footer-social h4 {
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 1.2rem;
+      position: relative;
+      padding-bottom: 0.5rem;
+    }
+    .footer-social h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 40px;
+      height: 3px;
+      background: var(--bright-blue);
+      border-radius: 2px;
+    }
+    .social-icons {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+    .social-icons a {
       background: #1e4c6e;
-      width: 46px; height: 46px;
+      width: 42px;
+      height: 42px;
       border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      color: white; text-decoration: none;
-      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-decoration: none;
+      font-size: 1.3rem;
       transition: background 0.2s;
     }
-    .social a:hover { background: var(--bright-blue); }
-    .social span a {
+    .social-icons a:hover { background: var(--bright-blue); }
+    .footer-instagram {
       color: #9ac7ff;
       text-decoration: none;
-      background: transparent;
-      width: auto;
-      height: auto;
-      font-size: 1.2rem;
+      font-size: 1rem;
     }
-    .social span a:hover { text-decoration: underline; background: transparent; }
+    .footer-instagram:hover { text-decoration: underline; color: white; }
+    
     .copyright {
       border-top: 1px solid #20587a;
       padding-top: 1.8rem;
       font-size: 0.9rem;
+      text-align: center;
     }
     a, button { cursor: pointer; }
   </style>
 </head>
 <body x-data="{ mobileMenu: false, selectedService: '' }" @keydown.window.escape="mobileMenu = false">
 
-  <!-- top bar -->
+  <!-- top bar with refined layout -->
   <div class="top-bar">
     <div class="container">
       <div class="top-contact">
@@ -545,14 +650,17 @@
     </div>
   </div>
 
-  <!-- header with new logo -->
+  <!-- header with refined logo and typography -->
   <header class="header">
     <div class="container">
       <div class="logo">
         <div class="logo-icon">
           <img src="https://image2url.com/r2/default/images/1772738359714-c3bea4c7-78e3-4ba1-b90f-1bfd03bcbcdb.jpg" alt="Smile Royale Logo">
         </div>
-        <div class="logo-text">SMILE<span>ROYALE</span></div>
+        <div class="logo-text">
+          <span class="main">SMILE</span>
+          <span class="sub">ROYALE</span>
+        </div>
       </div>
       <nav class="nav">
         <a href="#hero">Home</a>
@@ -668,7 +776,7 @@
     </div>
   </section>
 
-  <!-- BOOKING section with date field -->
+  <!-- BOOKING section with labeled date field -->
   <section id="booking" class="section" style="background: #f2f6fc;">
     <div class="container">
       <div class="booking-grid" data-aos="fade-up" data-aos-duration="900">
@@ -679,11 +787,18 @@
         </div>
         <div class="booking-form">
           <form id="waForm" @submit.prevent="sendToWhatsApp">
-            <div class="form-group"><input type="text" id="waName" placeholder="Full Name" required></div>
-            <div class="form-group"><input type="tel" id="waPhone" placeholder="Phone Number" required></div>
             <div class="form-group">
+              <label class="form-label">Full Name</label>
+              <input type="text" id="waName" placeholder="Your full name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Phone Number</label>
+              <input type="tel" id="waPhone" placeholder="Your phone number" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label">Service Required</label>
               <select id="waService" x-model="selectedService" required>
-                <option value="" disabled selected>Select Service</option>
+                <option value="" disabled selected>Select a service</option>
                 <option>Consultation</option>
                 <option>Scaling & Polishing</option>
                 <option>Teeth Whitening</option>
@@ -693,9 +808,11 @@
               </select>
             </div>
             <div class="form-group" x-show="selectedService === 'Other'" x-transition>
+              <label class="form-label">Describe your needs</label>
               <textarea id="waOtherText" placeholder="Please describe the service you need" rows="2"></textarea>
             </div>
             <div class="form-group">
+              <label class="form-label">Select Date</label>
               <input type="date" id="waDate" required>
             </div>
             <button type="submit" class="btn-submit">Confirm Appointment</button>
@@ -705,15 +822,54 @@
     </div>
   </section>
 
-  <!-- footer -->
+  <!-- footer with quick links -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-tagline">Your Smile. Our Passion. Our Pride. <span>❤️</span></div>
-      <div class="social">
-        <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <span><a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" style="color: #9ac7ff; text-decoration: none;">@smileroyale.ng</a></span>
+      <div class="footer-grid">
+        <!-- Brand column -->
+        <div class="footer-brand">
+          <div class="footer-logo">
+            <span class="main">SMILE ROYALE</span>
+            <span class="sub">Your Smile. Our Passion. Our Pride.</span>
+          </div>
+          <div class="footer-contact">
+            <div class="footer-contact-item">
+              <i class="fab fa-whatsapp"></i>
+              <a href="https://wa.me/2348103564479" target="_blank">08103564479</a>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fab fa-instagram"></i>
+              <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank">@smileroyale.ng</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Quick Links column -->
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#hero">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#why">Why Us</a></li>
+            <li><a href="#booking">Contact</a></li>
+          </ul>
+        </div>
+        
+        <!-- Social column -->
+        <div class="footer-social">
+          <h4>Connect With Us</h4>
+          <div class="social-icons">
+            <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/2348103564479" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+          </div>
+          <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" class="footer-instagram">@smileroyale.ng</a>
+        </div>
       </div>
-      <div class="copyright">© 2025 Smile Royale Dental. All rights reserved.</div>
+      
+      <div class="copyright">
+        <p>© 2025 Smile Royale Dental. All rights reserved.</p>
+      </div>
     </div>
   </footer>
 
