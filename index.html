@@ -39,7 +39,9 @@
       padding: 0 3rem;
     }
     .section { padding: 5.5rem 0; }
-    @media (max-width: 640px) { 
+    
+    /* Responsive container for mobile */
+    @media (max-width: 768px) { 
       .container { padding: 0 1.5rem; }
       .section { padding: 4rem 0; } 
     }
@@ -147,7 +149,7 @@
       .btn-nav:hover { background: #003b60; }
     }
 
-    /* mobile menu - fixed to prevent page break */
+    /* mobile menu - fixed */
     .mobile-menu-dropdown {
       background: var(--pure-white);
       border-top: 1px solid var(--light-border);
@@ -171,7 +173,7 @@
       display: block;
     }
 
-    /* ===== HERO ===== */
+    /* ===== HERO — FULLY RESPONSIVE TYPOGRAPHY ===== */
     .hero {
       position: relative;
       min-height: 90vh;
@@ -215,8 +217,10 @@
       align-items: flex-start;
       margin-bottom: 1.5rem;
     }
+    
+    /* Responsive hero typography - scales perfectly on all devices */
     .hero h1 {
-      font-size: 4.2rem;
+      font-size: clamp(2.8rem, 8vw, 4.2rem);
       font-weight: 800;
       line-height: 1.1;
       text-shadow: 0 8px 28px rgba(0,0,0,0.8);
@@ -225,7 +229,7 @@
       margin: 0;
     }
     .hero h2 {
-      font-size: 3.6rem;
+      font-size: clamp(2.4rem, 7vw, 3.6rem);
       font-weight: 700;
       color: #d1e5ff;
       line-height: 1.2;
@@ -233,7 +237,7 @@
       margin: 0.25rem 0 0 0;
     }
     .hero p {
-      font-size: 1.4rem;
+      font-size: clamp(1.1rem, 3vw, 1.4rem);
       margin: 1.5rem 0 2.5rem 0;
       max-width: 700px;
       color: rgba(255,255,255,0.98);
@@ -241,15 +245,17 @@
       font-weight: 400;
       line-height: 1.6;
     }
+    
+    /* Responsive button sizes */
     .hero-buttons { display: flex; flex-wrap: wrap; gap: 1.2rem; }
     .btn {
-      padding: 1rem 2.5rem;
+      padding: clamp(0.8rem, 2vw, 1rem) clamp(1.8rem, 4vw, 2.5rem);
       border-radius: 60px;
       font-weight: 600;
       text-decoration: none;
       display: inline-flex; align-items: center; gap: 0.6rem;
       transition: 0.25s;
-      font-size: 1.05rem;
+      font-size: clamp(0.95rem, 2.5vw, 1.05rem);
       border: none;
       cursor: pointer;
     }
@@ -259,7 +265,7 @@
       box-shadow: 0 15px 30px -6px #001d33;
       border: 1px solid rgba(255,255,255,0.25);
     }
-    .btn-primary:hover { background: #0d5bbd; transform: translateY(-3px); box-shadow: 0 20px 35px -8px #000f1f; }
+    .btn-primary:hover { background: #0d5bbd; transform: translateY(-3px); }
     .btn-outline-light {
       border: 2px solid white;
       color: white;
@@ -269,9 +275,9 @@
     }
     .btn-outline-light:hover { background: white; color: var(--deep-blue); border-color: white; transform: translateY(-2px); }
 
-    /* section titles */
+    /* section titles - responsive */
     .section-title {
-      font-size: 2.8rem;
+      font-size: clamp(2rem, 5vw, 2.8rem);
       font-weight: 700;
       color: var(--deep-blue);
       margin-bottom: 1rem;
@@ -290,7 +296,7 @@
       border-radius: 4px;
     }
     .section-subhead {
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
       color: var(--soft-gray);
       max-width: 760px;
       margin-bottom: 3rem;
@@ -382,8 +388,8 @@
       color: white;
       padding: 3rem 2.8rem;
     }
-    .booking-info h3 { font-size: 2.2rem; margin-bottom: 1rem; font-weight: 700; }
-    .booking-info p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
+    .booking-info h3 { font-size: clamp(1.8rem, 4vw, 2.2rem); margin-bottom: 1rem; font-weight: 700; }
+    .booking-info p { font-size: clamp(1rem, 2.5vw, 1.2rem); margin-bottom: 2rem; opacity: 0.9; }
     .booking-highlight {
       display: inline-flex;
       align-items: center;
@@ -391,7 +397,7 @@
       background: rgba(255,255,255,0.12);
       padding: 0.5rem 1.5rem;
       border-radius: 40px;
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
       color: white;
       text-decoration: none;
     }
@@ -437,7 +443,7 @@
       margin-top: 3rem;
     }
     .footer-tagline {
-      font-size: 2rem;
+      font-size: clamp(1.5rem, 4vw, 2rem);
       font-weight: 700;
       color: white;
       margin-bottom: 1rem;
@@ -448,6 +454,7 @@
       gap: 1.5rem;
       align-items: center;
       margin: 1.8rem 0;
+      flex-wrap: wrap;
     }
     .social a {
       background: #1e4c6e;
@@ -506,7 +513,7 @@
       <button class="mobile-menu-btn" @click="mobileMenu = !mobileMenu"><i class="fas fa-bars"></i></button>
     </div>
     
-    <!-- mobile dropdown - fixed to close properly on link click -->
+    <!-- mobile dropdown -->
     <div x-show="mobileMenu" class="mobile-menu-dropdown" x-transition.duration.300ms @click.outside="mobileMenu = false">
       <a href="#hero" @click="mobileMenu = false">Home</a>
       <a href="#about" @click="mobileMenu = false">About</a>
@@ -517,7 +524,7 @@
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO with responsive typography -->
   <section id="hero" class="hero">
     <div class="container">
       <div class="hero-content" data-aos="fade-up" data-aos-duration="900">
