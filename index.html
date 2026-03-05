@@ -3,39 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
-  <title>Smile Royale | Your Smile. Our Passion. Our Pride.</title>
+  <title>Smile Royale | premium dental care Lagos</title>
   <!-- SEO meta -->
-  <meta name="description" content="Smile Royale Dental Office: professional dental care from routine checkups to advanced procedures. Book an appointment for a healthy smile.">
-  <!-- Fonts & icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <meta name="description" content="Smile Royale Dental: where your smile becomes our passion. Expert dentists, modern clinic, and comprehensive care from checkups to advanced procedures.">
+  <!-- fonts + icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  <!-- Alpine for mobile & AOS init -->
+  <!-- Alpine for mobile -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <!-- Animate on Scroll library (lightweight) -->
+  <!-- AOS library -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --brand-blue: #0b3954;
-      --brand-gold: #bfa37c;
-      --brand-light: #f9f7f4;
-      --white: #ffffff;
-      --gray: #4a4a4a;
-      --border: #eae3da;
+      --deep-teal: #0a4b5c;        /* richer than previous blue */
+      --warm-sand: #e8d5b5;         /* soft gold-beige for highlights */
+      --accent-terracotta: #c97c5b; /* warm, human accent */
+      --off-white: #faf7f2;
+      --charcoal: #2a373d;
+      --border-light: #ede5d8;
+      --card-bg: #ffffff;
     }
-    html {
-      scroll-behavior: smooth;
-      -webkit-tap-highlight-color: transparent;
-    }
+    html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--white);
-      color: #1e2b32;
+      background: var(--off-white);
+      color: var(--charcoal);
       line-height: 1.5;
       overflow-x: hidden;
     }
@@ -45,232 +39,207 @@
       margin: 0 auto;
       padding: 0 1.5rem;
     }
-    .section {
-      padding: 5rem 0;
-    }
-    @media (max-width: 640px) {
-      .section { padding: 3.5rem 0; }
-    }
+    .section { padding: 5rem 0; }
+    @media (max-width: 640px) { .section { padding: 4rem 0; } }
 
-    /* header & navigation (clean, only essential) */
+    /* header */
     .header {
       position: sticky;
       top: 0;
-      background: rgba(255,255,255,0.96);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border-light);
       z-index: 100;
     }
     .header .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 72px;
+      height: 76px;
     }
     .logo {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
+      gap: 0.6rem;
     }
     .logo-icon {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(145deg, var(--brand-blue), #1b5a7a);
-      border-radius: 10px;
+      width: 44px; height: 44px;
+      background: linear-gradient(145deg, var(--deep-teal), #116b80);
+      border-radius: 12px;
       display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.6rem;
+      align-items: center; justify-content: center;
+      color: white; font-size: 1.8rem;
     }
     .logo-text {
-      font-size: 1.4rem;
-      font-weight: 700;
+      font-size: 1.6rem;
+      font-weight: 800;
       letter-spacing: -0.02em;
-      color: var(--brand-blue);
+      color: var(--deep-teal);
+      line-height: 1.1;
     }
-    .logo-text span { color: var(--brand-gold); font-weight: 400; }
-
-    .nav {
-      display: none;
+    .logo-text span {
+      color: var(--accent-terracotta);
+      font-weight: 400;
+      font-size: 1rem;
+      display: block;
     }
+    .nav { display: none; }
     .mobile-menu-btn {
       display: block;
       font-size: 2rem;
-      color: var(--brand-blue);
+      color: var(--deep-teal);
+      background: none; border: none;
       cursor: pointer;
-      background: none;
-      border: none;
     }
     @media (min-width: 900px) {
       .mobile-menu-btn { display: none; }
       .nav {
         display: flex;
-        gap: 2.2rem;
+        gap: 2.5rem;
         align-items: center;
       }
       .nav a {
         text-decoration: none;
-        color: var(--brand-blue);
+        color: var(--deep-teal);
         font-weight: 600;
         font-size: 0.95rem;
         text-transform: uppercase;
-        letter-spacing: 0.3px;
-        padding: 0.3rem 0;
+        letter-spacing: 0.5px;
+        padding-bottom: 0.3rem;
         border-bottom: 2px solid transparent;
         transition: 0.2s;
       }
-      .nav a:hover { border-bottom-color: var(--brand-gold); }
+      .nav a:hover { border-bottom-color: var(--accent-terracotta); }
       .btn-nav {
-        background: var(--brand-blue);
+        background: var(--deep-teal);
         color: white !important;
-        padding: 0.65rem 1.8rem !important;
-        border-radius: 40px;
+        padding: 0.7rem 2rem !important;
+        border-radius: 60px;
         border-bottom: none !important;
         text-transform: none;
+        font-weight: 600;
+        letter-spacing: 0.3px;
       }
-      .btn-nav:hover { background: #1b5a7a; }
+      .btn-nav:hover { background: #0c5e72; border-bottom: none; }
     }
 
-    /* mobile menu dropdown */
+    /* mobile menu */
     .mobile-menu-dropdown {
       background: white;
-      border-top: 1px solid var(--border);
-      padding: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      gap: 1.2rem;
-      box-shadow: 0 20px 30px -15px rgba(0,0,0,0.1);
+      border-top: 1px solid var(--border-light);
+      padding: 1.8rem;
+      display: flex; flex-direction: column; gap: 1.2rem;
+      box-shadow: 0 20px 30px -12px rgba(10,75,92,0.15);
     }
     .mobile-menu-dropdown a {
       text-decoration: none;
-      color: var(--brand-blue);
-      font-weight: 600;
-      font-size: 1.2rem;
-      padding: 0.5rem 0;
-      border-bottom: 1px solid #f0eae3;
+      color: var(--deep-teal);
+      font-weight: 600; font-size: 1.2rem;
+      border-bottom: 1px solid #f0e4d8;
+      padding-bottom: 0.7rem;
     }
     .mobile-wa-btn {
-      background: var(--brand-gold);
-      color: white;
-      padding: 1rem;
-      border-radius: 50px;
-      text-align: center;
-      font-weight: 700;
-      margin-top: 0.5rem;
-      text-decoration: none;
-      border: none;
+      background: var(--accent-terracotta);
+      color: white; padding: 1rem; border-radius: 60px;
+      text-align: center; font-weight: 700; margin-top: 0.5rem;
+      text-decoration: none; border: none;
     }
 
-    /* hero background section */
+    /* HERO — upgraded background quality & text */
     .hero {
       position: relative;
       min-height: 90vh;
       display: flex;
       align-items: center;
-      background: linear-gradient(97deg, rgba(11,57,84,0.7) 0%, rgba(11,57,84,0.3) 100%), url('https://image2url.com/r2/default/images/1772699317530-e1044922-661b-44a6-a80f-30d440553d52.jpg') center/cover no-repeat;
+      background: linear-gradient(95deg, rgba(10,75,92,0.8) 0%, rgba(10,75,92,0.5) 40%, rgba(0,0,0,0.2) 80%), 
+                  url('https://image2url.com/r2/default/images/1772699317530-e1044922-661b-44a6-a80f-30d440553d52.jpg') center/cover no-repeat;
       background-blend-mode: overlay;
-      padding: 4rem 0;
     }
-    .hero .container {
-      position: relative;
-      z-index: 2;
-      color: white;
-    }
-    .hero-content {
-      max-width: 700px;
-    }
+    .hero .container { position: relative; z-index: 3; color: white; }
+    .hero-content { max-width: 750px; }
     .hero h1 {
-      font-size: 3.3rem;
+      font-size: 3.8rem;
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+      text-shadow: 0 8px 25px rgba(0,30,40,0.5);
+      letter-spacing: -0.01em;
+    }
+    .hero h1 span {
+      color: var(--warm-sand);
       font-weight: 700;
-      line-height: 1.2;
-      margin-bottom: 1.5rem;
-      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      display: inline-block;
     }
     .hero p {
-      font-size: 1.3rem;
-      margin-bottom: 2.2rem;
+      font-size: 1.4rem;
+      font-weight: 300;
+      margin-bottom: 2.5rem;
+      text-shadow: 0 3px 12px rgba(0,0,0,0.3);
+      max-width: 600px;
+      line-height: 1.5;
       opacity: 0.95;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
-    .hero-buttons {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
+    .hero-buttons { display: flex; flex-wrap: wrap; gap: 1.2rem; }
     .btn {
-      padding: 0.9rem 2rem;
+      padding: 1rem 2.4rem;
       border-radius: 60px;
       font-weight: 600;
       text-decoration: none;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.6rem;
-      transition: 0.2s;
-      font-size: 1rem;
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      transition: all 0.25s ease;
+      font-size: 1.05rem;
       border: none;
       cursor: pointer;
-      background: transparent;
     }
     .btn-primary {
-      background: var(--brand-gold);
-      color: var(--brand-blue);
-      border: 2px solid var(--brand-gold);
+      background: var(--accent-terracotta);
+      color: white;
+      box-shadow: 0 8px 22px -8px rgba(201,124,91,0.5);
     }
-    .btn-primary:hover {
-      background: #dabe98;
-      border-color: #dabe98;
-    }
+    .btn-primary:hover { background: #b56748; transform: translateY(-2px); }
     .btn-outline-light {
-      border: 2px solid white;
+      border: 2px solid rgba(255,255,255,0.9);
       color: white;
       background: rgba(0,0,0,0.1);
       backdrop-filter: blur(5px);
     }
-    .btn-outline-light:hover {
-      background: white;
-      color: var(--brand-blue);
-    }
+    .btn-outline-light:hover { background: white; color: var(--deep-teal); border-color: white; }
 
     /* section titles */
     .section-title {
-      font-size: 2.5rem;
+      font-size: 2.6rem;
       font-weight: 700;
-      color: var(--brand-blue);
+      color: var(--deep-teal);
       margin-bottom: 1.2rem;
+      line-height: 1.2;
     }
     .section-subhead {
       font-size: 1.2rem;
-      color: #4f5e68;
-      max-width: 700px;
+      color: #3b535c;
+      max-width: 750px;
       margin-bottom: 2.5rem;
+      font-weight: 400;
     }
-    .text-gold { color: var(--brand-gold); }
+    .text-accent { color: var(--accent-terracotta); }
 
-    /* about video grid: two videos side by side */
+    /* about: two videos + text */
     .about-video-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
+      gap: 1.8rem;
       margin-bottom: 3rem;
       border-radius: 2rem;
       overflow: hidden;
     }
     .about-video-grid video {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 1.2rem;
-      box-shadow: 0 25px 35px -15px rgba(0,0,0,0.2);
-      border: 1px solid var(--border);
-      background: #f0ebe4;
+      width: 100%; height: auto; display: block;
+      border-radius: 1.5rem;
+      box-shadow: 0 25px 35px -18px rgba(10,75,92,0.3);
+      border: 1px solid rgba(201,124,91,0.15);
     }
-    @media (max-width: 640px) {
-      .about-video-grid { grid-template-columns: 1fr; }
-    }
+    @media (max-width: 640px) { .about-video-grid { grid-template-columns: 1fr; } }
 
-    /* services cards */
+    /* services cards — refined */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -278,152 +247,142 @@
       margin-top: 2rem;
     }
     .service-card {
-      background: var(--white);
-      border-radius: 1.8rem;
-      padding: 2rem 1.5rem;
-      box-shadow: 0 12px 28px -12px rgba(11,57,84,0.15);
-      border: 1px solid var(--border);
+      background: var(--card-bg);
+      border-radius: 2rem;
+      padding: 2.2rem 1.8rem;
+      box-shadow: 0 15px 30px -15px rgba(10,75,92,0.1);
+      border: 1px solid var(--border-light);
+      transition: all 0.25s;
     }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 25px 35px -18px var(--deep-teal); }
     .service-icon {
-      background: #f0f3f7;
-      width: 55px;
-      height: 55px;
-      border-radius: 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.2rem;
+      background: #f2efe9;
+      width: 60px; height: 60px;
+      border-radius: 20px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.3rem;
     }
-    .service-icon i {
-      font-size: 1.8rem;
-      color: var(--brand-gold);
-    }
+    .service-icon i { font-size: 2rem; color: var(--accent-terracotta); }
     .service-card h3 {
-      font-size: 1.3rem;
+      font-size: 1.4rem;
       font-weight: 700;
-      color: var(--brand-blue);
+      color: var(--deep-teal);
       margin-bottom: 0.7rem;
     }
+    .service-card p { color: #3f535b; }
 
-    /* why choose - advantage cards */
+    /* advantage cards */
     .advantage-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 2rem;
       margin: 2rem 0;
     }
     .advantage-card {
-      background: var(--brand-light);
+      background: white;
       border-radius: 2rem;
-      padding: 2rem 1.8rem;
-      border: 1px solid var(--border);
+      padding: 2.2rem 1.8rem;
+      border: 1px solid var(--border-light);
+      box-shadow: 0 10px 22px -12px rgba(10,75,92,0.1);
     }
     .advantage-card i {
       font-size: 2.5rem;
-      color: var(--brand-gold);
+      color: var(--accent-terracotta);
       margin-bottom: 1rem;
     }
+    .advantage-card h4 { font-size: 1.3rem; color: var(--deep-teal); margin-bottom: 0.5rem; }
 
-    /* booking form */
+    /* booking form - refined */
     .booking-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2.5rem;
+      gap: 2rem;
       background: white;
-      border-radius: 2.5rem;
-      box-shadow: 0 25px 45px -22px var(--brand-blue);
+      border-radius: 2.8rem;
+      box-shadow: 0 30px 45px -22px rgba(10,75,92,0.35);
       overflow: hidden;
       margin-top: 2rem;
     }
     .booking-info {
-      background: var(--brand-blue);
+      background: var(--deep-teal);
       color: white;
-      padding: 2.5rem 2rem;
+      padding: 3rem 2.5rem;
+      display: flex; flex-direction: column; justify-content: center;
     }
-    .booking-info h3 {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-    .booking-info p { font-size: 1.1rem; margin-bottom: 2rem; }
+    .booking-info h3 { font-size: 2.2rem; margin-bottom: 1.2rem; }
+    .booking-info p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
     .booking-form {
-      padding: 2.5rem 2rem;
+      padding: 3rem 2.5rem;
       background: white;
     }
-    .form-group {
-      margin-bottom: 1.4rem;
-    }
+    .form-group { margin-bottom: 1.5rem; }
     input, select {
       width: 100%;
-      padding: 1rem 1.2rem;
-      border: 1px solid var(--border);
+      padding: 1rem 1.4rem;
+      border: 1px solid #e2d9cf;
       border-radius: 60px;
-      font-family: inherit;
+      font-family: 'Inter', sans-serif;
       font-size: 1rem;
-      background: #fcfbf9;
+      background: #fdfcfa;
+      transition: 0.2s;
     }
+    input:focus, select:focus { outline: none; border-color: var(--accent-terracotta); box-shadow: 0 0 0 3px rgba(201,124,91,0.2); }
     .btn-submit {
-      background: var(--brand-gold);
-      color: var(--brand-blue);
+      background: var(--accent-terracotta);
+      color: white;
       font-weight: 700;
-      padding: 1rem 2rem;
+      padding: 1.1rem 2rem;
       border: none;
       border-radius: 60px;
       width: 100%;
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       cursor: pointer;
+      transition: background 0.2s;
     }
-    @media (max-width: 700px) {
-      .booking-grid { grid-template-columns: 1fr; }
-    }
+    .btn-submit:hover { background: #b15f42; }
+    @media (max-width:700px){ .booking-grid{ grid-template-columns:1fr; } }
 
     /* footer */
     .footer {
-      background: #082734;
-      color: #b6cdda;
-      padding: 3rem 0 1.5rem;
+      background: #09363f;
+      color: #cbdbe0;
+      padding: 3.5rem 0 2rem;
       margin-top: 3rem;
     }
-    .footer .container {
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
-    }
     .footer-tagline {
-      font-size: 1.7rem;
+      font-size: 2rem;
       font-weight: 600;
       color: white;
+      margin-bottom: 1.2rem;
     }
-    .footer-tagline span { color: var(--brand-gold); }
+    .footer-tagline span { color: var(--warm-sand); }
     .social {
       display: flex;
       gap: 1.2rem;
-      font-size: 1.2rem;
+      align-items: center;
+      margin: 1.5rem 0;
     }
     .social a {
-      color: white;
-      text-decoration: none;
-      background: #1b4b63;
-      width: 42px;
-      height: 42px;
+      background: #1d5e6d;
+      width: 44px; height: 44px;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
+      color: white; text-decoration: none;
+      font-size: 1.3rem;
     }
     .copyright {
-      border-top: 1px solid #1a4a60;
-      padding-top: 1.5rem;
+      border-top: 1px solid #195e6b;
+      padding-top: 1.8rem;
       font-size: 0.9rem;
     }
 
-    /* misc */
+    /* helper */
     a, button { cursor: pointer; }
-    [data-aos] { transition-timing-function: ease-out; }
   </style>
 </head>
 <body x-data="{ mobileMenu: false }" @keydown.window.escape="mobileMenu = false">
 
-  <!-- header (simple) -->
+  <!-- header -->
   <header class="header">
     <div class="container">
       <div class="logo">
@@ -434,28 +393,28 @@
         <a href="#hero">Home</a>
         <a href="#about">About</a>
         <a href="#services">Services</a>
-        <a href="#why">Advantage</a>
+        <a href="#why">Why us</a>
         <a href="#booking">Contact</a>
-        <a href="#booking" class="btn-nav">Book an Appointment</a>
+        <a href="#booking" class="btn-nav">Book now</a>
       </nav>
-      <button class="mobile-menu-btn" @click="mobileMenu = !mobileMenu" aria-label="menu"><i class="fas fa-bars"></i></button>
+      <button class="mobile-menu-btn" @click="mobileMenu = !mobileMenu"><i class="fas fa-bars"></i></button>
     </div>
     <!-- mobile dropdown -->
     <div x-show="mobileMenu" class="mobile-menu-dropdown" x-transition.duration.300ms @click.outside="mobileMenu = false">
       <a href="#hero" @click="mobileMenu = false">Home</a>
       <a href="#about" @click="mobileMenu = false">About</a>
       <a href="#services" @click="mobileMenu = false">Services</a>
-      <a href="#why" @click="mobileMenu = false">Advantage</a>
+      <a href="#why" @click="mobileMenu = false">Why us</a>
       <a href="#booking" @click="mobileMenu = false">Contact</a>
       <a href="#booking" class="mobile-wa-btn" @click="mobileMenu = false">Book an Appointment</a>
     </div>
   </header>
 
-  <!-- Hero section (background image, no extra images) -->
+  <!-- HERO (improved text & background quality) -->
   <section id="hero" class="hero">
     <div class="container">
       <div class="hero-content" data-aos="fade-up" data-aos-duration="900">
-        <h1>Your Smile. Our Passion. Our Pride.</h1>
+        <h1>Your Smile.<br><span>Our Passion. Our Pride.</span></h1>
         <p>Experience professional dental care tailored to your needs. From routine checkups to advanced procedures, we are committed to giving you a reason to smile.</p>
         <div class="hero-buttons">
           <a href="#booking" class="btn btn-primary">Book An Appointment</a>
@@ -465,7 +424,7 @@
     </div>
   </section>
 
-  <!-- About Us: two videos simultaneously + text -->
+  <!-- ABOUT with two videos + refined text -->
   <section id="about" class="section">
     <div class="container">
       <div data-aos="zoom-in-up" data-aos-duration="800">
@@ -478,86 +437,49 @@
           </video>
         </div>
       </div>
-      <div class="about-text" data-aos="fade-right" data-aos-delay="150" data-aos-duration="700">
+      <div class="about-text" data-aos="fade-right" data-aos-delay="150">
         <h2 class="section-title">Professional Care for Your Perfect Smile</h2>
-        <p class="section-subhead">At Smile Royale, we believe that a healthy smile is a reflection of your overall well-being. We are a dedicated Dental Office providing a wide range of oral health solutions in a comfortable and professional environment. Our team of expert dentists is driven by a single mission: to provide high-quality dental care with passion and excellence. Whether you are visiting for a routine cleaning or a complex procedure, your comfort and satisfaction are our top priorities.</p>
+        <p class="section-subhead">At Smile Royale, we believe a healthy smile reflects your well‑being. Our dedicated dental office offers comprehensive oral health solutions in a warm, professional environment. Driven by passion and excellence, our expert team ensures your comfort – whether for a routine cleaning or a complex procedure. Your satisfaction is our priority.</p>
       </div>
     </div>
   </section>
 
-  <!-- Our Services -->
-  <section id="services" class="section" style="background: #fcfaf8;">
+  <!-- SERVICES -->
+  <section id="services" class="section" style="background: #faf6f1;">
     <div class="container">
       <h2 class="section-title" data-aos="fade-down">Comprehensive Dental Solutions</h2>
-      <p class="section-subhead" data-aos="fade-down" data-aos-delay="50">We offer a full suite of dental treatments to keep your teeth healthy and your smile bright.</p>
+      <p class="section-subhead" data-aos="fade-down" data-aos-delay="50">A full suite of treatments to keep your teeth healthy and your smile bright.</p>
       <div class="services-grid">
-        <!-- service 1 -->
-        <div class="service-card" data-aos="flip-left" data-aos-delay="100">
-          <div class="service-icon"><i class="fas fa-comments"></i></div>
-          <h3>Discounted Consultations</h3>
-          <p>Professional dental advice and examinations at affordable rates to get you started.</p>
-        </div>
-        <div class="service-card" data-aos="flip-left" data-aos-delay="150">
-          <div class="service-icon"><i class="fas fa-teeth"></i></div>
-          <h3>Scaling and Polishing</h3>
-          <p>Professional cleaning to remove plaque and tartar, preventing gum disease.</p>
-        </div>
-        <div class="service-card" data-aos="flip-left" data-aos-delay="200">
-          <div class="service-icon"><i class="fas fa-star"></i></div>
-          <h3>Teeth Whitening</h3>
-          <p>Advanced whitening treatments to brighten your smile and remove stains.</p>
-        </div>
-        <div class="service-card" data-aos="flip-left" data-aos-delay="250">
-          <div class="service-icon"><i class="fas fa-crown"></i></div>
-          <h3>Crowns & RCTs</h3>
-          <p>Restorative solutions to save damaged teeth and restore function.</p>
-        </div>
-        <div class="service-card" data-aos="flip-left" data-aos-delay="300">
-          <div class="service-icon"><i class="fas fa-tools"></i></div>
-          <h3>General Procedures</h3>
-          <p>From fillings and extractions to specialized treatments – all your needs.</p>
-        </div>
+        <div class="service-card" data-aos="flip-left" data-aos-delay="100"><div class="service-icon"><i class="fas fa-comments"></i></div><h3>Discounted Consultations</h3><p>Professional dental advice and examinations at affordable rates.</p></div>
+        <div class="service-card" data-aos="flip-left" data-aos-delay="150"><div class="service-icon"><i class="fas fa-teeth"></i></div><h3>Scaling & Polishing</h3><p>Professional cleaning to remove plaque, prevent gum disease.</p></div>
+        <div class="service-card" data-aos="flip-left" data-aos-delay="200"><div class="service-icon"><i class="fas fa-star"></i></div><h3>Teeth Whitening</h3><p>Advanced treatments to brighten your smile and remove stains.</p></div>
+        <div class="service-card" data-aos="flip-left" data-aos-delay="250"><div class="service-icon"><i class="fas fa-crown"></i></div><h3>Crowns & RCTs</h3><p>Restorative solutions to save damaged teeth and restore function.</p></div>
+        <div class="service-card" data-aos="flip-left" data-aos-delay="300"><div class="service-icon"><i class="fas fa-tools"></i></div><h3>General Procedures</h3><p>Fillings, extractions, and specialized treatments – all your needs.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- Why Choose Smile Royale (advantage) -->
+  <!-- WHY SMILE ROYALE (advantage) -->
   <section id="why" class="section">
     <div class="container">
       <h2 class="section-title" data-aos="fade-up">The Smile Royale Advantage</h2>
       <div class="advantage-grid">
-        <div class="advantage-card" data-aos="zoom-in" data-aos-delay="0">
-          <i class="fas fa-heart"></i>
-          <h3>Passion-Driven Care</h3>
-          <p>"Your Smile is Our Passion." We care about the person behind the teeth.</p>
-        </div>
-        <div class="advantage-card" data-aos="zoom-in" data-aos-delay="100">
-          <i class="fas fa-user-md"></i>
-          <h3>Expert Dentists</h3>
-          <p>Highly skilled professionals dedicated to the latest dental practices.</p>
-        </div>
-        <div class="advantage-card" data-aos="zoom-in" data-aos-delay="200">
-          <i class="fas fa-coins"></i>
-          <h3>Affordable Excellence</h3>
-          <p>Quality dental care accessible to all – discounted consultations.</p>
-        </div>
-        <div class="advantage-card" data-aos="zoom-in" data-aos-delay="300">
-          <i class="fas fa-clinic-medical"></i>
-          <h3>Comprehensive Care</h3>
-          <p>From preventive care to restorative surgery, your one-stop shop.</p>
-        </div>
+        <div class="advantage-card" data-aos="zoom-in"><i class="fas fa-heart"></i><h4>Passion-Driven Care</h4><p>"Your Smile is Our Passion." We care about the person behind the teeth.</p></div>
+        <div class="advantage-card" data-aos="zoom-in" data-aos-delay="100"><i class="fas fa-user-md"></i><h4>Expert Dentists</h4><p>Highly skilled professionals dedicated to the latest practices.</p></div>
+        <div class="advantage-card" data-aos="zoom-in" data-aos-delay="200"><i class="fas fa-coins"></i><h4>Affordable Excellence</h4><p>Quality care accessible to all – discounted consultations.</p></div>
+        <div class="advantage-card" data-aos="zoom-in" data-aos-delay="300"><i class="fas fa-clinic-medical"></i><h4>Comprehensive Care</h4><p>From preventive to restorative surgery – one‑stop oral health.</p></div>
       </div>
     </div>
   </section>
 
-  <!-- Booking appointment section -->
-  <section id="booking" class="section" style="background: #f0f5f9;">
+  <!-- BOOKING SECTION -->
+  <section id="booking" class="section" style="background: #eff3f0;">
     <div class="container">
       <div class="booking-grid" data-aos="fade-up" data-aos-duration="900">
         <div class="booking-info">
           <h3>Ready to Transform Your Smile?</h3>
-          <p>Don’t wait for a dental emergency. Schedule your visit with us today and experience the Smile Royale difference.</p>
-          <div style="margin-top: 2rem; font-style: italic;"><i class="fas fa-phone-alt"></i> Call us: +234 800 123 4567</div>
+          <p>Don’t wait for a dental emergency. Schedule your visit today and experience the Smile Royale difference.</p>
+          <div style="font-size:1.1rem"><i class="fas fa-phone-alt"></i> +234 812 345 6789</div>
         </div>
         <div class="booking-form">
           <form @submit.prevent="alert('Appointment request received (demo)')">
@@ -570,9 +492,9 @@
                 <option value="">Service Required</option>
                 <option>Consultation</option>
                 <option>Whitening</option>
-                <option>Cleaning</option>
-                <option>Scaling & Polishing</option>
+                <option>Cleaning / Scaling</option>
                 <option>Crown / RCT</option>
+                <option>General checkup</option>
               </select>
             </div>
             <button type="submit" class="btn-submit">Confirm Appointment</button>
@@ -582,38 +504,25 @@
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- FOOTER -->
   <footer class="footer">
     <div class="container">
       <div class="footer-tagline">Your Smile. Our Passion. Our Pride. <span>❤️</span></div>
       <div class="social">
         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <span style="color:white; align-self:center;">@smileroyale.ng</span>
+        <span style="color:#d4e3e8;">@smileroyale.ng</span>
       </div>
-      <div class="copyright">
-        <p>© 2025 Smile Royale Dental Office. All rights reserved.</p>
-      </div>
+      <div class="copyright">© 2025 Smile Royale Dental Office. All rights reserved.</div>
     </div>
   </footer>
 
   <!-- init AOS -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      AOS.init({
-        duration: 800,
-        once: false,
-        offset: 40,
-        easing: 'ease-out-cubic'
-      });
+      AOS.init({ duration: 800, once: false, offset: 40, easing: 'ease-out-cubic' });
+      // ensure videos play (they are muted)
+      document.querySelectorAll('video').forEach(v => v.play().catch(()=>{}));
     });
-  </script>
-  <!-- ensure videos play on mobile (they are muted + autoplay) -->
-  <script>
-    (function() {
-      // force video play after page interaction if needed (already muted)
-      const vids = document.querySelectorAll('video');
-      vids.forEach(v => v.play().catch(e => {}));
-    })();
   </script>
 </body>
 </html>
