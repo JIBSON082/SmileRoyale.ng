@@ -4,287 +4,363 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>Smile Royale | Your Smile. Our Passion. Our Pride.</title>
-  <!-- meta -->
-  <meta name="description" content="Smile Royale Dental: expert dentists in a modern clinic. Book your appointment for comprehensive care in a comfortable environment.">
-  <!-- fonts + icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <!-- SEO meta -->
+  <meta name="description" content="Smile Royale Dental Office: professional dental care from routine checkups to advanced procedures. Book an appointment for a healthy smile.">
+  <!-- Fonts & icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Alpine for mobile -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <!-- AOS -->
+  <!-- Animate on Scroll -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --deep-blue: #003153;      /* premium navy */
-      --bright-blue: #1a73e8;    /* accent for CTAs */
-      --pure-white: #ffffff;
-      --off-white: #f5f9ff;      /* very light background */
-      --light-border: #e9ecf0;
-      --soft-gray: #4f5b68;
-      --card-shadow: 0 18px 35px -12px rgba(0,49,83,0.1);
-      --plus-color: rgba(26,115,232,0.15);
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
     }
-    html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+    :root {
+      --brand-blue: #0b3954;
+      --brand-gold: #bfa37c;
+      --brand-light: #f9f7f4;
+      --white: #ffffff;
+      --gray: #4a4a4a;
+      --border: #eae3da;
+    }
+    html {
+      scroll-behavior: smooth;
+      -webkit-tap-highlight-color: transparent;
+    }
     body {
       font-family: 'Inter', sans-serif;
-      background: var(--pure-white);
-      color: #1e2b3c;
+      background: var(--white);
+      color: #1e2b32;
       line-height: 1.5;
+      overflow-x: hidden;
     }
     .container {
+      width: 100%;
       max-width: 1280px;
       margin: 0 auto;
-      padding: 0 2rem;
+      padding: 0 1.5rem;
     }
-    .section { padding: 5.5rem 0; }
-    @media (max-width: 640px) { .section { padding: 4rem 0; } }
+    .section {
+      padding: 5rem 0;
+    }
+    @media (max-width: 640px) {
+      .section { padding: 3.5rem 0; }
+    }
 
-    /* header – crisp white & blue */
+    /* top bar with Instagram and phone */
+    .top-bar {
+      background: var(--brand-blue);
+      color: white;
+      padding: 0.6rem 0;
+      border-bottom: 2px solid var(--brand-gold);
+    }
+    .top-bar .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    @media (min-width: 500px) {
+      .top-bar .container {
+        flex-direction: row;
+        justify-content: space-between;
+      }
+    }
+    .top-contact {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem 1.8rem;
+      align-items: center;
+      justify-content: center;
+    }
+    .top-contact a, .top-contact span {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: white;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+    .top-contact i {
+      color: var(--brand-gold);
+      width: 1.2rem;
+    }
+    .top-contact a:hover {
+      text-decoration: underline;
+      opacity: 0.9;
+    }
+    .instagram-link {
+      background: rgba(255,255,255,0.1);
+      padding: 0.2rem 1rem;
+      border-radius: 30px;
+      transition: background 0.2s;
+    }
+    .instagram-link:hover {
+      background: var(--brand-gold);
+      color: var(--brand-blue) !important;
+    }
+    .instagram-link i {
+      color: #e1306c;
+    }
+    .instagram-link:hover i {
+      color: var(--brand-blue);
+    }
+
+    /* header */
     .header {
       position: sticky;
       top: 0;
-      background: var(--pure-white);
-      border-bottom: 1px solid var(--light-border);
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
       z-index: 100;
     }
     .header .container {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: 80px;
+      height: 72px;
     }
     .logo {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.5rem;
     }
     .logo-icon {
-      width: 48px; height: 48px;
-      background: var(--deep-blue);
-      border-radius: 14px;
-      display: flex; align-items: center; justify-content: center;
-      color: white; font-size: 2rem;
-      box-shadow: 0 8px 14px -6px rgba(0,49,83,0.25);
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(145deg, var(--brand-blue), #1b5a7a);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.6rem;
     }
     .logo-text {
-      font-size: 1.7rem;
-      font-weight: 800;
-      color: var(--deep-blue);
+      font-size: 1.4rem;
+      font-weight: 700;
       letter-spacing: -0.02em;
-      line-height: 1.1;
+      color: var(--brand-blue);
     }
-    .logo-text span {
-      color: var(--bright-blue);
-      font-weight: 500;
-      font-size: 0.9rem;
-      display: block;
-    }
+    .logo-text span { color: var(--brand-gold); font-weight: 400; }
 
     .nav { display: none; }
     .mobile-menu-btn {
       display: block;
-      font-size: 2.2rem;
-      color: var(--deep-blue);
-      background: none; border: none;
+      font-size: 2rem;
+      color: var(--brand-blue);
       cursor: pointer;
+      background: none;
+      border: none;
     }
     @media (min-width: 900px) {
       .mobile-menu-btn { display: none; }
       .nav {
         display: flex;
-        gap: 2.8rem;
+        gap: 2.2rem;
         align-items: center;
       }
       .nav a {
         text-decoration: none;
-        color: var(--deep-blue);
+        color: var(--brand-blue);
         font-weight: 600;
-        font-size: 1rem;
-        transition: 0.2s;
-        padding-bottom: 0.3rem;
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+        padding: 0.3rem 0;
         border-bottom: 2px solid transparent;
+        transition: 0.2s;
       }
-      .nav a:hover { border-bottom-color: var(--bright-blue); }
+      .nav a:hover { border-bottom-color: var(--brand-gold); }
       .btn-nav {
-        background: var(--deep-blue);
+        background: var(--brand-blue);
         color: white !important;
-        padding: 0.75rem 2.2rem !important;
-        border-radius: 60px;
+        padding: 0.65rem 1.8rem !important;
+        border-radius: 40px;
         border-bottom: none !important;
-        font-weight: 600;
-        box-shadow: 0 8px 16px -8px var(--deep-blue);
+        text-transform: none;
       }
-      .btn-nav:hover { background: #002b48; }
+      .btn-nav:hover { background: #1b5a7a; }
     }
 
     /* mobile menu */
     .mobile-menu-dropdown {
-      background: var(--pure-white);
-      border-top: 1px solid var(--light-border);
-      padding: 2rem;
-      display: flex; flex-direction: column; gap: 1.2rem;
-      box-shadow: 0 20px 30px -12px rgba(0,49,83,0.1);
+      background: white;
+      border-top: 1px solid var(--border);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+      box-shadow: 0 20px 30px -15px rgba(0,0,0,0.1);
     }
     .mobile-menu-dropdown a {
-      text-decoration: none; color: var(--deep-blue);
-      font-weight: 600; font-size: 1.2rem;
-      border-bottom: 1px solid #e2e9f2; padding-bottom: 0.7rem;
+      text-decoration: none;
+      color: var(--brand-blue);
+      font-weight: 600;
+      font-size: 1.2rem;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #f0eae3;
     }
     .mobile-wa-btn {
-      background: var(--bright-blue);
-      color: white; padding: 1rem; border-radius: 60px;
-      text-align: center; font-weight: 700; margin-top: 0.5rem;
-      text-decoration: none; border: none;
+      background: var(--brand-gold);
+      color: white;
+      padding: 1rem;
+      border-radius: 50px;
+      text-align: center;
+      font-weight: 700;
+      margin-top: 0.5rem;
+      text-decoration: none;
+      border: none;
     }
 
-    /* ===== HERO — premium Touchstone-inspired ===== */
+    /* HERO with background image - FIXED */
     .hero {
       position: relative;
-      min-height: 85vh;
+      min-height: 90vh;
       display: flex;
       align-items: center;
-      background: linear-gradient(105deg, #f5faff 0%, #ffffff 70%);
-      overflow: hidden;
+      background: linear-gradient(97deg, rgba(11,57,84,0.75) 0%, rgba(11,57,84,0.4) 100%), 
+                  url('https://image2url.com/r2/default/images/1772699317530-e1044922-661b-44a6-a80f-30d440553d52.jpg') center/cover no-repeat;
+      background-blend-mode: overlay;
+      padding: 4rem 0;
     }
-    .hero::before {
-      content: '';
-      position: absolute;
-      top: 0; right: 0; width: 45%; height: 100%;
-      background: url('https://image2url.com/r2/default/images/1772699317530-e1044922-661b-44a6-a80f-30d440553d52.jpg') center/cover no-repeat;
-      opacity: 0.2;
-      mask-image: linear-gradient(to left, transparent, white 70%);
-      -webkit-mask-image: linear-gradient(to left, transparent, white 70%);
-      pointer-events: none;
+    .hero .container {
+      position: relative;
+      z-index: 2;
+      color: white;
     }
-    .hero .container { position: relative; z-index: 2; }
-    .hero-content { max-width: 650px; }
-    .hero-badge {
-      display: inline-flex; align-items: center; gap: 0.6rem;
-      background: rgba(26,115,232,0.06);
-      padding: 0.5rem 1.3rem;
-      border-radius: 60px;
-      margin-bottom: 2rem;
-      font-weight: 600;
-      color: var(--bright-blue);
-      border: 1px solid rgba(26,115,232,0.15);
-      font-size: 0.9rem;
-      letter-spacing: 0.3px;
+    .hero-content {
+      max-width: 700px;
     }
     .hero h1 {
-      font-size: 3.8rem;
-      font-weight: 800;
-      line-height: 1.1;
-      color: var(--deep-blue);
-      margin-bottom: 0.75rem;
-    }
-    .hero h2 {
-      font-size: 2.8rem;
+      font-size: 3.3rem;
       font-weight: 700;
-      color: var(--bright-blue);
-      margin-bottom: 1.5rem;
       line-height: 1.2;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.3);
     }
     .hero p {
-      font-size: 1.2rem;
-      color: var(--soft-gray);
-      margin-bottom: 2.5rem;
-      max-width: 570px;
+      font-size: 1.3rem;
+      margin-bottom: 2.2rem;
+      opacity: 0.95;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
-    .hero-buttons { display: flex; flex-wrap: wrap; gap: 1.2rem; }
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
     .btn {
-      padding: 1rem 2.5rem;
+      padding: 0.9rem 2rem;
       border-radius: 60px;
       font-weight: 600;
       text-decoration: none;
-      display: inline-flex; align-items: center; gap: 0.6rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
       transition: 0.2s;
-      font-size: 1.05rem;
+      font-size: 1rem;
       border: none;
       cursor: pointer;
-    }
-    .btn-primary {
-      background: var(--bright-blue);
-      color: white;
-      box-shadow: 0 10px 22px -8px var(--bright-blue);
-    }
-    .btn-primary:hover { background: #0d5bbd; transform: translateY(-2px); }
-    .btn-outline {
-      border: 2px solid var(--deep-blue);
-      color: var(--deep-blue);
       background: transparent;
     }
-    .btn-outline:hover { background: var(--deep-blue); color: white; }
-
-    /* section titles — with plus marks (Touchstone style) */
-    .section-title {
-      font-size: 2.8rem;
-      font-weight: 700;
-      color: var(--deep-blue);
-      margin-bottom: 1rem;
-      position: relative;
+    .btn-primary {
+      background: var(--brand-gold);
+      color: var(--brand-blue);
+      border: 2px solid var(--brand-gold);
     }
-    .section-title .plus-marks {
-      color: var(--bright-blue);
-      font-weight: 300;
-      font-size: 2rem;
-      margin-left: 0.5rem;
-      opacity: 0.4;
+    .btn-primary:hover {
+      background: #dabe98;
+      border-color: #dabe98;
+    }
+    .btn-outline-light {
+      border: 2px solid white;
+      color: white;
+      background: rgba(0,0,0,0.1);
+      backdrop-filter: blur(5px);
+    }
+    .btn-outline-light:hover {
+      background: white;
+      color: var(--brand-blue);
+    }
+
+    /* section titles */
+    .section-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--brand-blue);
+      margin-bottom: 1.2rem;
     }
     .section-subhead {
       font-size: 1.2rem;
-      color: var(--soft-gray);
-      max-width: 760px;
-      margin-bottom: 3rem;
+      color: #4f5e68;
+      max-width: 700px;
+      margin-bottom: 2.5rem;
     }
 
-    /* about: two videos + clean text */
+    /* about video grid */
     .about-video-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem;
+      gap: 1.5rem;
       margin-bottom: 3rem;
+      border-radius: 2rem;
+      overflow: hidden;
     }
     .about-video-grid video {
-      width: 100%; height: auto;
-      border-radius: 2rem;
-      box-shadow: var(--card-shadow);
-      border: 1px solid rgba(0,49,83,0.1);
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 1.2rem;
+      box-shadow: 0 25px 35px -15px rgba(0,0,0,0.2);
+      border: 1px solid var(--border);
+      background: #f0ebe4;
     }
-    @media (max-width:640px){ .about-video-grid { grid-template-columns:1fr; } }
+    @media (max-width: 640px) {
+      .about-video-grid { grid-template-columns: 1fr; }
+    }
 
-    /* services cards – premium, clean */
+    /* services cards */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 2rem;
-      margin-top: 1.5rem;
+      margin-top: 2rem;
     }
     .service-card {
-      background: var(--pure-white);
-      border-radius: 2.2rem;
-      padding: 2.2rem 1.8rem;
-      box-shadow: var(--card-shadow);
-      border: 1px solid var(--light-border);
-      transition: transform 0.2s;
+      background: var(--white);
+      border-radius: 1.8rem;
+      padding: 2rem 1.5rem;
+      box-shadow: 0 12px 28px -12px rgba(11,57,84,0.15);
+      border: 1px solid var(--border);
     }
-    .service-card:hover { transform: translateY(-6px); }
     .service-icon {
-      background: #eaf1fd;
-      width: 64px; height: 64px;
-      border-radius: 22px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.5rem;
+      background: #f0f3f7;
+      width: 55px;
+      height: 55px;
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.2rem;
     }
-    .service-icon i { font-size: 2.2rem; color: var(--bright-blue); }
+    .service-icon i {
+      font-size: 1.8rem;
+      color: var(--brand-gold);
+    }
     .service-card h3 {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       font-weight: 700;
-      color: var(--deep-blue);
-      margin-bottom: 0.6rem;
+      color: var(--brand-blue);
+      margin-bottom: 0.7rem;
     }
-    .service-card p { color: #3e4e5d; font-size: 0.95rem; }
 
     /* advantage cards */
     .advantage-grid {
@@ -294,116 +370,139 @@
       margin: 2rem 0;
     }
     .advantage-card {
-      background: var(--pure-white);
+      background: var(--brand-light);
       border-radius: 2rem;
-      padding: 2.2rem 1.8rem;
-      border: 1px solid var(--light-border);
-      box-shadow: 0 12px 24px -12px rgba(0,49,83,0.08);
+      padding: 2rem 1.8rem;
+      border: 1px solid var(--border);
     }
     .advantage-card i {
       font-size: 2.5rem;
-      color: var(--bright-blue);
-      margin-bottom: 1.2rem;
+      color: var(--brand-gold);
+      margin-bottom: 1rem;
     }
-    .advantage-card h4 { font-size: 1.3rem; color: var(--deep-blue); margin-bottom: 0.6rem; font-weight: 700; }
 
-    /* booking form – white & deep blue */
+    /* booking form - UPDATED with WhatsApp integration */
     .booking-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-      background: var(--pure-white);
-      border-radius: 3rem;
-      box-shadow: 0 30px 45px -22px rgba(0,49,83,0.2);
+      gap: 2.5rem;
+      background: white;
+      border-radius: 2.5rem;
+      box-shadow: 0 25px 45px -22px var(--brand-blue);
       overflow: hidden;
       margin-top: 2rem;
-      border: 1px solid var(--light-border);
     }
     .booking-info {
-      background: var(--deep-blue);
+      background: var(--brand-blue);
       color: white;
-      padding: 3rem 2.8rem;
+      padding: 2.5rem 2rem;
     }
-    .booking-info h3 { font-size: 2.2rem; margin-bottom: 1rem; font-weight: 700; }
-    .booking-info p { font-size: 1.2rem; margin-bottom: 2rem; opacity: 0.9; }
-    .booking-highlight { font-size: 1.2rem; background: rgba(255,255,255,0.12); display: inline-block; padding: 0.5rem 1.5rem; border-radius: 40px; }
+    .booking-info h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    .booking-info p { font-size: 1.1rem; margin-bottom: 2rem; }
     .booking-form {
-      padding: 3rem 2.8rem;
+      padding: 2.5rem 2rem;
       background: white;
     }
-    .form-group { margin-bottom: 1.4rem; }
-    input, select {
-      width: 100%;
-      padding: 1rem 1.5rem;
-      border: 1px solid #dde3ec;
-      border-radius: 60px;
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      background: #fbfdff;
-      transition: 0.2s;
+    .form-group {
+      margin-bottom: 1.4rem;
     }
-    input:focus, select:focus { outline: none; border-color: var(--bright-blue); box-shadow: 0 0 0 3px rgba(26,115,232,0.2); }
+    input, select, textarea {
+      width: 100%;
+      padding: 1rem 1.2rem;
+      border: 1px solid var(--border);
+      border-radius: 60px;
+      font-family: inherit;
+      font-size: 1rem;
+      background: #fcfbf9;
+    }
+    textarea {
+      border-radius: 1.5rem;
+      resize: vertical;
+      min-height: 80px;
+    }
     .btn-submit {
-      background: var(--bright-blue);
-      color: white;
+      background: var(--brand-gold);
+      color: var(--brand-blue);
       font-weight: 700;
-      padding: 1.1rem 2rem;
+      padding: 1rem 2rem;
       border: none;
       border-radius: 60px;
       width: 100%;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       cursor: pointer;
-      box-shadow: 0 10px 20px -10px var(--bright-blue);
-    }
-    .btn-submit:hover { background: #0d5bbd; }
-    @media (max-width:700px){ .booking-grid{ grid-template-columns:1fr; } }
-
-    /* footer – deep blue */
-    .footer {
-      background: var(--deep-blue);
-      color: #d0e0f0;
-      padding: 3.5rem 0 2rem;
-      margin-top: 3rem;
-    }
-    .footer-tagline {
-      font-size: 2rem;
-      font-weight: 700;
-      color: white;
-      margin-bottom: 1rem;
-    }
-    .footer-tagline span { color: #9ac7ff; }
-    .social {
-      display: flex;
-      gap: 1.5rem;
-      align-items: center;
-      margin: 1.8rem 0;
-    }
-    .social a {
-      background: #204b67;
-      width: 46px; height: 46px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      color: white; text-decoration: none;
-      font-size: 1.4rem;
       transition: background 0.2s;
     }
-    .social a:hover { background: var(--bright-blue); }
-    .copyright {
-      border-top: 1px solid #20587a;
-      padding-top: 1.8rem;
-      font-size: 0.9rem;
+    .btn-submit:hover {
+      background: #dabe98;
+    }
+    @media (max-width: 700px) {
+      .booking-grid { grid-template-columns: 1fr; }
     }
 
-    /* plus decoration */
-    .plus-decor {
-      display: inline-block;
-      width: 24px; height: 24px;
-      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%231a73e8" opacity="0.2"><path d="M11 11V5h2v6h6v2h-6v6h-2v-6H5v-2h6z"/></svg>') center/contain;
+    /* footer */
+    .footer {
+      background: #082734;
+      color: #b6cdda;
+      padding: 3rem 0 1.5rem;
+      margin-top: 3rem;
+    }
+    .footer .container {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .footer-tagline {
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: white;
+    }
+    .footer-tagline span { color: var(--brand-gold); }
+    .social {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 1.2rem;
+    }
+    .social a {
+      color: white;
+      text-decoration: none;
+      background: #1b4b63;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+    }
+    .social a:hover {
+      background: var(--brand-gold);
+      color: var(--brand-blue);
+    }
+    .copyright {
+      border-top: 1px solid #1a4a60;
+      padding-top: 1.5rem;
+      font-size: 0.9rem;
     }
     a, button { cursor: pointer; }
   </style>
 </head>
-<body x-data="{ mobileMenu: false }" @keydown.window.escape="mobileMenu = false">
+<body x-data="{ mobileMenu: false, otherService: false }" @keydown.window.escape="mobileMenu = false">
+
+  <!-- TOP BAR with Instagram and Phone - FIXED with functional links -->
+  <div class="top-bar">
+    <div class="container">
+      <div class="top-contact">
+        <a href="tel:+2348103564479"><i class="fas fa-phone-alt"></i> 0810 356 4479</a>
+        <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" class="instagram-link"><i class="fab fa-instagram"></i> @smileroyale.ng</a>
+      </div>
+      <div class="top-contact">
+        <span><i class="fas fa-clock"></i> Mon-Sat: 8am - 6pm</span>
+      </div>
+    </div>
+  </div>
 
   <!-- header -->
   <header class="header">
@@ -416,40 +515,38 @@
         <a href="#hero">Home</a>
         <a href="#about">About</a>
         <a href="#services">Services</a>
-        <a href="#why">Why us</a>
-        <a href="#booking">Appointment</a>
-        <a href="#booking" class="btn-nav">Book now</a>
+        <a href="#why">Advantage</a>
+        <a href="#booking">Contact</a>
+        <a href="#booking" class="btn-nav">Book an Appointment</a>
       </nav>
-      <button class="mobile-menu-btn" @click="mobileMenu = !mobileMenu"><i class="fas fa-bars"></i></button>
+      <button class="mobile-menu-btn" @click="mobileMenu = !mobileMenu" aria-label="menu"><i class="fas fa-bars"></i></button>
     </div>
     <!-- mobile dropdown -->
     <div x-show="mobileMenu" class="mobile-menu-dropdown" x-transition.duration.300ms @click.outside="mobileMenu = false">
       <a href="#hero" @click="mobileMenu = false">Home</a>
       <a href="#about" @click="mobileMenu = false">About</a>
       <a href="#services" @click="mobileMenu = false">Services</a>
-      <a href="#why" @click="mobileMenu = false">Why us</a>
-      <a href="#booking" @click="mobileMenu = false">Appointment</a>
+      <a href="#why" @click="mobileMenu = false">Advantage</a>
+      <a href="#booking" @click="mobileMenu = false">Contact</a>
       <a href="#booking" class="mobile-wa-btn" @click="mobileMenu = false">Book an Appointment</a>
     </div>
   </header>
 
-  <!-- HERO — Touchstone-inspired layout with Smile Royale content -->
+  <!-- Hero section with background image and AOS -->
   <section id="hero" class="hero">
     <div class="container">
       <div class="hero-content" data-aos="fade-up" data-aos-duration="900">
-        <div class="hero-badge"><i class="fas fa-tooth"></i> Your smile is our passion</div>
-        <h1>Your Smile.</h1>
-        <h2>Our Passion. Our Pride.</h2>
+        <h1>Your Smile. Our Passion. Our Pride.</h1>
         <p>Experience professional dental care tailored to your needs. From routine checkups to advanced procedures, we are committed to giving you a reason to smile.</p>
         <div class="hero-buttons">
-          <a href="#booking" class="btn btn-primary">Book an appointment</a>
-          <a href="#services" class="btn btn-outline">Our services</a>
+          <a href="#booking" class="btn btn-primary">Book An Appointment</a>
+          <a href="#services" class="btn btn-outline-light">Our Services</a>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- About: two videos + text -->
+  <!-- About Us: two videos + text -->
   <section id="about" class="section">
     <div class="container">
       <div data-aos="zoom-in-up" data-aos-duration="800">
@@ -462,90 +559,226 @@
           </video>
         </div>
       </div>
-      <div data-aos="fade-right" data-aos-delay="150">
-        <h2 class="section-title">Professional Care for Your Perfect Smile <span class="plus-marks">++</span></h2>
-        <p class="section-subhead">At Smile Royale, we believe that a healthy smile is a reflection of your overall well-being. We are a dedicated Dental Office providing a wide range of oral health solutions in a comfortable and professional environment. Our team of expert dentists is driven by a single mission: to provide high-quality dental care with passion and excellence.</p>
+      <div class="about-text" data-aos="fade-right" data-aos-delay="150" data-aos-duration="700">
+        <h2 class="section-title">Professional Care for Your Perfect Smile</h2>
+        <p class="section-subhead">At Smile Royale, we believe that a healthy smile is a reflection of your overall well-being. We are a dedicated Dental Office providing a wide range of oral health solutions in a comfortable and professional environment. Our team of expert dentists is driven by a single mission: to provide high-quality dental care with passion and excellence. Whether you are visiting for a routine cleaning or a complex procedure, your comfort and satisfaction are our top priorities.</p>
       </div>
     </div>
   </section>
 
-  <!-- SERVICES -->
-  <section id="services" class="section" style="background: var(--off-white);">
+  <!-- Our Services -->
+  <section id="services" class="section" style="background: #fcfaf8;">
     <div class="container">
-      <h2 class="section-title" data-aos="fade-down">Comprehensive Dental Solutions <span class="plus-marks">+</span></h2>
+      <h2 class="section-title" data-aos="fade-down">Comprehensive Dental Solutions</h2>
       <p class="section-subhead" data-aos="fade-down" data-aos-delay="50">We offer a full suite of dental treatments to keep your teeth healthy and your smile bright.</p>
       <div class="services-grid">
-        <div class="service-card" data-aos="flip-left"><div class="service-icon"><i class="fas fa-comments"></i></div><h3>Discounted Consultations</h3><p>Professional dental advice and examinations at affordable rates to get you started.</p></div>
-        <div class="service-card" data-aos="flip-left" data-aos-delay="70"><div class="service-icon"><i class="fas fa-teeth"></i></div><h3>Scaling and Polishing</h3><p>Professional cleaning to remove plaque and tartar, preventing gum disease.</p></div>
-        <div class="service-card" data-aos="flip-left" data-aos-delay="140"><div class="service-icon"><i class="fas fa-star"></i></div><h3>Teeth Whitening</h3><p>Advanced whitening treatments to brighten your smile and remove stains.</p></div>
-        <div class="service-card" data-aos="flip-left" data-aos-delay="210"><div class="service-icon"><i class="fas fa-crown"></i></div><h3>Crowns & RCTs</h3><p>Restorative solutions to save damaged teeth and restore natural function.</p></div>
-        <div class="service-card" data-aos="flip-left" data-aos-delay="280"><div class="service-icon"><i class="fas fa-tools"></i></div><h3>General Procedures</h3><p>From fillings and extractions to specialized treatments – all your needs.</p></div>
+        <div class="service-card" data-aos="flip-left" data-aos-delay="100">
+          <div class="service-icon"><i class="fas fa-comments"></i></div>
+          <h3>Discounted Consultations</h3>
+          <p>Professional dental advice and examinations at affordable rates to get you started.</p>
+        </div>
+        <div class="service-card" data-aos="flip-left" data-aos-delay="150">
+          <div class="service-icon"><i class="fas fa-teeth"></i></div>
+          <h3>Scaling and Polishing</h3>
+          <p>Professional cleaning to remove plaque and tartar, preventing gum disease.</p>
+        </div>
+        <div class="service-card" data-aos="flip-left" data-aos-delay="200">
+          <div class="service-icon"><i class="fas fa-star"></i></div>
+          <h3>Teeth Whitening</h3>
+          <p>Advanced whitening treatments to brighten your smile and remove stains.</p>
+        </div>
+        <div class="service-card" data-aos="flip-left" data-aos-delay="250">
+          <div class="service-icon"><i class="fas fa-crown"></i></div>
+          <h3>Crowns & RCTs</h3>
+          <p>Restorative solutions to save damaged teeth and restore function.</p>
+        </div>
+        <div class="service-card" data-aos="flip-left" data-aos-delay="300">
+          <div class="service-icon"><i class="fas fa-tools"></i></div>
+          <h3>General Procedures</h3>
+          <p>From fillings and extractions to specialized treatments – all your needs.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- WHY SMILE ROYALE (advantage) -->
+  <!-- Why Choose Smile Royale -->
   <section id="why" class="section">
     <div class="container">
-      <h2 class="section-title" data-aos="fade-up">The Smile Royale Advantage <span class="plus-marks">++</span></h2>
+      <h2 class="section-title" data-aos="fade-up">The Smile Royale Advantage</h2>
       <div class="advantage-grid">
-        <div class="advantage-card" data-aos="zoom-in"><i class="fas fa-heart"></i><h4>Passion-Driven Care</h4><p>"Your Smile is Our Passion." We care about the person behind the teeth.</p></div>
-        <div class="advantage-card" data-aos="zoom-in" data-aos-delay="80"><i class="fas fa-user-md"></i><h4>Expert Dentists</h4><p>Highly skilled professionals dedicated to the latest dental practices.</p></div>
-        <div class="advantage-card" data-aos="zoom-in" data-aos-delay="160"><i class="fas fa-coins"></i><h4>Affordable Excellence</h4><p>Quality dental care accessible to all – discounted consultations.</p></div>
-        <div class="advantage-card" data-aos="zoom-in" data-aos-delay="240"><i class="fas fa-clinic-medical"></i><h4>Comprehensive Care</h4><p>From preventive care to restorative surgery, your one-stop shop.</p></div>
+        <div class="advantage-card" data-aos="zoom-in" data-aos-delay="0">
+          <i class="fas fa-heart"></i>
+          <h3>Passion-Driven Care</h3>
+          <p>"Your Smile is Our Passion." We care about the person behind the teeth.</p>
+        </div>
+        <div class="advantage-card" data-aos="zoom-in" data-aos-delay="100">
+          <i class="fas fa-user-md"></i>
+          <h3>Expert Dentists</h3>
+          <p>Highly skilled professionals dedicated to the latest dental practices.</p>
+        </div>
+        <div class="advantage-card" data-aos="zoom-in" data-aos-delay="200">
+          <i class="fas fa-coins"></i>
+          <h3>Affordable Excellence</h3>
+          <p>Quality dental care accessible to all – discounted consultations.</p>
+        </div>
+        <div class="advantage-card" data-aos="zoom-in" data-aos-delay="300">
+          <i class="fas fa-clinic-medical"></i>
+          <h3>Comprehensive Care</h3>
+          <p>From preventive care to restorative surgery, your one-stop shop.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- BOOKING section -->
-  <section id="booking" class="section" style="background: #f2f6fc;">
+  <!-- Booking appointment section - UPDATED with WhatsApp integration -->
+  <section id="booking" class="section" style="background: #f0f5f9;">
     <div class="container">
       <div class="booking-grid" data-aos="fade-up" data-aos-duration="900">
         <div class="booking-info">
           <h3>Ready to Transform Your Smile?</h3>
           <p>Don't wait for a dental emergency. Schedule your visit with us today and experience the Smile Royale difference.</p>
-          <div class="booking-highlight"><i class="fas fa-phone-alt"></i> +234 812 345 6789</div>
+          <div style="margin-top: 2rem;">
+            <i class="fas fa-phone-alt"></i> Call us: <a href="tel:+2348103564479" style="color: white; text-decoration: none; border-bottom: 1px solid var(--brand-gold);">0810 356 4479</a>
+          </div>
+          <div style="margin-top: 1rem;">
+            <i class="fab fa-instagram"></i> Follow us: 
+            <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" style="color: white; text-decoration: none; border-bottom: 1px solid var(--brand-gold);">@smileroyale.ng</a>
+          </div>
         </div>
         <div class="booking-form">
-          <form @submit.prevent="alert('Appointment request received (demo)')">
-            <div class="form-group"><input type="text" placeholder="Full Name" required></div>
-            <div class="form-group"><input type="tel" placeholder="Phone Number" required></div>
-            <div class="form-group"><input type="email" placeholder="Email Address" required></div>
-            <div class="form-group"><input type="datetime-local" placeholder="Preferred Date & Time" required></div>
+          <form id="waForm" @submit.prevent="sendToWhatsApp">
             <div class="form-group">
-              <select required>
-                <option value="">Service Required</option>
-                <option>Consultation</option>
-                <option>Whitening</option>
-                <option>Cleaning / Scaling</option>
-                <option>Crown / RCT</option>
-                <option>General checkup</option>
+              <input type="text" id="fullName" placeholder="Full Name" required>
+            </div>
+            <div class="form-group">
+              <input type="tel" id="phoneNumber" placeholder="Phone Number" required>
+            </div>
+            <div class="form-group">
+              <select id="serviceSelect" @change="otherService = ($event.target.value === 'other')" required>
+                <option value="">Select Service</option>
+                <option value="Consultation">Consultation</option>
+                <option value="Whitening">Teeth Whitening</option>
+                <option value="Cleaning">Cleaning</option>
+                <option value="Scaling & Polishing">Scaling & Polishing</option>
+                <option value="Crown / RCT">Crown / RCT</option>
+                <option value="other">Other (please specify)</option>
               </select>
             </div>
-            <button type="submit" class="btn-submit">Confirm Appointment</button>
+            <div class="form-group" x-show="otherService" x-transition>
+              <textarea id="otherServiceText" placeholder="Please describe the service you need..."></textarea>
+            </div>
+            <div class="form-group">
+              <input type="date" id="appointmentDate" required>
+            </div>
+            <button type="submit" class="btn-submit">Confirm via WhatsApp</button>
           </form>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- footer -->
+  <!-- Footer -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-tagline">Your Smile. Our Passion. Our Pride. <span></span></div>
+      <div class="footer-tagline">Your Smile. Our Passion. Our Pride. <span>❤️</span></div>
       <div class="social">
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <span style="color:#c3d9ec;">@smileroyale.ng</span>
+        <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="tel:+2348103564479" aria-label="Phone"><i class="fas fa-phone-alt"></i></a>
+        <span style="color:white; align-self:center;">@smileroyale.ng</span>
       </div>
-      <div class="copyright">© 2025 Smile Royale Dental Office. All rights reserved.</div>
+      <div class="copyright">
+        <p>© 2025 Smile Royale Dental Office. All rights reserved.</p>
+      </div>
     </div>
   </footer>
 
-  <!-- AOS + video play -->
+  <!-- AOS and WhatsApp script -->
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      AOS.init({ duration: 750, once: false, offset: 30 });
-      document.querySelectorAll('video').forEach(v => v.play().catch(()=>{}));
+      AOS.init({
+        duration: 800,
+        once: false,
+        offset: 40,
+        easing: 'ease-out-cubic'
+      });
+      
+      // Ensure videos play
+      const vids = document.querySelectorAll('video');
+      vids.forEach(v => v.play().catch(e => {}));
+    });
+
+    // WhatsApp form submission
+    function sendToWhatsApp() {
+      // Get form values
+      const name = document.getElementById('fullName').value;
+      const phone = document.getElementById('phoneNumber').value;
+      const serviceSelect = document.getElementById('serviceSelect');
+      let service = serviceSelect.options[serviceSelect.selectedIndex]?.text || '';
+      
+      // If "other" is selected, get the custom text
+      if (serviceSelect.value === 'other') {
+        const otherText = document.getElementById('otherServiceText').value;
+        if (otherText.trim()) {
+          service = otherText.trim();
+        } else {
+          alert('Please describe the service you need');
+          return;
+        }
+      }
+      
+      const dateInput = document.getElementById('appointmentDate').value;
+      
+      // Validate
+      if (!name || !phone || !service || !dateInput) {
+        alert('Please fill all fields');
+        return;
+      }
+      
+      // Format date nicely (e.g., "27th March 2025")
+      const dateObj = new Date(dateInput);
+      const day = dateObj.getDate();
+      const month = dateObj.toLocaleString('default', { month: 'long' });
+      const year = dateObj.getFullYear();
+      
+      // Add ordinal suffix (st, nd, rd, th)
+      let suffix = 'th';
+      if (day % 10 === 1 && day !== 11) suffix = 'st';
+      else if (day % 10 === 2 && day !== 12) suffix = 'nd';
+      else if (day % 10 === 3 && day !== 13) suffix = 'rd';
+      
+      const formattedDate = `${day}${suffix} ${month} ${year}`;
+      
+      // Construct WhatsApp message
+      const message = `Hello Doctor,
+I'm ${name}, I want to book an appointment for ${service} on ${formattedDate}.
+My phone number is ${phone}.`;
+      
+      // Encode for URL
+      const encodedMessage = encodeURIComponent(message);
+      
+      // WhatsApp number (using the one provided)
+      const whatsappNumber = '2348103564479'; // without + or 0
+      
+      // Open WhatsApp
+      window.open(`https://wa.me/${whatsappNumber}?text=${encodedMessage}`, '_blank');
+    }
+
+    // Attach to Alpine
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('waForm', () => ({
+        otherService: false,
+        sendToWhatsApp() {
+          sendToWhatsApp();
+        }
+      }));
+    });
+  </script>
+  <!-- Fallback for Alpine form -->
+  <script>
+    // Manual handler if Alpine doesn't initialize
+    document.getElementById('waForm')?.addEventListener('submit', function(e) {
+      e.preventDefault();
+      sendToWhatsApp();
     });
   </script>
 </body>
