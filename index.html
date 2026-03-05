@@ -549,7 +549,7 @@
         <div class="hero-badge"><i class="fas fa-tooth"></i> Your smile is our passion</div>
         <div class="motto-line">
           <h1>Your Smile.</h1>
-          <h2>Our Passion. Our Pride.</h2>
+          <h2>Our Passion.                                    Our Pride.</h2>
         </div>
         <p>Experience professional dental care tailored to your needs. From routine checkups to advanced procedures, we are committed to giving you a reason to smile.</p>
         <div class="hero-buttons">
@@ -685,7 +685,7 @@
       const today = new Date();
       const formattedDate = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
 
-      const message = `Hello Doctor,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate} (flexible). My phone: ${phone}. Thank you!`;
+      const message = `Hello Doctor,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}`;
 
       const whatsappURL = `https://wa.me/2348103564479?text=${message}`;
       window.open(whatsappURL, '_blank');
