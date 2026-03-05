@@ -34,9 +34,9 @@
     }
     .container {
       width: 100%;
-      max-width: 1400px;    /* increased to allow more horizontal space */
+      max-width: 1400px;
       margin: 0 auto;
-      padding: 0 3rem;      /* slightly increased side padding */
+      padding: 0 3rem;
     }
     .section { padding: 5.5rem 0; }
     @media (max-width: 640px) { 
@@ -44,7 +44,7 @@
       .section { padding: 4rem 0; } 
     }
 
-    /* top bar with Instagram and phone (WhatsApp only) */
+    /* top bar with Instagram and WhatsApp-only number */
     .top-bar {
       background: var(--deep-blue);
       color: white;
@@ -147,26 +147,31 @@
       .btn-nav:hover { background: #003b60; }
     }
 
-    /* mobile menu */
+    /* mobile menu - fixed to prevent page break */
     .mobile-menu-dropdown {
       background: var(--pure-white);
       border-top: 1px solid var(--light-border);
       padding: 2rem;
       display: flex; flex-direction: column; gap: 1.2rem;
+      position: relative;
+      z-index: 99;
     }
     .mobile-menu-dropdown a {
       text-decoration: none; color: var(--deep-blue);
       font-weight: 600; font-size: 1.2rem;
       border-bottom: 1px solid #e2e9f2; padding-bottom: 0.7rem;
+      cursor: pointer;
     }
     .mobile-wa-btn {
       background: var(--bright-blue);
       color: white; padding: 1rem; border-radius: 60px;
       text-align: center; font-weight: 700; margin-top: 0.5rem;
       text-decoration: none;
+      border: none;
+      display: block;
     }
 
-    /* ===== HERO — full width content, spacious ===== */
+    /* ===== HERO ===== */
     .hero {
       position: relative;
       min-height: 90vh;
@@ -187,7 +192,7 @@
       width: 100%;
     }
     .hero-content { 
-      max-width: 850px;      /* wider to utilize space */
+      max-width: 850px;
       width: 100%;
     }
     .hero-badge {
@@ -211,7 +216,7 @@
       margin-bottom: 1.5rem;
     }
     .hero h1 {
-      font-size: 4.2rem;      /* slightly larger for desktop */
+      font-size: 4.2rem;
       font-weight: 800;
       line-height: 1.1;
       text-shadow: 0 8px 28px rgba(0,0,0,0.8);
@@ -471,7 +476,7 @@
     a, button { cursor: pointer; }
   </style>
 </head>
-<body x-data="{ mobileMenu: false, otherService: false, serviceValue: '' }" @keydown.window.escape="mobileMenu = false">
+<body x-data="{ mobileMenu: false }" @keydown.window.escape="mobileMenu = false">
 
   <!-- top bar with Instagram and WhatsApp-only number -->
   <div class="top-bar">
@@ -500,7 +505,8 @@
       </nav>
       <button class="mobile-menu-btn" @click="mobileMenu = !mobileMenu"><i class="fas fa-bars"></i></button>
     </div>
-    <!-- mobile dropdown -->
+    
+    <!-- mobile dropdown - fixed to close properly on link click -->
     <div x-show="mobileMenu" class="mobile-menu-dropdown" x-transition.duration.300ms @click.outside="mobileMenu = false">
       <a href="#hero" @click="mobileMenu = false">Home</a>
       <a href="#about" @click="mobileMenu = false">About</a>
@@ -511,7 +517,7 @@
     </div>
   </header>
 
-  <!-- HERO with expanded desktop layout -->
+  <!-- HERO -->
   <section id="hero" class="hero">
     <div class="container">
       <div class="hero-content" data-aos="fade-up" data-aos-duration="900">
@@ -529,16 +535,16 @@
     </div>
   </section>
 
-  <!-- About: two videos + text -->
+  <!-- About -->
   <section id="about" class="section">
     <div class="container">
       <div data-aos="zoom-in-up" data-aos-duration="800">
         <div class="about-video-grid">
           <video autoplay muted loop playsinline>
-            <source src="https://image2url.com/r2/default/videos/1772715970572-d9d8d2d6-29d3-4aa7-9450-7e3ae433aec7.mp4" type="video/mp4">
+            <source src="https://image2url.com/r2/default/videos/1772267035727-6a27cf7e-1efb-4a06-a8ef-1162122d3d62.mp4" type="video/mp4">
           </video>
           <video autoplay muted loop playsinline>
-            <source src="https://image2url.com/r2/default/videos/1772716102573-be632a4c-6946-44ec-bcb4-1dd7e4d028a9.mp4" type="video/mp4">
+            <source src="https://image2url.com/r2/default/videos/1772267772402-c2d5e3e2-0eab-40d9-bba1-5c2280211b07.mp4" type="video/mp4">
           </video>
         </div>
       </div>
@@ -577,7 +583,7 @@
     </div>
   </section>
 
-  <!-- BOOKING section with WhatsApp number (no phone call) -->
+  <!-- BOOKING section -->
   <section id="booking" class="section" style="background: #f2f6fc;">
     <div class="container">
       <div class="booking-grid" data-aos="fade-up" data-aos-duration="900">
@@ -611,15 +617,15 @@
     </div>
   </section>
 
-  <!-- footer with functional Instagram -->
+  <!-- footer -->
   <footer class="footer">
     <div class="container">
-      <div class="footer-tagline">Your Smile. Our Passion. Our Pride. <span></span></div>
+      <div class="footer-tagline">Your Smile. Our Passion. Our Pride. <span>❤️</span></div>
       <div class="social">
         <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         <span><a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" style="color: #9ac7ff; text-decoration: none;">@smileroyale.ng</a></span>
       </div>
-      <div class="copyright">© 2026 Smile Royale Dental Office. All rights reserved.</div>
+      <div class="copyright">© 2025 Smile Royale Dental Office. All rights reserved.</div>
     </div>
   </footer>
 
@@ -654,12 +660,13 @@
       const today = new Date();
       const formattedDate = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
 
-      const message = `Hello Doctor,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}`;
+      const message = `Hello Doctor,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate} (flexible). My phone: ${phone}. Thank you!`;
 
       const whatsappURL = `https://wa.me/2348103564479?text=${message}`;
       window.open(whatsappURL, '_blank');
     }
 
+    // expose function to Alpine scope
     document.addEventListener('alpine:init', () => {
       Alpine.data('waForm', () => ({
         otherService: false,
