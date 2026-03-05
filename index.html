@@ -162,7 +162,7 @@
       text-decoration: none;
     }
 
-    /* ===== HERO — refined leading & visual hierarchy ===== */
+    /* ===== HERO — perfectly aligned motto, balanced size ===== */
     .hero {
       position: relative;
       min-height: 90vh;
@@ -178,13 +178,13 @@
       padding: 4rem 0;
     }
     .hero .container { position: relative; z-index: 3; }
-    .hero-content { max-width: 800px; }
+    .hero-content { max-width: 750px; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 0.7rem;
       background: rgba(255,255,255,0.18);
       padding: 0.7rem 1.8rem;
       border-radius: 60px;
-      margin-bottom: 2.5rem;
+      margin-bottom: 2rem;
       font-weight: 600;
       color: white;
       border: 1px solid rgba(255,255,255,0.3);
@@ -193,28 +193,34 @@
       backdrop-filter: blur(8px);
       box-shadow: 0 8px 22px rgba(0,0,0,0.4);
     }
-    /* refined motto with improved leading and hierarchy */
+    /* Motto - perfectly aligned, refined size */
+    .hero .motto-line {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 1.5rem;
+    }
     .hero h1 {
-      font-size: 5rem;
+      font-size: 3.8rem;
       font-weight: 800;
-      line-height: 1.0;        /* tighter leading for emphasis */
-      margin-bottom: 0.25rem;
+      line-height: 1.1;
       text-shadow: 0 8px 28px rgba(0,0,0,0.8);
       color: white;
       letter-spacing: -0.01em;
+      margin: 0;
     }
     .hero h2 {
-      font-size: 4rem;
+      font-size: 3.2rem;
       font-weight: 700;
       color: #d1e5ff;
-      line-height: 1.1;        /* balanced leading */
-      margin-bottom: 1.8rem;
+      line-height: 1.2;
       text-shadow: 0 6px 24px rgba(0,0,0,0.8);
+      margin: 0.25rem 0 0 0;
     }
     .hero p {
-      font-size: 1.35rem;
-      margin-bottom: 2.8rem;
-      max-width: 620px;
+      font-size: 1.3rem;
+      margin: 1.5rem 0 2.5rem 0;
+      max-width: 600px;
       color: rgba(255,255,255,0.98);
       text-shadow: 0 4px 18px rgba(0,0,0,0.7);
       font-weight: 400;
@@ -222,13 +228,13 @@
     }
     .hero-buttons { display: flex; flex-wrap: wrap; gap: 1.2rem; }
     .btn {
-      padding: 1.1rem 2.8rem;
+      padding: 1rem 2.5rem;
       border-radius: 60px;
       font-weight: 600;
       text-decoration: none;
       display: inline-flex; align-items: center; gap: 0.6rem;
       transition: 0.25s;
-      font-size: 1.1rem;
+      font-size: 1.05rem;
       border: none;
       cursor: pointer;
     }
@@ -474,13 +480,15 @@
     </div>
   </header>
 
-  <!-- HERO with refined typographic hierarchy -->
+  <!-- HERO with perfectly aligned, balanced motto -->
   <section id="hero" class="hero">
     <div class="container">
       <div class="hero-content" data-aos="fade-up" data-aos-duration="900">
         <div class="hero-badge"><i class="fas fa-tooth"></i> Your smile is our passion</div>
-        <h1>Your Smile.</h1>
-        <h2>Our Passion. Our Pride.</h2>
+        <div class="motto-line">
+          <h1>Your Smile.</h1>
+          <h2>Our Passion. Our Pride.</h2>
+        </div>
         <p>Experience professional dental care tailored to your needs. From routine checkups to advanced procedures, we are committed to giving you a reason to smile.</p>
         <div class="hero-buttons">
           <a href="#booking" class="btn btn-primary">Book an appointment</a>
@@ -614,7 +622,7 @@
 
       // Format date nicely (current date as placeholder)
       const today = new Date();
-      const formattedDate = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' }); // e.g. "27 March"
+      const formattedDate = today.toLocaleDateString('en-GB', { day: 'numeric', month: 'long' });
 
       const message = `Hello Doctor,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate} (flexible). My phone: ${phone}. Thank you!`;
 
