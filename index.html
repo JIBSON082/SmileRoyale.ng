@@ -17,7 +17,7 @@
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
-      --deep-blue: #002b4a;      /* richer navy */
+      --deep-blue: #002b4a;      /* rich navy */
       --bright-blue: #1a73e8;    /* vibrant accent */
       --pure-white: #ffffff;
       --off-white: #f5f9ff;
@@ -162,7 +162,7 @@
       text-decoration: none;
     }
 
-    /* ===== HERO — premium quality, maximum contrast ===== */
+    /* ===== HERO — refined leading & visual hierarchy ===== */
     .hero {
       position: relative;
       min-height: 90vh;
@@ -178,13 +178,13 @@
       padding: 4rem 0;
     }
     .hero .container { position: relative; z-index: 3; }
-    .hero-content { max-width: 750px; }
+    .hero-content { max-width: 800px; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 0.7rem;
       background: rgba(255,255,255,0.18);
       padding: 0.7rem 1.8rem;
       border-radius: 60px;
-      margin-bottom: 2.2rem;
+      margin-bottom: 2.5rem;
       font-weight: 600;
       color: white;
       border: 1px solid rgba(255,255,255,0.3);
@@ -193,21 +193,22 @@
       backdrop-filter: blur(8px);
       box-shadow: 0 8px 22px rgba(0,0,0,0.4);
     }
+    /* refined motto with improved leading and hierarchy */
     .hero h1 {
-      font-size: 4.5rem;
+      font-size: 5rem;
       font-weight: 800;
-      line-height: 1.1;
-      margin-bottom: 0.3rem;
+      line-height: 1.0;        /* tighter leading for emphasis */
+      margin-bottom: 0.25rem;
       text-shadow: 0 8px 28px rgba(0,0,0,0.8);
       color: white;
       letter-spacing: -0.01em;
     }
     .hero h2 {
-      font-size: 3.5rem;
+      font-size: 4rem;
       font-weight: 700;
-      color: #d1e5ff; /* bright, light blue */
+      color: #d1e5ff;
+      line-height: 1.1;        /* balanced leading */
       margin-bottom: 1.8rem;
-      line-height: 1.2;
       text-shadow: 0 6px 24px rgba(0,0,0,0.8);
     }
     .hero p {
@@ -473,7 +474,7 @@
     </div>
   </header>
 
-  <!-- HERO with ultra-crisp text and rich background -->
+  <!-- HERO with refined typographic hierarchy -->
   <section id="hero" class="hero">
     <div class="container">
       <div class="hero-content" data-aos="fade-up" data-aos-duration="900">
