@@ -692,7 +692,7 @@
       <a href="#services" @click="mobileMenu = false">Services</a>
       <a href="#why" @click="mobileMenu = false">Why us</a>
       <a href="#booking" @click="mobileMenu = false">Appointment</a>
-      <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" class="mobile-wa-btn">Enquire on WhatsApp</a>
+      <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" class="mobile-wa-btn">Book an appointment</a>
     </div>
   </header>
 
@@ -818,7 +818,7 @@
                 <option value="Scaling and Polishing">Scaling and Polishing</option>
                 <option value="Teeth Whitening">Teeth Whitening</option>
                 <option value="Crown / RCT">Crown / RCT</option>
-                <option value="General checkup">General checkup</option>
+                <option value="General procedures">General procedures</option>
                 <option value="Other">Other (please specify)</option>
               </select>
             </div>
@@ -883,7 +883,7 @@
       </div>
       
       <div class="copyright">
-        <p>© 2025 Smile Royale Dental. All rights reserved.</p>
+        <p>© 2026 Smile Royale Dental. All rights reserved.</p>
       </div>
     </div>
   </footer>
@@ -936,7 +936,7 @@
       
       const formattedDate = `${dayWithSuffix} ${month} ${year}`;
 
-      const message = `Hello Smile Royale,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}. My phone: ${phone}. Thank you!`;
+      const message = `Hello Smile Royale,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}. `;
 
       const whatsappURL = `https://wa.me/2348103564479?text=${message}`;
       window.open(whatsappURL, '_blank', 'noopener,noreferrer');
