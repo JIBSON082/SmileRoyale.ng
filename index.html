@@ -897,50 +897,107 @@
 
     // WhatsApp form submit with proper date formatting - FIXED to use full service name
     function sendToWhatsApp() {
-      const name = document.getElementById('waName').value.trim();
-      const phone = document.getElementById('waPhone').value.trim();
-      const serviceSelect = document.getElementById('waService');
-      const service = serviceSelect.value; // This now gets the full value attribute
-      const otherText = document.getElementById('waOtherText')?.value.trim() || '';
-      const dateInput = document.getElementById('waDate').value;
+  // Get form values
+  const name = document.getElementById('waName').value.trim();
+  const phone = document.getElementById('waPhone').value.trim();
+  const serviceSelect = document.getElementById('waService');
+  const service = serviceSelect.value;
+  const otherText = document.getElementById('waOtherText')?.value.trim() || '';
+  const dateInput = document.getElementById('waDate').value;
 
-      if (!name || !phone || !service || !dateInput) {
-        alert('Please fill in name, phone, service, and date');
-        return;
-      }
+  // Validation
+  if (!name || !phone || !service || !dateInput) {
+    alert('Please fill in name, phone, service, and date');
+    return;
+  }
 
-      let serviceDetail = service;
-      if (service === 'Other' && otherText) {
-        serviceDetail = otherText;
-      } else if (service === 'Other' && !otherText) {
-        alert('Please describe the service you need');
-        return;
-      }
+  // Handle "Other" service
+  let serviceDetail = service;
+  if (service === 'Other' && otherText) {
+    serviceDetail = otherText;
+  } else if (service === 'Other' && !otherText) {
+    alert('Please describe the service you need');
+    return;
+  }
 
-      // Format date to "5th March 2025" style
-      const dateObj = new Date(dateInput + 'T12:00:00');
-      const day = dateObj.getDate();
-      const month = dateObj.toLocaleDateString('en-GB', { month: 'long' });
-      const year = dateObj.getFullYear();
-      
-      // Add ordinal suffix (st, nd, rd, th)
-      let dayWithSuffix = day;
-      if (day > 3 && day < 21) dayWithSuffix = day + 'th';
-      else {
-        const lastDigit = day % 10;
-        if (lastDigit === 1) dayWithSuffix = day + 'st';
-        else if (lastDigit === 2) dayWithSuffix = day + 'nd';
-        else if (lastDigit === 3) dayWithSuffix = day + 'rd';
-        else dayWithSuffix = day + 'th';
-      }
-      
-      const formattedDate = `${dayWithSuffix} ${month} ${year}`;
+  // Format date with suffix
+  const dateObj = new Date(dateInput + 'T12:00:00');
+  const day = dateObj.getDate();
+  const month = dateObj.toLocaleDateString('en-GB', { month: 'long' });
+  const year = dateObj.getFullYear();
+  
+  // Add ordinal suffix
+  let dayWithSuffix = day;
+  if (day > 3 && day < 21) dayWithSuffix = day + 'th';
+  else {
+    const lastDigit = day % 10;
+    if (lastDigit === 1) dayWithSuffix = day + 'st';
+    else if (lastDigit === 2) dayWithSuffix = day + 'nd';
+    else if (lastDigit === 3) dayWithSuffix = day + 'rd';
+    else dayWithSuffix = day + 'th';
+  }
+  
+  const formattedDate = `${dayWithSuffix} ${month} ${year}`;
 
-      const message = `Hello Smile Royale,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}. `;
-
-      const whatsappURL = `https://wa.me/2348103564479?text=${message}`;
-      window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+  // ===== STEP 1: SEND EMAIL VIA HIDDEN IFRAME =====
+  try {
+    // Create a unique ID for the iframe
+    const iframeId = 'form-iframe-' + Date.now();
+    
+    // Create a hidden iframe
+    const iframe = document.createElement('iframe');
+    iframe.id = iframeId;
+    iframe.name = iframeId;
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+    
+    // Create a form that targets the iframe
+    const emailForm = document.createElement('form');
+    emailForm.method = 'POST';
+    emailForm.action = 'https://formspree.io/f/xkoqnzqn'; // YOUR ENDPOINT
+    emailForm.target = iframeId;
+    emailForm.style.display = 'none';
+    
+    // Add form fields
+    const fields = {
+      'name': name,
+      'phone': phone,
+      'service': serviceDetail,
+      'date': formattedDate,
+      '_subject': 'New Dental Appointment Booking',
+      '_replyto': 'appointments@smileroyale.ng' // Change this if needed
+    };
+    
+    for (const [key, value] of Object.entries(fields)) {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = key;
+      input.value = value;
+      emailForm.appendChild(input);
     }
+    
+    // Add form to page and submit
+    document.body.appendChild(emailForm);
+    emailForm.submit();
+    console.log('✅ Email submitted to Formspree');
+    
+    // Clean up after submission
+    setTimeout(() => {
+      if (document.body.contains(emailForm)) document.body.removeChild(emailForm);
+      if (document.body.contains(iframe)) document.body.removeChild(iframe);
+    }, 3000);
+    
+  } catch (error) {
+    console.error('❌ Error sending email:', error);
+  }
+
+  // ===== STEP 2: OPEN WHATSAPP =====
+  const message = `Hello Smile Royale,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}. My phone: ${phone}. Thank you!`;
+  const whatsappURL = `https://wa.me/2348103564479?text=${message}`;
+  
+  // Open WhatsApp
+  window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+}
 
     // expose function to Alpine scope
     document.addEventListener('alpine:init', () => {
