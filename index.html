@@ -685,14 +685,14 @@
       <button class="mobile-menu-btn" @click="mobileMenu = !mobileMenu"><i class="fas fa-bars"></i></button>
     </div>
     
-    <!-- mobile dropdown with enquiry link -->
+    <!-- mobile dropdown -->
     <div x-show="mobileMenu" class="mobile-menu-dropdown" x-transition.duration.300ms @click.outside="mobileMenu = false">
       <a href="#hero" @click="mobileMenu = false">Home</a>
       <a href="#about" @click="mobileMenu = false">About</a>
       <a href="#services" @click="mobileMenu = false">Services</a>
       <a href="#why" @click="mobileMenu = false">Why us</a>
       <a href="#booking" @click="mobileMenu = false">Appointment</a>
-      <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about" target="_blank" rel="noopener noreferrer" class="mobile-wa-btn">Book an appointment</a>
+      <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" class="mobile-wa-btn">Enquire on WhatsApp</a>
     </div>
   </header>
 
@@ -769,7 +769,7 @@
           <div class="service-icon"><i class="fas fa-tools"></i></div>
           <h3>General Procedures</h3>
           <p>Fillings, extractions, and specialized treatments – all your needs.</p>
-          <a href="#booking" class="service-btn" @click="selectedService = 'General procedures'">Book appointment</a>
+          <a href="#booking" class="service-btn" @click="selectedService = 'General checkup'">Book appointment</a>
         </div>
       </div>
     </div>
@@ -816,7 +816,7 @@
                 <option>Scaling & Polishing</option>
                 <option>Teeth Whitening</option>
                 <option>Crown / RCT</option>
-                <option>General procedures</option>
+                <option>General checkup</option>
                 <option value="Other">Other (please specify)</option>
               </select>
             </div>
@@ -848,7 +848,7 @@
           <div class="footer-contact">
             <div class="footer-contact-item">
               <i class="fab fa-whatsapp"></i>
-              <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about" target="_blank" rel="noopener noreferrer">08103564479</a>
+              <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer">08103564479</a>
             </div>
             <div class="footer-contact-item">
               <i class="fab fa-instagram"></i>
@@ -934,7 +934,7 @@
       
       const formattedDate = `${dayWithSuffix} ${month} ${year}`;
 
-      const message = `Hello Smile Royale,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}.’;
+      const message = `Hello Smile Royale,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}. My phone: ${phone}. Thank you!`;
 
       const whatsappURL = `https://wa.me/2348103564479?text=${message}`;
       window.open(whatsappURL, '_blank', 'noopener,noreferrer');
