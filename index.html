@@ -66,9 +66,10 @@
     .top-contact a, .top-contact span {
       display: inline-flex; align-items: center; gap: 0.5rem;
       color: white; text-decoration: none;
+      transition: opacity 0.15s ease;
     }
     .top-contact i { color: var(--bright-blue); width: 1.2rem; }
-    .top-contact a:hover { text-decoration: underline; }
+    .top-contact a:hover { text-decoration: underline; opacity: 0.9; }
 
     /* header with refined logo and typography */
     .header {
@@ -145,7 +146,7 @@
         color: var(--deep-blue);
         font-weight: 600;
         font-size: 1rem;
-        transition: 0.2s;
+        transition: border-color 0.15s ease;
         padding-bottom: 0.3rem;
         border-bottom: 2px solid transparent;
       }
@@ -158,8 +159,9 @@
         border-bottom: none !important;
         font-weight: 600;
         box-shadow: 0 8px 16px -8px var(--deep-blue);
+        transition: background 0.15s ease, transform 0.1s ease;
       }
-      .btn-nav:hover { background: #003b60; }
+      .btn-nav:hover { background: #003b60; transform: translateY(-1px); }
     }
 
     /* mobile menu */
@@ -176,6 +178,7 @@
       font-weight: 600; font-size: 1.2rem;
       border-bottom: 1px solid #e2e9f2; padding-bottom: 0.7rem;
       cursor: pointer;
+      transition: color 0.15s ease;
     }
     .mobile-wa-btn {
       background: var(--bright-blue);
@@ -184,7 +187,9 @@
       text-decoration: none;
       border: none;
       display: block;
+      transition: background 0.15s ease;
     }
+    .mobile-wa-btn:hover { background: #0d5bbd; }
 
     /* ===== HERO ===== */
     .hero {
@@ -281,7 +286,7 @@
       font-weight: 600;
       text-decoration: none;
       display: inline-flex; align-items: center; gap: 0.6rem;
-      transition: 0.25s;
+      transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
       font-size: clamp(1rem, 2.5vw, 1.1rem);
       border: none;
       cursor: pointer;
@@ -293,7 +298,7 @@
       border: 1px solid rgba(255,255,255,0.3);
       text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
-    .btn-primary:hover { background: #0d5bbd; transform: translateY(-3px); }
+    .btn-primary:hover { background: #0d5bbd; transform: translateY(-2px); }
     .btn-outline-light {
       border: 2px solid white;
       color: white;
@@ -304,7 +309,7 @@
     }
     .btn-outline-light:hover { background: white; color: var(--deep-blue); border-color: white; transform: translateY(-2px); }
 
-    /* section titles */
+    /* section titles - all sections including booking */
     .section-title {
       font-size: clamp(2rem, 5vw, 2.8rem);
       font-weight: 700;
@@ -360,7 +365,7 @@
       padding: 2.2rem 1.8rem;
       box-shadow: var(--card-shadow);
       border: 1px solid var(--light-border);
-      transition: transform 0.2s;
+      transition: transform 0.2s ease;
       display: flex;
       flex-direction: column;
     }
@@ -394,7 +399,7 @@
       font-weight: 600;
       font-size: 0.95rem;
       cursor: pointer;
-      transition: all 0.2s;
+      transition: all 0.15s ease;
       text-decoration: none;
       display: inline-block;
       text-align: center;
@@ -404,6 +409,7 @@
     .service-btn:hover {
       background: var(--bright-blue);
       color: white;
+      transform: translateY(-1px);
     }
 
     /* advantage cards */
@@ -419,7 +425,9 @@
       padding: 2.2rem 1.8rem;
       border: 1px solid var(--light-border);
       box-shadow: 0 12px 24px -12px rgba(0,43,74,0.08);
+      transition: transform 0.2s ease;
     }
+    .advantage-card:hover { transform: translateY(-4px); }
     .advantage-card i {
       font-size: 2.5rem;
       color: var(--bright-blue);
@@ -427,7 +435,7 @@
     }
     .advantage-card h4 { font-size: 1.3rem; color: var(--deep-blue); margin-bottom: 0.6rem; font-weight: 700; }
 
-    /* booking form with date field labeled */
+    /* booking form with date field labeled - section title now has underline */
     .booking-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -456,6 +464,7 @@
       font-size: clamp(1rem, 2.5vw, 1.2rem);
       color: white;
       text-decoration: none;
+      transition: background 0.15s ease;
     }
     .booking-highlight i { color: var(--bright-blue); }
     .booking-highlight:hover { background: rgba(255,255,255,0.2); }
@@ -479,7 +488,7 @@
       font-family: 'Inter', sans-serif;
       font-size: 1rem;
       background: #fbfdff;
-      transition: 0.2s;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
     }
     textarea { border-radius: 30px; resize: vertical; min-height: 100px; }
     input:focus, select:focus, textarea:focus { outline: none; border-color: var(--bright-blue); box-shadow: 0 0 0 3px rgba(26,115,232,0.2); }
@@ -494,11 +503,12 @@
       font-size: 1.2rem;
       cursor: pointer;
       box-shadow: 0 10px 20px -10px var(--bright-blue);
+      transition: background 0.15s ease, transform 0.1s ease;
     }
-    .btn-submit:hover { background: #0d5bbd; }
+    .btn-submit:hover { background: #0d5bbd; transform: translateY(-2px); }
     @media (max-width:700px){ .booking-grid{ grid-template-columns:1fr; } }
 
-    /* footer with quick links - enriched */
+    /* footer with quick links */
     .footer {
       background: var(--deep-blue);
       color: #d0e0f0;
@@ -547,6 +557,7 @@
     .footer-contact-item a, .footer-contact-item span {
       color: #d0e0f0;
       text-decoration: none;
+      transition: color 0.15s ease;
     }
     .footer-contact-item a:hover { color: white; text-decoration: underline; }
     
@@ -577,7 +588,7 @@
     .footer-links a {
       color: #d0e0f0;
       text-decoration: none;
-      transition: color 0.2s;
+      transition: color 0.15s ease, transform 0.1s ease;
       display: inline-block;
     }
     .footer-links a:hover {
@@ -619,13 +630,14 @@
       color: white;
       text-decoration: none;
       font-size: 1.3rem;
-      transition: background 0.2s;
+      transition: background 0.15s ease, transform 0.1s ease;
     }
-    .social-icons a:hover { background: var(--bright-blue); }
+    .social-icons a:hover { background: var(--bright-blue); transform: translateY(-2px); }
     .footer-instagram {
       color: #9ac7ff;
       text-decoration: none;
       font-size: 1rem;
+      transition: color 0.15s ease;
     }
     .footer-instagram:hover { text-decoration: underline; color: white; }
     
@@ -640,17 +652,17 @@
 </head>
 <body x-data="{ mobileMenu: false, selectedService: '' }" @keydown.window.escape="mobileMenu = false">
 
-  <!-- top bar with refined layout -->
+  <!-- top bar with WhatsApp enquiry links (fast transition) -->
   <div class="top-bar">
     <div class="container">
       <div class="top-contact">
-        <a href="https://wa.me/2348103564479" target="_blank"><i class="fab fa-whatsapp"></i> 08103564479</a>
-        <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank"><i class="fab fa-instagram"></i> @smileroyale.ng</a>
+        <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> 08103564479</a>
+        <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> @smileroyale.ng</a>
       </div>
     </div>
   </div>
 
-  <!-- header with refined logo and typography -->
+  <!-- header -->
   <header class="header">
     <div class="container">
       <div class="logo">
@@ -673,14 +685,14 @@
       <button class="mobile-menu-btn" @click="mobileMenu = !mobileMenu"><i class="fas fa-bars"></i></button>
     </div>
     
-    <!-- mobile dropdown -->
+    <!-- mobile dropdown with enquiry link -->
     <div x-show="mobileMenu" class="mobile-menu-dropdown" x-transition.duration.300ms @click.outside="mobileMenu = false">
       <a href="#hero" @click="mobileMenu = false">Home</a>
       <a href="#about" @click="mobileMenu = false">About</a>
       <a href="#services" @click="mobileMenu = false">Services</a>
       <a href="#why" @click="mobileMenu = false">Why us</a>
       <a href="#booking" @click="mobileMenu = false">Appointment</a>
-      <a href="#booking" class="mobile-wa-btn" @click="mobileMenu = false">Book an Appointment</a>
+      <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" class="mobile-wa-btn">Enquire on WhatsApp</a>
     </div>
   </header>
 
@@ -709,10 +721,10 @@
       <div data-aos="zoom-in-up" data-aos-duration="800">
         <div class="about-video-grid">
           <video autoplay muted loop playsinline>
-            <source src="https://image2url.com/r2/default/videos/1772715970572-d9d8d2d6-29d3-4aa7-9450-7e3ae433aec7.mp4" type="video/mp4">
+            <source src="https://image2url.com/r2/default/videos/1772267035727-6a27cf7e-1efb-4a06-a8ef-1162122d3d62.mp4" type="video/mp4">
           </video>
           <video autoplay muted loop playsinline>
-            <source src="https://image2url.com/r2/default/videos/1772716102573-be632a4c-6946-44ec-bcb4-1dd7e4d028a9.mp4" type="video/mp4">
+            <source src="https://image2url.com/r2/default/videos/1772267772402-c2d5e3e2-0eab-40d9-bba1-5c2280211b07.mp4" type="video/mp4">
           </video>
         </div>
       </div>
@@ -776,14 +788,15 @@
     </div>
   </section>
 
-  <!-- BOOKING section with labeled date field -->
+  <!-- BOOKING section with labeled date field and underlined title -->
   <section id="booking" class="section" style="background: #f2f6fc;">
     <div class="container">
+      <h2 class="section-title" data-aos="fade-down">Book an Appointment</h2>
       <div class="booking-grid" data-aos="fade-up" data-aos-duration="900">
         <div class="booking-info">
           <h3>Ready to Transform Your Smile?</h3>
           <p>Don't wait for a dental emergency. Schedule your visit with me today and experience the Smile Royale difference.</p>
-          <a href="https://wa.me/2348103564479" target="_blank" class="booking-highlight"><i class="fab fa-whatsapp"></i> 08103564479</a>
+          <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" class="booking-highlight"><i class="fab fa-whatsapp"></i> 08103564479</a>
         </div>
         <div class="booking-form">
           <form id="waForm" @submit.prevent="sendToWhatsApp">
@@ -822,7 +835,7 @@
     </div>
   </section>
 
-  <!-- footer with quick links -->
+  <!-- footer with enquiry WhatsApp links -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
@@ -835,11 +848,11 @@
           <div class="footer-contact">
             <div class="footer-contact-item">
               <i class="fab fa-whatsapp"></i>
-              <a href="https://wa.me/2348103564479" target="_blank">08103564479</a>
+              <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer">08103564479</a>
             </div>
             <div class="footer-contact-item">
               <i class="fab fa-instagram"></i>
-              <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank">@smileroyale.ng</a>
+              <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer">@smileroyale.ng</a>
             </div>
           </div>
         </div>
@@ -860,15 +873,15 @@
         <div class="footer-social">
           <h4>Connect With Us</h4>
           <div class="social-icons">
-            <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="https://wa.me/2348103564479" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
           </div>
-          <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" class="footer-instagram">@smileroyale.ng</a>
+          <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer" class="footer-instagram">@smileroyale.ng</a>
         </div>
       </div>
       
       <div class="copyright">
-        <p>© 2026 Smile Royale Dental. All rights reserved.</p>
+        <p>© 2025 Smile Royale Dental. All rights reserved.</p>
       </div>
     </div>
   </footer>
@@ -921,10 +934,10 @@
       
       const formattedDate = `${dayWithSuffix} ${month} ${year}`;
 
-      const message = `Hello Smile Royale,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}.`;
+      const message = `Hello Smile Royale,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}. My phone: ${phone}. Thank you!`;
 
       const whatsappURL = `https://wa.me/2348103564479?text=${message}`;
-      window.open(whatsappURL, '_blank');
+      window.open(whatsappURL, '_blank', 'noopener,noreferrer');
     }
 
     // expose function to Alpine scope
