@@ -352,7 +352,7 @@
     }
     @media (max-width:640px){ .about-video-grid { grid-template-columns:1fr; } }
 
-    /* services cards with book button */
+    /* services cards with book button - FIXED */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -435,7 +435,7 @@
     }
     .advantage-card h4 { font-size: 1.3rem; color: var(--deep-blue); margin-bottom: 0.6rem; font-weight: 700; }
 
-    /* booking form with date field labeled - section title now has underline */
+    /* booking form with date field labeled - FIXED with proper value attributes */
     .booking-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -721,10 +721,10 @@
       <div data-aos="zoom-in-up" data-aos-duration="800">
         <div class="about-video-grid">
           <video autoplay muted loop playsinline>
-            <source src="https://image2url.com/r2/default/videos/1772715970572-d9d8d2d6-29d3-4aa7-9450-7e3ae433aec7.mp4" type="video/mp4">
+            <source src="https://image2url.com/r2/default/videos/1772267035727-6a27cf7e-1efb-4a06-a8ef-1162122d3d62.mp4" type="video/mp4">
           </video>
           <video autoplay muted loop playsinline>
-            <source src="https://image2url.com/r2/default/videos/1772716102573-be632a4c-6946-44ec-bcb4-1dd7e4d028a9.mp4" type="video/mp4">
+            <source src="https://image2url.com/r2/default/videos/1772267772402-c2d5e3e2-0eab-40d9-bba1-5c2280211b07.mp4" type="video/mp4">
           </video>
         </div>
       </div>
@@ -735,7 +735,7 @@
     </div>
   </section>
 
-  <!-- SERVICES with book buttons -->
+  <!-- SERVICES with book buttons - FIXED -->
   <section id="services" class="section" style="background: var(--off-white);">
     <div class="container">
       <h2 class="section-title" data-aos="fade-down">Comprehensive Dental Solutions</h2>
@@ -751,7 +751,8 @@
           <div class="service-icon"><i class="fas fa-teeth"></i></div>
           <h3>Scaling and Polishing</h3>
           <p>Professional cleaning to remove plaque and tartar, preventing gum disease.</p>
-          <a href="#booking" class="service-btn" @click="selectedService = 'Scaling & Polishing'">Book appointment</a>
+          <!-- FIXED: Changed from 'Scaling & Polishing' to 'Scaling and Polishing' -->
+          <a href="#booking" class="service-btn" @click="selectedService = 'Scaling and Polishing'">Book appointment</a>
         </div>
         <div class="service-card" data-aos="flip-left" data-aos-delay="140">
           <div class="service-icon"><i class="fas fa-star"></i></div>
@@ -788,7 +789,7 @@
     </div>
   </section>
 
-  <!-- BOOKING section with labeled date field and underlined title -->
+  <!-- BOOKING section with labeled date field and underlined title - FIXED with proper value attributes -->
   <section id="booking" class="section" style="background: #f2f6fc;">
     <div class="container">
       <h2 class="section-title" data-aos="fade-down">Book an Appointment</h2>
@@ -810,13 +811,14 @@
             </div>
             <div class="form-group">
               <label class="form-label">Service Required</label>
+              <!-- FIXED: Added value attributes to all options and changed to "Scaling and Polishing" -->
               <select id="waService" x-model="selectedService" required>
                 <option value="" disabled selected>Select a service</option>
-                <option>Consultation</option>
+                <option value="Consultation">Consultation</option>
                 <option value="Scaling and Polishing">Scaling and Polishing</option>
-                <option>Teeth Whitening</option>
-                <option>Crown / RCT</option>
-                <option>General procedures</option>
+                <option value="Teeth Whitening">Teeth Whitening</option>
+                <option value="Crown / RCT">Crown / RCT</option>
+                <option value="General checkup">General checkup</option>
                 <option value="Other">Other (please specify)</option>
               </select>
             </div>
@@ -881,7 +883,7 @@
       </div>
       
       <div class="copyright">
-        <p>© 2026 Smile Royale Dental. All rights reserved.</p>
+        <p>© 2025 Smile Royale Dental. All rights reserved.</p>
       </div>
     </div>
   </footer>
@@ -893,12 +895,12 @@
       document.querySelectorAll('video').forEach(v => v.play().catch(()=>{}));
     });
 
-    // WhatsApp form submit with proper date formatting
+    // WhatsApp form submit with proper date formatting - FIXED to use full service name
     function sendToWhatsApp() {
       const name = document.getElementById('waName').value.trim();
       const phone = document.getElementById('waPhone').value.trim();
       const serviceSelect = document.getElementById('waService');
-      const service = serviceSelect.value;
+      const service = serviceSelect.value; // This now gets the full value attribute
       const otherText = document.getElementById('waOtherText')?.value.trim() || '';
       const dateInput = document.getElementById('waDate').value;
 
@@ -934,7 +936,7 @@
       
       const formattedDate = `${dayWithSuffix} ${month} ${year}`;
 
-      const message = `Hello Smile Royale,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}.`;
+      const message = `Hello Smile Royale,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}. My phone: ${phone}. Thank you!`;
 
       const whatsappURL = `https://wa.me/2348103564479?text=${message}`;
       window.open(whatsappURL, '_blank', 'noopener,noreferrer');
