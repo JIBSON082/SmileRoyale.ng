@@ -458,20 +458,21 @@
   position: relative;
 }
 
-..doctor-image img {
+.doctor-image img {
   width: 100%;
-  max-width: 350px;
-  border-radius: 50%;
+  max-width: 380px;
+  border-radius: 2rem; /* This matches your card corners */
   border: 4px solid var(--bright-blue);
-  box-shadow: 0 15px 25px -10px rgba(0,43,74,0.15);
+  box-shadow: 0 20px 30px -12px rgba(0,43,74,0.2);
   aspect-ratio: 1/1;
   object-fit: cover;
   object-position: center;
-  background: var(--off-white); /* Adds background color to hide any transparency */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .doctor-image img:hover {
   transform: scale(1.02);
+  box-shadow: 0 25px 35px -15px rgba(0,43,74,0.25);
 }
 
 .doctor-info {
@@ -574,11 +575,21 @@
 }
 
 /* Mobile Responsive */
+@/* Tablet Responsive */
+@media (max-width: 900px) {
+  .doctor-image img {
+    max-width: 340px;
+  }
+}
+
+/* Mobile Responsive */
 @media (max-width: 480px) {
   .doctor-image img {
     max-width: 280px;
+    border-radius: 1.5rem; /* Slightly smaller radius on mobile */
+    border-width: 3px;
   }
-  
+}
   .doctor-name {
     font-size: 1.8rem;
   }
@@ -1017,15 +1028,14 @@
     </div>
   </section>
 
-  <!-- ===== DOCTOR'S PROFILE SECTION ===== -->
-  <!-- ===== DOCTOR'S PROFILE SECTION - IMPROVED ===== -->
+  <!-- ===== DOCTOR'S PROFILE SECTION - SQUARE WITH ROUNDED CORNERS ===== -->
 <section id="doctor" class="section" style="background: var(--pure-white);">
   <div class="container">
     <h2 class="section-title" data-aos="fade-down">Meet Your Dentist</h2>
     <p class="section-subhead" data-aos="fade-down" data-aos-delay="50">Expert care with a personal touch</p>
     
     <div class="doctor-grid">
-      <!-- Doctor Image -->
+      <!-- Doctor Image - Now square with rounded corners -->
       <div class="doctor-image" data-aos="fade-right">
         <img src="https://image2url.com/r2/default/images/1772889924884-a9da39dc-856d-4411-aac2-f3f59a7e3884.jpg" 
              alt="Dr. Farouk Adebiyi">
@@ -1034,7 +1044,8 @@
       <!-- Doctor Info -->
       <div class="doctor-info" data-aos="fade-left">
         <h2 class="doctor-name">Dr. Farouk Adebiyi</h2>
-       <div class="doctor-title">Dentist | Founder, Smile Royale Dental Home</div>
+        <div class="doctor-title">Dentist | Founder, Smile Royale Dental Home</div>
+        
         <p class="doctor-bio">Dr. Farouk Adebiyi is a dedicated Dental Surgeon and the visionary founder of Smile Royale Dental Home. With a passion for blending clinical excellence with modern digital engagement, he has established himself as a prominent voice in Nigerian dentistry.</p>
         
         <p class="doctor-bio">Dr. Adebiyi is widely recognized for his work as an oral health influencer, using his platform to demystify dental procedures and promote preventive care to a global audience. His unique background as a Digital Product Manager allows him to integrate technology-driven solutions into patient care, ensuring a seamless end-to-end journey.</p>
