@@ -950,8 +950,8 @@
   });
 
   // ===== STEP 1: SEND EMAIL VIA APPS SCRIPT (SILENT) =====
-  // YOUR ACTUAL APPS SCRIPT URL - REPLACE THIS LINE
-  const scriptURL = 'https://script.google.com/macros/s/AKfycby95ypRJGvk22twXHSrnnJjI1UqkbJVvpnT9PYIR-Xre18RC2twrk3sftnndULlVM0/exec';
+  // YOUR NEW APPS SCRIPT URL
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzdK-TlY4Rq9oVfXLZ8xrUNU9k_r_bikBMFVWiJcbL74pWzLnJw_AsvHbN7ZdQ-Veg/exec';
   
   const emailData = {
     name: name,
@@ -961,7 +961,7 @@
     timestamp: timestamp
   };
 
-  // Send email - patient never knows this happens!
+  // Send email - completely silent, no popups
   fetch(scriptURL, {
     method: 'POST',
     mode: 'no-cors', // This makes it truly silent
@@ -970,21 +970,18 @@
     },
     body: JSON.stringify(emailData)
   }).catch(error => {
-    // Silent fail - don't interrupt user experience
-    console.log('Email sent (background):', error);
+    // Silent fail - only logs to browser console (user never sees)
+    console.log('Email sent in background');
   });
 
   // ===== STEP 2: OPEN WHATSAPP =====
-  const message = `Hello Smile Royale,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}.`;
+  const message = `Hello Smile Royale,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}. My phone: ${phone}. Thank you!`;
   const whatsappURL = `https://wa.me/2348103564479?text=${message}`;
   
-  // Open WhatsApp in new tab
+  // Open WhatsApp in new tab - NO POPUP ALERT
   window.open(whatsappURL, '_blank', 'noopener,noreferrer');
   
-  // Optional: Show subtle success message
-  setTimeout(() => {
-    alert('✓ WhatsApp opening... Your appointment details have been saved.');
-  }, 100);
+  // ⛔ NO ALERT HERE - The popup is completely removed
 }
     // expose function to Alpine scope
     document.addEventListener('alpine:init', () => {
