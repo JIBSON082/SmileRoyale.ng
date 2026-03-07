@@ -939,7 +939,7 @@
   
   const formattedDate = `${dayWithSuffix} ${month} ${year}`;
   
-  // ===== TIMESTAMP (e.g., "7 March 2025, 15:30") =====
+  // ===== TIMESTAMP =====
   const now = new Date();
   const timestamp = now.toLocaleString('en-GB', { 
     day: 'numeric', 
@@ -949,9 +949,9 @@
     minute: '2-digit' 
   });
 
-  // ===== STEP 1: SEND EMAIL VIA APPS SCRIPT (SILENT) =====
-  // YOUR NEW URL
-  const scriptURL = 'https://script.google.com/macros/s/AKfycby4-muAz1jz2mKrB7PNe6OnKYnXyJFa52yh-oCSVwUcc9LQgH7TJLf3AxRMmXpALzU/exec';
+  // ===== STEP 1: SEND EMAIL VIA APPS SCRIPT =====
+  // YOUR NEW WEB APP URL
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzYpnlAinQ8sQlYufXvufEyNFEu3DrMOzaOvOSrivjkuhK0KYjcyHBsJu3-LWCT5Ak/exec';
   
   const emailData = {
     name: name,
@@ -961,7 +961,7 @@
     timestamp: timestamp
   };
 
-  // Send email - completely silent, no popups
+  // Send email - completely silent
   fetch(scriptURL, {
     method: 'POST',
     mode: 'no-cors', // This makes it truly silent
@@ -970,15 +970,15 @@
     },
     body: JSON.stringify(emailData)
   }).catch(error => {
-    // Silent fail - only logs to browser console (user never sees)
+    // Silent fail - only logs to browser console
     console.log('Email sent in background');
   });
 
   // ===== STEP 2: OPEN WHATSAPP =====
-  const message = `Hello Smile Royale,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}. My phone: ${phone}. Thank you!`;
+  const message = `Hello Smile Royale,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}.`;
   const whatsappURL = `https://wa.me/2348103564479?text=${message}`;
   
-  // Open WhatsApp in new tab - NO POPUP
+  // Open WhatsApp in new tab
   window.open(whatsappURL, '_blank', 'noopener,noreferrer');
 }
     // expose function to Alpine scope
