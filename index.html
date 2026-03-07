@@ -920,7 +920,7 @@
     return;
   }
 
-  // ===== FORMAT DATE (e.g., "15th March 2025") =====
+  // ===== FORMAT DATE (e.g., "8th March 2025") =====
   const dateObj = new Date(dateInput + 'T12:00:00');
   const day = dateObj.getDate();
   const month = dateObj.toLocaleDateString('en-GB', { month: 'long' });
@@ -939,7 +939,7 @@
   
   const formattedDate = `${dayWithSuffix} ${month} ${year}`;
   
-  // ===== TIMESTAMP =====
+  // ===== TIMESTAMP (e.g., "7 March 2025, 15:30") =====
   const now = new Date();
   const timestamp = now.toLocaleString('en-GB', { 
     day: 'numeric', 
@@ -950,8 +950,8 @@
   });
 
   // ===== STEP 1: SEND EMAIL VIA APPS SCRIPT (SILENT) =====
-  // YOUR NEW APPS SCRIPT URL
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbzdK-TlY4Rq9oVfXLZ8xrUNU9k_r_bikBMFVWiJcbL74pWzLnJw_AsvHbN7ZdQ-Veg/exec';
+  // YOUR NEW URL
+  const scriptURL = 'https://script.google.com/macros/s/AKfycby4-muAz1jz2mKrB7PNe6OnKYnXyJFa52yh-oCSVwUcc9LQgH7TJLf3AxRMmXpALzU/exec';
   
   const emailData = {
     name: name,
@@ -978,10 +978,8 @@
   const message = `Hello Smile Royale,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}. My phone: ${phone}. Thank you!`;
   const whatsappURL = `https://wa.me/2348103564479?text=${message}`;
   
-  // Open WhatsApp in new tab - NO POPUP ALERT
+  // Open WhatsApp in new tab - NO POPUP
   window.open(whatsappURL, '_blank', 'noopener,noreferrer');
-  
-  // ⛔ NO ALERT HERE - The popup is completely removed
 }
     // expose function to Alpine scope
     document.addEventListener('alpine:init', () => {
