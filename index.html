@@ -444,7 +444,6 @@
     }
     .advantage-card h4 { font-size: 1.3rem; color: var(--deep-blue); margin-bottom: 0.6rem; font-weight: 700; }
 
-    /* ===== DOCTOR'S PROFILE SECTION ===== */
     /* ===== DOCTOR'S PROFILE SECTION - IMPROVED ===== */
 .doctor-grid {
   display: grid;
@@ -459,16 +458,16 @@
   position: relative;
 }
 
-.doctor-image img {
+..doctor-image img {
   width: 100%;
-  max-width: 380px;
-  border-radius: 2rem;
+  max-width: 350px;
+  border-radius: 50%;
   border: 4px solid var(--bright-blue);
   box-shadow: 0 15px 25px -10px rgba(0,43,74,0.15);
   aspect-ratio: 1/1;
   object-fit: cover;
   object-position: center;
-  transition: transform 0.3s ease;
+  background: var(--off-white); /* Adds background color to hide any transparency */
 }
 
 .doctor-image img:hover {
@@ -1035,8 +1034,7 @@
       <!-- Doctor Info -->
       <div class="doctor-info" data-aos="fade-left">
         <h2 class="doctor-name">Dr. Farouk Adebiyi</h2>
-        <div class="doctor-title">BDS (Lagos) | Founder, Smile Royale Dental Home</div>
-        
+       <div class="doctor-title">Dentist | Founder, Smile Royale Dental Home</div>
         <p class="doctor-bio">Dr. Farouk Adebiyi is a dedicated Dental Surgeon and the visionary founder of Smile Royale Dental Home. With a passion for blending clinical excellence with modern digital engagement, he has established himself as a prominent voice in Nigerian dentistry.</p>
         
         <p class="doctor-bio">Dr. Adebiyi is widely recognized for his work as an oral health influencer, using his platform to demystify dental procedures and promote preventive care to a global audience. His unique background as a Digital Product Manager allows him to integrate technology-driven solutions into patient care, ensuring a seamless end-to-end journey.</p>
