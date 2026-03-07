@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
   <title>Smile Royale | Your Smile. Our Passion. Our Pride.</title>
   <!-- meta -->
   <meta name="description" content="Smile Royale Dental: expert dentist in a modern clinic. Book your appointment for comprehensive care.">
@@ -23,14 +23,23 @@
       --off-white: #f5f9ff;
       --light-border: #e9ecf0;
       --soft-gray: #4f5b68;
-      --card-shadow: 0 18px 35px -12px rgba(0,43,74,0.12);
+      --card-shadow: 0 10px 25px -8px rgba(0,43,74,0.1);
     }
-    html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent; }
+    html { 
+      scroll-behavior: smooth; 
+      -webkit-tap-highlight-color: transparent;
+      overflow-x: hidden;
+      width: 100%;
+      position: relative;
+    }
     body {
       font-family: 'Inter', sans-serif;
       background: var(--pure-white);
       color: #1e2b3c;
       line-height: 1.5;
+      overflow-x: hidden;
+      width: 100%;
+      position: relative;
     }
     .container {
       width: 100%;
@@ -51,6 +60,7 @@
       color: white;
       padding: 0.7rem 0;
       border-bottom: 3px solid var(--bright-blue);
+      width: 100%;
     }
     .top-bar .container {
       display: flex; flex-wrap: wrap;
@@ -78,6 +88,7 @@
       background: var(--pure-white);
       border-bottom: 1px solid var(--light-border);
       z-index: 100;
+      width: 100%;
     }
     .header .container {
       display: flex;
@@ -172,6 +183,7 @@
       display: flex; flex-direction: column; gap: 1.2rem;
       position: relative;
       z-index: 99;
+      width: 100%;
     }
     .mobile-menu-dropdown a {
       text-decoration: none; color: var(--deep-blue);
@@ -214,7 +226,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.15);
+      background: rgba(0,0,0,0.1);
       z-index: 1;
       pointer-events: none;
     }
@@ -231,18 +243,16 @@
     }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 0.7rem;
-      background: rgba(255,255,255,0.25);
+      background: rgba(255,255,255,0.2);
       padding: 0.8rem 2rem;
       border-radius: 60px;
       margin-bottom: 2rem;
       font-weight: 600;
       color: white;
-      border: 1px solid rgba(255,255,255,0.4);
+      border: 1px solid rgba(255,255,255,0.3);
       font-size: 1rem;
       letter-spacing: 0.5px;
       backdrop-filter: blur(8px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-      text-shadow: 0 2px 4px rgba(0,0,0,0.3);
     }
     
     .hero .motto-line {
@@ -255,7 +265,7 @@
       font-size: clamp(3rem, 9vw, 4.8rem);
       font-weight: 800;
       line-height: 1.1;
-      text-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.9);
+      text-shadow: 0 4px 20px rgba(0,0,0,0.5);
       color: white;
       letter-spacing: -0.01em;
       margin: 0;
@@ -265,7 +275,7 @@
       font-weight: 700;
       color: #e0f0ff;
       line-height: 1.2;
-      text-shadow: 0 8px 28px rgba(0,0,0,0.8), 0 2px 4px rgba(0,0,0,0.5);
+      text-shadow: 0 4px 15px rgba(0,0,0,0.5);
       margin: 0;
     }
     
@@ -274,7 +284,7 @@
       margin: 1.8rem 0 2.8rem 0;
       max-width: 750px;
       color: rgba(255,255,255,1);
-      text-shadow: 0 4px 20px rgba(0,0,0,0.8), 0 1px 2px rgba(0,0,0,0.9);
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
       font-weight: 400;
       line-height: 1.6;
     }
@@ -286,26 +296,22 @@
       font-weight: 600;
       text-decoration: none;
       display: inline-flex; align-items: center; gap: 0.6rem;
-      transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.15s ease;
+      transition: background 0.15s ease, transform 0.1s ease;
       font-size: clamp(1rem, 2.5vw, 1.1rem);
       border: none;
       cursor: pointer;
-      box-shadow: 0 15px 30px -6px #000000;
     }
     .btn-primary {
       background: var(--bright-blue);
       color: white;
       border: 1px solid rgba(255,255,255,0.3);
-      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
     }
     .btn-primary:hover { background: #0d5bbd; transform: translateY(-2px); }
     .btn-outline-light {
       border: 2px solid white;
       color: white;
-      background: rgba(0,0,0,0.3);
-      backdrop-filter: blur(10px);
-      box-shadow: 0 8px 25px rgba(0,0,0,0.5);
-      text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+      background: rgba(0,0,0,0.2);
+      backdrop-filter: blur(8px);
     }
     .btn-outline-light:hover { background: white; color: var(--deep-blue); border-color: white; transform: translateY(-2px); }
 
@@ -314,7 +320,7 @@
       font-size: clamp(2rem, 5vw, 2.8rem);
       font-weight: 700;
       color: var(--deep-blue);
-      margin-bottom: 1rem;
+      margin-bottom: 1.5rem;
       position: relative;
       padding-bottom: 0.75rem;
       display: inline-block;
@@ -333,16 +339,17 @@
       font-size: clamp(1rem, 2.5vw, 1.2rem);
       color: var(--soft-gray);
       max-width: 760px;
-      margin-bottom: 3rem;
-      margin-top: 1rem;
+      margin-bottom: 2rem;
     }
 
-    /* about video grid */
+    /* about section with heading above videos */
+    .about-heading {
+      margin-bottom: 2.5rem;
+    }
     .about-video-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
-      margin-bottom: 3rem;
     }
     .about-video-grid video {
       width: 100%; height: auto;
@@ -350,7 +357,9 @@
       box-shadow: var(--card-shadow);
       border: 1px solid rgba(0,43,74,0.1);
     }
-    @media (max-width:640px){ .about-video-grid { grid-template-columns:1fr; } }
+    @media (max-width:640px){ 
+      .about-video-grid { grid-template-columns:1fr; } 
+    }
 
     /* services cards with book button - FIXED */
     .services-grid {
@@ -369,7 +378,7 @@
       display: flex;
       flex-direction: column;
     }
-    .service-card:hover { transform: translateY(-6px); }
+    .service-card:hover { transform: translateY(-4px); }
     .service-icon {
       background: #eaf1fd;
       width: 64px; height: 64px;
@@ -424,7 +433,7 @@
       border-radius: 2rem;
       padding: 2.2rem 1.8rem;
       border: 1px solid var(--light-border);
-      box-shadow: 0 12px 24px -12px rgba(0,43,74,0.08);
+      box-shadow: 0 8px 20px -12px rgba(0,43,74,0.08);
       transition: transform 0.2s ease;
     }
     .advantage-card:hover { transform: translateY(-4px); }
@@ -435,7 +444,7 @@
     }
     .advantage-card h4 { font-size: 1.3rem; color: var(--deep-blue); margin-bottom: 0.6rem; font-weight: 700; }
 
-    /* ===== DOCTOR'S PROFILE SECTION (NEW) ===== */
+    /* ===== DOCTOR'S PROFILE SECTION ===== */
     .doctor-grid {
       display: grid;
       grid-template-columns: 1fr 2fr;
@@ -451,7 +460,7 @@
       max-width: 350px;
       border-radius: 50%;
       border: 4px solid var(--bright-blue);
-      box-shadow: 0 20px 30px -10px rgba(0,43,74,0.2);
+      box-shadow: 0 15px 25px -10px rgba(0,43,74,0.15);
     }
     .doctor-name {
       font-size: 2rem;
@@ -503,34 +512,34 @@
       margin-right: 0.5rem;
     }
 
-    /* ===== BEFORE/AFTER GALLERY (NEW) ===== */
-    .gallery-grid {
+    /* ===== TESTIMONIALS/SMILE TRANSFORMATIONS SECTION ===== */
+    .testimonials-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
       margin-top: 2rem;
     }
-    .gallery-item {
+    .testimonials-item {
       background: var(--pure-white);
       border-radius: 2rem;
       overflow: hidden;
       box-shadow: var(--card-shadow);
       border: 1px solid var(--light-border);
     }
-    .gallery-video {
+    .testimonials-video {
       width: 100%;
       height: auto;
       display: block;
     }
-    .gallery-caption {
+    .testimonials-caption {
       padding: 1.5rem;
       text-align: center;
     }
-    .gallery-caption h4 {
+    .testimonials-caption h4 {
       color: var(--deep-blue);
       margin-bottom: 0.3rem;
     }
-    .gallery-caption p {
+    .testimonials-caption p {
       color: var(--bright-blue);
       font-weight: 600;
     }
@@ -542,7 +551,7 @@
 
     @media (max-width: 768px) {
       .doctor-grid { grid-template-columns: 1fr; }
-      .gallery-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
     }
 
     /* booking form with date field labeled - FIXED with proper value attributes */
@@ -552,7 +561,7 @@
       gap: 2rem;
       background: var(--pure-white);
       border-radius: 3rem;
-      box-shadow: 0 30px 45px -22px rgba(0,43,74,0.2);
+      box-shadow: 0 20px 35px -18px rgba(0,43,74,0.15);
       overflow: hidden;
       margin-top: 2rem;
       border: 1px solid var(--light-border);
@@ -612,7 +621,7 @@
       width: 100%;
       font-size: 1.2rem;
       cursor: pointer;
-      box-shadow: 0 10px 20px -10px var(--bright-blue);
+      box-shadow: 0 8px 18px -10px var(--bright-blue);
       transition: background 0.15s ease, transform 0.1s ease;
     }
     .btn-submit:hover { background: #0d5bbd; transform: translateY(-2px); }
@@ -624,6 +633,7 @@
       color: #d0e0f0;
       padding: 3.5rem 0 2rem;
       margin-top: 3rem;
+      width: 100%;
     }
     .footer-grid {
       display: grid;
@@ -758,6 +768,19 @@
       text-align: center;
     }
     a, button { cursor: pointer; }
+    
+    /* Prevent horizontal scroll on all devices */
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+      position: relative;
+    }
+    
+    /* Ensure all sections stay within viewport */
+    section, header, footer, div {
+      max-width: 100vw;
+      overflow-x: hidden;
+    }
   </style>
 </head>
 <body x-data="{ mobileMenu: false, selectedService: '' }" @keydown.window.escape="mobileMenu = false">
@@ -829,10 +852,14 @@
     </div>
   </section>
 
-  <!-- About -->
+  <!-- About - Heading moved above videos -->
   <section id="about" class="section">
     <div class="container">
-      <div data-aos="zoom-in-up" data-aos-duration="800">
+      <div class="about-heading" data-aos="fade-right">
+        <h2 class="section-title">Professional Care for Your Perfect Smile</h2>
+        <p class="section-subhead">At Smile Royale, we believe that a healthy smile is a reflection of your overall well-being. I am a dedicated dental professional providing a wide range of oral health solutions in a comfortable and professional environment. As your expert dentist, I am driven by a single mission: to provide high-quality dental care with passion and excellence.</p>
+      </div>
+      <div data-aos="zoom-in-up" data-aos-duration="800" data-aos-delay="100">
         <div class="about-video-grid">
           <video autoplay muted loop playsinline>
             <source src="https://image2url.com/r2/default/videos/1772715970572-d9d8d2d6-29d3-4aa7-9450-7e3ae433aec7.mp4" type="video/mp4">
@@ -841,10 +868,6 @@
             <source src="https://image2url.com/r2/default/videos/1772716102573-be632a4c-6946-44ec-bcb4-1dd7e4d028a9.mp4" type="video/mp4">
           </video>
         </div>
-      </div>
-      <div data-aos="fade-right" data-aos-delay="150">
-        <h2 class="section-title">Professional Care for Your Perfect Smile</h2>
-        <p class="section-subhead">At Smile Royale, we believe that a healthy smile is a reflection of your overall well-being. I am a dedicated dental professional providing a wide range of oral health solutions in a comfortable and professional environment. As your expert dentist, I am driven by a single mission: to provide high-quality dental care with passion and excellence.</p>
       </div>
     </div>
   </section>
@@ -903,7 +926,7 @@
     </div>
   </section>
 
-  <!-- ===== DOCTOR'S PROFILE SECTION (NEW) ===== -->
+  <!-- ===== DOCTOR'S PROFILE SECTION ===== -->
   <section id="doctor" class="section" style="background: var(--pure-white);">
     <div class="container">
       <h2 class="section-title" data-aos="fade-down">Meet Your Dentist</h2>
@@ -945,7 +968,7 @@
     </div>
   </section>
 
-  <!-- ===== BEFORE/AFTER TESTIMONIALS SECTION (NEW) ===== -->
+  <!-- ===== TESTIMONIALS / SMILE TRANSFORMATIONS SECTION ===== -->
   <section id="testimonials" class="section" style="background: var(--off-white);">
     <div class="container">
       <h2 class="section-title" data-aos="fade-down">Smile Transformations</h2>
@@ -979,7 +1002,7 @@
       <div class="testimonials-grid" style="margin-top: 2rem;">
         <div class="testimonials-item" data-aos="zoom-in" style="grid-column: 1/-1; max-width: 600px; margin: 0 auto;">
           <img src="https://image2url.com/r2/default/images/1772887670391-d8bfbae1-a8b6-4617-86a3-1991a4185400.jpg" alt="Dental transformation before and after" class="gallery-image">
-          <div class="gallery-caption">
+          <div class="testimonials-caption">
             <h4>Complete Restoration</h4>
             <p>Before & After</p>
           </div>
@@ -1165,13 +1188,12 @@
   // Send email - completely silent
   fetch(scriptURL, {
     method: 'POST',
-    mode: 'no-cors', // This makes it truly silent
+    mode: 'no-cors',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(emailData)
   }).catch(error => {
-    // Silent fail - only logs to browser console
     console.log('Email sent in background');
   });
 
@@ -1179,7 +1201,6 @@
   const message = `Hello Smile Royale,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}.`;
   const whatsappURL = `https://wa.me/2348103564479?text=${message}`;
   
-  // Open WhatsApp in new tab
   window.open(whatsappURL, '_blank', 'noopener,noreferrer');
 }
     // expose function to Alpine scope
