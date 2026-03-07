@@ -435,6 +435,116 @@
     }
     .advantage-card h4 { font-size: 1.3rem; color: var(--deep-blue); margin-bottom: 0.6rem; font-weight: 700; }
 
+    /* ===== DOCTOR'S PROFILE SECTION (NEW) ===== */
+    .doctor-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 3rem;
+      align-items: start;
+      margin-top: 2rem;
+    }
+    .doctor-image {
+      text-align: center;
+    }
+    .doctor-image img {
+      width: 100%;
+      max-width: 350px;
+      border-radius: 50%;
+      border: 4px solid var(--bright-blue);
+      box-shadow: 0 20px 30px -10px rgba(0,43,74,0.2);
+    }
+    .doctor-name {
+      font-size: 2rem;
+      color: var(--deep-blue);
+      margin-bottom: 0.3rem;
+    }
+    .doctor-title {
+      font-size: 1.2rem;
+      color: var(--bright-blue);
+      margin-bottom: 1rem;
+      font-weight: 500;
+    }
+    .doctor-bio {
+      color: var(--soft-gray);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+    .expertise-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+    .expertise-item {
+      background: var(--off-white);
+      padding: 1rem;
+      border-radius: 1rem;
+      border-left: 3px solid var(--bright-blue);
+    }
+    .expertise-item h4 {
+      color: var(--deep-blue);
+      margin-bottom: 0.3rem;
+      font-size: 1.1rem;
+    }
+    .expertise-item p {
+      color: var(--soft-gray);
+      font-size: 0.9rem;
+    }
+    .membership {
+      background: var(--off-white);
+      padding: 1rem 1.5rem;
+      border-radius: 2rem;
+      display: inline-block;
+      margin-top: 1rem;
+      font-weight: 500;
+    }
+    .membership i {
+      color: var(--bright-blue);
+      margin-right: 0.5rem;
+    }
+
+    /* ===== BEFORE/AFTER GALLERY (NEW) ===== */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+    .gallery-item {
+      background: var(--pure-white);
+      border-radius: 2rem;
+      overflow: hidden;
+      box-shadow: var(--card-shadow);
+      border: 1px solid var(--light-border);
+    }
+    .gallery-video {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .gallery-caption {
+      padding: 1.5rem;
+      text-align: center;
+    }
+    .gallery-caption h4 {
+      color: var(--deep-blue);
+      margin-bottom: 0.3rem;
+    }
+    .gallery-caption p {
+      color: var(--bright-blue);
+      font-weight: 600;
+    }
+    .gallery-image {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .doctor-grid { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+    }
+
     /* booking form with date field labeled - FIXED with proper value attributes */
     .booking-grid {
       display: grid;
@@ -679,6 +789,8 @@
         <a href="#about">About</a>
         <a href="#services">Services</a>
         <a href="#why">Why us</a>
+        <a href="#doctor">Our Dentist</a>
+        <a href="#gallery">Gallery</a>
         <a href="#booking">Appointment</a>
         <a href="#booking" class="btn-nav">Book now</a>
       </nav>
@@ -691,6 +803,8 @@
       <a href="#about" @click="mobileMenu = false">About</a>
       <a href="#services" @click="mobileMenu = false">Services</a>
       <a href="#why" @click="mobileMenu = false">Why us</a>
+      <a href="#doctor" @click="mobileMenu = false">Our Dentist</a>
+      <a href="#gallery" @click="mobileMenu = false">Gallery</a>
       <a href="#booking" @click="mobileMenu = false">Appointment</a>
       <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" class="mobile-wa-btn">Book an appointment</a>
     </div>
@@ -789,6 +903,91 @@
     </div>
   </section>
 
+  <!-- ===== DOCTOR'S PROFILE SECTION (NEW) ===== -->
+  <section id="doctor" class="section" style="background: var(--pure-white);">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-down">Meet Your Dentist</h2>
+      <p class="section-subhead" data-aos="fade-down" data-aos-delay="50">Expert care with a personal touch</p>
+      
+      <div class="doctor-grid">
+        <!-- Doctor Image -->
+        <div class="doctor-image" data-aos="fade-right">
+          <img src="https://image2url.com/r2/default/images/1772889924884-a9da39dc-856d-4411-aac2-f3f59a7e3884.jpg" alt="Dr. Farouk Adebiyi">
+        </div>
+        
+        <!-- Doctor Info -->
+        <div class="doctor-info" data-aos="fade-left">
+          <h2 class="doctor-name">Dr. Farouk Adebiyi</h2>
+          <div class="doctor-title">BDS (Lagos) | Founder, Smile Royale Dental Home</div>
+          <p class="doctor-bio">Dr. Farouk Adebiyi is a dedicated Dental Surgeon and the visionary founder of Smile Royale Dental Home. With a passion for blending clinical excellence with modern digital engagement, he has established himself as a prominent voice in Nigerian dentistry.</p>
+          <p class="doctor-bio">Dr. Adebiyi is widely recognized for his work as an oral health influencer, using his platform to demystify dental procedures and promote preventive care to a global audience. His unique background as a Digital Product Manager allows him to integrate technology-driven solutions into patient care, ensuring a seamless and modern dental experience.</p>
+          
+          <div class="expertise-grid">
+            <div class="expertise-item">
+              <h4>Preventive Dentistry</h4>
+              <p>Dedicated to educating patients on long-term oral hygiene to prevent common ailments.</p>
+            </div>
+            <div class="expertise-item">
+              <h4>Restorative Procedures</h4>
+              <p>Skilled in procedures that restore both function and aesthetics to the smile.</p>
+            </div>
+            <div class="expertise-item">
+              <h4>Oral Health Advocacy</h4>
+              <p>Leading digital campaigns to increase dental literacy and accessibility.</p>
+            </div>
+          </div>
+          
+          <div class="membership">
+            <i class="fas fa-certificate"></i> Inducted Member: Medical and Dental Council of Nigeria (MDCN)
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BEFORE/AFTER GALLERY SECTION (NEW) ===== -->
+  <section id="gallery" class="section" style="background: var(--off-white);">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-down">Smile Transformations</h2>
+      <p class="section-subhead" data-aos="fade-down" data-aos-delay="50">Real results from our happy patients</p>
+      
+      <div class="gallery-grid">
+        <!-- Before/After Video 1 -->
+        <div class="gallery-item" data-aos="zoom-in">
+          <video class="gallery-video" autoplay muted loop playsinline>
+            <source src="https://image2url.com/r2/default/videos/1772888015053-2c6f0de0-f226-40da-9b5a-6c625bccfaa7.mp4" type="video/mp4">
+          </video>
+          <div class="gallery-caption">
+            <h4>Teeth Whitening</h4>
+            <p>Before & After</p>
+          </div>
+        </div>
+        
+        <!-- Before/After Video 2 -->
+        <div class="gallery-item" data-aos="zoom-in" data-aos-delay="100">
+          <video class="gallery-video" autoplay muted loop playsinline>
+            <source src="https://image2url.com/r2/default/videos/1772888063863-6b5271e1-81da-432c-86cc-c34dfadced3b.mp4" type="video/mp4">
+          </video>
+          <div class="gallery-caption">
+            <h4>Smile Makeover</h4>
+            <p>Before & After</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Before/After Image -->
+      <div class="gallery-grid" style="margin-top: 2rem;">
+        <div class="gallery-item" data-aos="zoom-in" style="grid-column: 1/-1; max-width: 600px; margin: 0 auto;">
+          <img src="https://image2url.com/r2/default/images/1772887670391-d8bfbae1-a8b6-4617-86a3-1991a4185400.jpg" alt="Dental transformation before and after" class="gallery-image">
+          <div class="gallery-caption">
+            <h4>Complete Restoration</h4>
+            <p>Before & After</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- BOOKING section with labeled date field and underlined title - FIXED with proper value attributes -->
   <section id="booking" class="section" style="background: #f2f6fc;">
     <div class="container">
@@ -867,6 +1066,8 @@
             <li><a href="#about">About Us</a></li>
             <li><a href="#services">Services</a></li>
             <li><a href="#why">Why Us</a></li>
+            <li><a href="#doctor">Our Dentist</a></li>
+            <li><a href="#gallery">Gallery</a></li>
             <li><a href="#booking">Contact</a></li>
           </ul>
         </div>
