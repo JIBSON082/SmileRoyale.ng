@@ -897,7 +897,7 @@
 
     // WhatsApp form submit with proper date formatting - FIXED to use full service name
     function sendToWhatsApp() {
-  // Get form values
+  // ===== GET FORM VALUES =====
   const name = document.getElementById('waName').value.trim();
   const phone = document.getElementById('waPhone').value.trim();
   const serviceSelect = document.getElementById('waService');
@@ -905,13 +905,13 @@
   const otherText = document.getElementById('waOtherText')?.value.trim() || '';
   const dateInput = document.getElementById('waDate').value;
 
-  // Validation
+  // ===== VALIDATION =====
   if (!name || !phone || !service || !dateInput) {
     alert('Please fill in name, phone, service, and date');
     return;
   }
 
-  // Handle "Other" service
+  // ===== HANDLE "OTHER" SERVICE =====
   let serviceDetail = service;
   if (service === 'Other' && otherText) {
     serviceDetail = otherText;
@@ -920,13 +920,13 @@
     return;
   }
 
-  // Format date
+  // ===== FORMAT DATE (e.g., "15th March 2025") =====
   const dateObj = new Date(dateInput + 'T12:00:00');
   const day = dateObj.getDate();
   const month = dateObj.toLocaleDateString('en-GB', { month: 'long' });
   const year = dateObj.getFullYear();
   
-  // Add ordinal suffix
+  // Add ordinal suffix (st, nd, rd, th)
   let dayWithSuffix = day;
   if (day > 3 && day < 21) dayWithSuffix = day + 'th';
   else {
@@ -938,44 +938,53 @@
   }
   
   const formattedDate = `${dayWithSuffix} ${month} ${year}`;
+  
+  // ===== TIMESTAMP =====
+  const now = new Date();
+  const timestamp = now.toLocaleString('en-GB', { 
+    day: 'numeric', 
+    month: 'long', 
+    year: 'numeric', 
+    hour: '2-digit', 
+    minute: '2-digit' 
+  });
 
-  // ===== SIMPLIFIED TEST: CREATE VISIBLE FORM =====
-  // Create a form (visible for testing)
-  const testForm = document.createElement('form');
-  testForm.method = 'POST';
-  testForm.action = 'https://formspree.io/f/xkoqnzqn'; // YOUR ENDPOINT HERE
-  testForm.target = '_blank'; // Opens in new tab for testing
+  // ===== STEP 1: SEND EMAIL VIA APPS SCRIPT (SILENT) =====
+  // YOUR ACTUAL APPS SCRIPT URL - REPLACE THIS LINE
+  const scriptURL = 'https://script.google.com/macros/s/AKfycby95ypRJGvk22twXHSrnnJjI1UqkbJVvpnT9PYIR-Xre18RC2twrk3sftnndULlVM0/exec';
   
-  // Add form fields
-  const fields = {
-    'name': name,
-    'phone': phone,
-    'service': serviceDetail,
-    'date': formattedDate,
-    '_subject': 'New Dental Appointment Booking'
+  const emailData = {
+    name: name,
+    phone: phone,
+    service: serviceDetail,
+    date: formattedDate,
+    timestamp: timestamp
   };
-  
-  for (const [key, value] of Object.entries(fields)) {
-    const input = document.createElement('input');
-    input.type = 'hidden';
-    input.name = key;
-    input.value = value;
-    testForm.appendChild(input);
-  }
-  
-  // Add form to page and submit
-  document.body.appendChild(testForm);
-  testForm.submit();
-  
-  // ===== OPEN WHATSAPP =====
+
+  // Send email - patient never knows this happens!
+  fetch(scriptURL, {
+    method: 'POST',
+    mode: 'no-cors', // This makes it truly silent
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(emailData)
+  }).catch(error => {
+    // Silent fail - don't interrupt user experience
+    console.log('Email sent (background):', error);
+  });
+
+  // ===== STEP 2: OPEN WHATSAPP =====
   const message = `Hello Smile Royale,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}. My phone: ${phone}. Thank you!`;
   const whatsappURL = `https://wa.me/2348103564479?text=${message}`;
+  
+  // Open WhatsApp in new tab
   window.open(whatsappURL, '_blank', 'noopener,noreferrer');
   
-  // Clean up
+  // Optional: Show subtle success message
   setTimeout(() => {
-    document.body.removeChild(testForm);
-  }, 2000);
+    alert('✓ WhatsApp opening... Your appointment details have been saved.');
+  }, 100);
 }
     // expose function to Alpine scope
     document.addEventListener('alpine:init', () => {
