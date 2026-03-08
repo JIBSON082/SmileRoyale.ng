@@ -1392,7 +1392,7 @@
   window.open(whatsappURL, '_blank', 'noopener,noreferrer');
 }
     // expose function to Alpine scope
-    document.addEventListener('alpine:init', () => {
+        document.addEventListener('alpine:init', () => {
       Alpine.data('waForm', () => ({
         otherService: false,
         selectedService: '',
@@ -1400,5 +1400,188 @@
       }));
     });
   </script>
+
+  <!-- ===== ENHANCED IMAGE LOADING WITH INTERSECTION OBSERVER ===== -->
+  <script>
+    (function() {
+      'use strict';
+      
+      // Wait for DOM to be fully loaded
+      document.addEventListener('DOMContentLoaded', function() {
+        
+        // ===== INTERSECTION OBSERVER FOR LAZY LOADING =====
+        // This detects when images enter the viewport
+        if ('IntersectionObserver' in window) {
+          console.log('✅ IntersectionObserver supported - enabling lazy loading');
+          
+          const imageObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+              // If image is in viewport
+              if (entry.isIntersecting) {
+                const img = entry.target;
+                const container = img.closest('.service-image');
+                
+                // Add loading class when image enters viewport
+                if (container && !img.classList.contains('loaded') && !img.classList.contains('error')) {
+                  container.classList.add('loading');
+                  
+                  // Optional: Log for debugging
+                  console.log('🖼️ Image entering viewport:', img.alt);
+                }
+                
+                // Stop observing once image is in view
+                observer.unobserve(img);
+              }
+            });
+          }, {
+            rootMargin: '50px', // Start loading when image is 50px from viewport
+            threshold: 0.01      // Trigger when even 1% is visible
+          });
+
+          // Observe all service images
+          const serviceImages = document.querySelectorAll('.service-image img');
+          serviceImages.forEach(img => {
+            imageObserver.observe(img);
+          });
+          
+          console.log(`👀 Observing ${serviceImages.length} images`);
+        } 
+        
+        // ===== FALLBACK FOR OLDER BROWSERS =====
+        else {
+          console.log('⚠️ IntersectionObserver not supported - using fallback');
+          
+          // Simply add loading class to all containers
+          document.querySelectorAll('.service-image').forEach(container => {
+            container.classList.add('loading');
+          });
+          
+          // Load all images immediately
+          document.querySelectorAll('.service-image img').forEach(img => {
+            if (!img.classList.contains('loaded') && !img.classList.contains('error')) {
+              // Force browser to load the image
+              const src = img.src;
+              img.src = '';
+              img.src = src;
+            }
+          });
+        }
+        
+        // ===== PRELOAD FIRST VISIBLE IMAGES =====
+        // This ensures the first row of images loads faster
+        function preloadFirstRow() {
+          const serviceCards = document.querySelectorAll('.service-card');
+          const firstRowCards = [];
+          
+          // Simple detection: assume first 3 cards are in first row on desktop
+          if (window.innerWidth > 900) {
+            // Desktop: first 3 cards
+            for (let i = 0; i < Math.min(3, serviceCards.length); i++) {
+              firstRowCards.push(serviceCards[i]);
+            }
+          } else if (window.innerWidth > 600) {
+            // Tablet: first 2 cards
+            for (let i = 0; i < Math.min(2, serviceCards.length); i++) {
+              firstRowCards.push(serviceCards[i]);
+            }
+          } else {
+            // Mobile: first card
+            firstRowCards.push(serviceCards[0]);
+          }
+          
+          // Add priority loading to first row images
+          firstRowCards.forEach(card => {
+            const img = card.querySelector('img');
+            const container = card.querySelector('.service-image');
+            if (img && container && !img.classList.contains('loaded')) {
+              container.classList.add('loading');
+              // Set fetch priority to high for first row
+              img.fetchPriority = 'high';
+            }
+          });
+        }
+        
+        // Run preload after a tiny delay to ensure DOM is ready
+        setTimeout(preloadFirstRow, 100);
+        
+        // ===== GLOBAL IMAGE ERROR HANDLER =====
+        // This catches any images that fail to load
+        window.addEventListener('error', function(e) {
+          if (e.target.tagName === 'IMG') {
+            const img = e.target;
+            const container = img.closest('.service-image');
+            
+            if (container) {
+              // Mark as error
+              container.classList.add('has-error');
+              container.classList.remove('loading');
+              img.classList.add('error');
+              
+              console.warn('❌ Image failed to load:', img.alt || img.src);
+              
+              // Optional: Try to reload once more
+              if (!img.hasAttribute('data-reload-attempted')) {
+                img.setAttribute('data-reload-attempted', 'true');
+                setTimeout(() => {
+                  const src = img.src;
+                  img.src = '';
+                  img.src = src;
+                }, 1000);
+              }
+            }
+          }
+        }, true);
+        
+        // ===== RESIZE HANDLER =====
+        // Update preload on resize
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(function() {
+            preloadFirstRow();
+          }, 250);
+        });
+        
+        // ===== PERFORMANCE MONITORING (Optional) =====
+        // Log when all images are loaded
+        function checkAllImagesLoaded() {
+          const images = document.querySelectorAll('.service-image img');
+          const totalImages = images.length;
+          let loadedCount = 0;
+          let errorCount = 0;
+          
+          images.forEach(img => {
+            if (img.classList.contains('loaded')) loadedCount++;
+            if (img.classList.contains('error')) errorCount++;
+          });
+          
+          if (loadedCount + errorCount === totalImages) {
+            console.log(`✅ All images processed: ${loadedCount} loaded, ${errorCount} failed`);
+          }
+        }
+        
+        // Check every second until done
+        const checkInterval = setInterval(function() {
+          const images = document.querySelectorAll('.service-image img');
+          const totalImages = images.length;
+          let loadedCount = 0;
+          let errorCount = 0;
+          
+          images.forEach(img => {
+            if (img.classList.contains('loaded')) loadedCount++;
+            if (img.classList.contains('error')) errorCount++;
+          });
+          
+          if (loadedCount + errorCount === totalImages) {
+            clearInterval(checkInterval);
+            console.log(`📊 Final stats: ${loadedCount}/${totalImages} images loaded successfully`);
+          }
+        }, 1000);
+        
+      }); // End DOMContentLoaded
+      
+    })(); // End IIFE
+  </script>
+
 </body>
 </html>
