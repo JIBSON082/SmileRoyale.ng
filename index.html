@@ -1085,15 +1085,121 @@
   </section>
 
   <!-- SERVICES with book buttons - FIXED -->
+<!-- SERVICES with images and loading animations -->
 <section id="services" class="section" style="background: var(--off-white);">
   <div class="container">
     <h2 class="section-title" data-aos="fade-down">Comprehensive Dental Solutions</h2>
     <p class="section-subhead" data-aos="fade-down" data-aos-delay="50">I offer a full suite of dental treatments to keep your teeth healthy and your smile bright.</p>
     
     <div class="services-grid">
-      <!-- First service card starts here -->
+      <!-- Discounted Consultations -->
       <div class="service-card" data-aos="flip-left">
-        ... etc ...
+        <div class="service-image loading">
+          <img 
+            src="https://image2url.com/r2/default/images/1772933454875-5408d445-0d50-493c-bd2a-c85d1d713743.jpg" 
+            alt="Discounted dental consultation"
+            loading="lazy"
+            onload="this.classList.add('loaded'); this.closest('.service-image').classList.remove('loading');"
+            onerror="this.classList.add('error'); this.closest('.service-image').classList.add('has-error'); this.closest('.service-image').classList.remove('loading');">
+          <div class="error-message">
+            <i class="fas fa-image" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
+            Image unavailable
+          </div>
+        </div>
+        <div class="service-content">
+          <div class="service-icon"><i class="fas fa-comments"></i></div>
+          <h3>Discounted Consultations</h3>
+          <p>Professional dental advice and examinations at affordable rates to get you started on your oral health journey.</p>
+          <a href="#booking" class="service-btn" @click="selectedService = 'Consultation'">Book appointment</a>
+        </div>
+      </div>
+      
+      <!-- Scaling and Polishing -->
+      <div class="service-card" data-aos="flip-left" data-aos-delay="70">
+        <div class="service-image loading">
+          <img 
+            src="https://image2url.com/r2/default/images/1772933737652-95451b6d-46b1-4f48-89b9-816a220e3fa2.jpg" 
+            alt="Scaling and polishing dental procedure"
+            loading="lazy"
+            onload="this.classList.add('loaded'); this.closest('.service-image').classList.remove('loading');"
+            onerror="this.classList.add('error'); this.closest('.service-image').classList.add('has-error'); this.closest('.service-image').classList.remove('loading');">
+          <div class="error-message">
+            <i class="fas fa-image" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
+            Image unavailable
+          </div>
+        </div>
+        <div class="service-content">
+          <div class="service-icon"><i class="fas fa-teeth"></i></div>
+          <h3>Scaling and Polishing</h3>
+          <p>Professional cleaning to remove plaque and tartar, preventing gum disease and leaving your teeth smooth and fresh.</p>
+          <a href="#booking" class="service-btn" @click="selectedService = 'Scaling and Polishing'">Book appointment</a>
+        </div>
+      </div>
+      
+      <!-- Teeth Whitening -->
+      <div class="service-card" data-aos="flip-left" data-aos-delay="140">
+        <div class="service-image loading">
+          <img 
+            src="https://image2url.com/r2/default/images/1772933897946-80c92104-5181-4b65-a3d5-b2ab7f155047.jpg" 
+            alt="Teeth whitening treatment"
+            loading="lazy"
+            onload="this.classList.add('loaded'); this.closest('.service-image').classList.remove('loading');"
+            onerror="this.classList.add('error'); this.closest('.service-image').classList.add('has-error'); this.closest('.service-image').classList.remove('loading');">
+          <div class="error-message">
+            <i class="fas fa-image" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
+            Image unavailable
+          </div>
+        </div>
+        <div class="service-content">
+          <div class="service-icon"><i class="fas fa-star"></i></div>
+          <h3>Teeth Whitening</h3>
+          <p>Advanced whitening treatments to brighten your smile by several shades and remove stubborn stains effectively.</p>
+          <a href="#booking" class="service-btn" @click="selectedService = 'Teeth Whitening'">Book appointment</a>
+        </div>
+      </div>
+      
+      <!-- Crowns & RCTs -->
+      <div class="service-card" data-aos="flip-left" data-aos-delay="210">
+        <div class="service-image loading">
+          <img 
+            src="https://image2url.com/r2/default/images/1772933985462-659a1692-bbc3-4b09-a8fd-2c0ae95ee647.jpg" 
+            alt="Dental crown and root canal treatment"
+            loading="lazy"
+            onload="this.classList.add('loaded'); this.closest('.service-image').classList.remove('loading');"
+            onerror="this.classList.add('error'); this.closest('.service-image').classList.add('has-error'); this.closest('.service-image').classList.remove('loading');">
+          <div class="error-message">
+            <i class="fas fa-image" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
+            Image unavailable
+          </div>
+        </div>
+        <div class="service-content">
+          <div class="service-icon"><i class="fas fa-crown"></i></div>
+          <h3>Crowns & RCTs</h3>
+          <p>Restorative solutions to save damaged teeth and restore their natural function, strength, and appearance.</p>
+          <a href="#booking" class="service-btn" @click="selectedService = 'Crown / RCT'">Book appointment</a>
+        </div>
+      </div>
+      
+      <!-- General Procedures -->
+      <div class="service-card" data-aos="flip-left" data-aos-delay="280">
+        <div class="service-image loading">
+          <img 
+            src="https://image2url.com/r2/default/images/1772935514125-4203c82d-b730-45ab-a27d-db1fadec5873.jpg" 
+            alt="General dental procedures"
+            loading="lazy"
+            onload="this.classList.add('loaded'); this.closest('.service-image').classList.remove('loading');"
+            onerror="this.classList.add('error'); this.closest('.service-image').classList.add('has-error'); this.closest('.service-image').classList.remove('loading');">
+          <div class="error-message">
+            <i class="fas fa-image" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
+            Image unavailable
+          </div>
+        </div>
+        <div class="service-content">
+          <div class="service-icon"><i class="fas fa-tools"></i></div>
+          <h3>General Procedures</h3>
+          <p>Fillings, extractions, and specialized treatments – comprehensive care for all your dental needs in one place.</p>
+          <a href="#booking" class="service-btn" @click="selectedService = 'General checkup'">Book appointment</a>
+        </div>
       </div>
     </div>
   </div>
