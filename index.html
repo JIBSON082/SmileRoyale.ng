@@ -362,64 +362,174 @@
     }
 
     /* services cards with book button - FIXED */
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-      margin-top: 1.5rem;
-    }
-    .service-card {
-      background: var(--pure-white);
-      border-radius: 2.2rem;
-      padding: 2.2rem 1.8rem;
-      box-shadow: var(--card-shadow);
-      border: 1px solid var(--light-border);
-      transition: transform 0.2s ease;
-      display: flex;
-      flex-direction: column;
-    }
-    .service-card:hover { transform: translateY(-4px); }
-    .service-icon {
-      background: #eaf1fd;
-      width: 64px; height: 64px;
-      border-radius: 22px;
-      display: flex; align-items: center; justify-content: center;
-      margin-bottom: 1.5rem;
-    }
-    .service-icon i { font-size: 2.2rem; color: var(--bright-blue); }
-    .service-card h3 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--deep-blue);
-      margin-bottom: 0.6rem;
-    }
-    .service-card p { 
-      color: #3e4e5d; 
-      font-size: 0.95rem; 
-      margin-bottom: 1.5rem;
-      flex-grow: 1;
-    }
-    .service-btn {
-      background: transparent;
-      border: 2px solid var(--bright-blue);
-      color: var(--bright-blue);
-      padding: 0.7rem 1.5rem;
-      border-radius: 60px;
-      font-weight: 600;
-      font-size: 0.95rem;
-      cursor: pointer;
-      transition: all 0.15s ease;
-      text-decoration: none;
-      display: inline-block;
-      text-align: center;
-      margin-top: 0.5rem;
-      align-self: flex-start;
-    }
-    .service-btn:hover {
-      background: var(--bright-blue);
-      color: white;
-      transform: translateY(-1px);
-    }
+   /* services cards with images and loading animations */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 1.5rem;
+}
+
+.service-card {
+  background: var(--pure-white);
+  border-radius: 2rem;
+  overflow: hidden; /* Important for image corners */
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--light-border);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.service-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 25px 35px -15px rgba(0,43,74,0.15);
+}
+
+/* ===== IMAGE LOADING ANIMATIONS ===== */
+
+/* Shimmer loading animation */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Fade-in animation for loaded images */
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Service image container */
+.service-image {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+  background: #eef2f6; /* Base color while loading */
+}
+
+/* Loading shimmer effect */
+.service-image.loading {
+  background: linear-gradient(
+    90deg,
+    #eef2f6 25%,
+    #e0e6ec 50%,
+    #eef2f6 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Image styling */
+.service-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+  opacity: 0;
+}
+
+/* Image loaded state */
+.service-image img.loaded {
+  opacity: 1;
+  animation: fadeInScale 0.5s ease forwards;
+}
+
+/* Hover effect on image */
+.service-card:hover .service-image img.loaded {
+  transform: scale(1.08);
+}
+
+/* Error state styling */
+.service-image .error-message {
+  display: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #6c757d;
+  font-size: 0.9rem;
+  width: 100%;
+  padding: 1rem;
+}
+
+.service-image.has-error .error-message {
+  display: block;
+}
+
+.service-image.has-error {
+  background: #f8f9fa;
+}
+
+.service-image.has-error img {
+  display: none;
+}
+
+.service-icon {
+  background: #eaf1fd;
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+}
+
+.service-icon i {
+  font-size: 1.8rem;
+  color: var(--bright-blue);
+}
+
+.service-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--deep-blue);
+  margin-bottom: 0.6rem;
+}
+
+.service-card p { 
+  color: #3e4e5d; 
+  font-size: 0.95rem; 
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.service-btn {
+  background: transparent;
+  border: 2px solid var(--bright-blue);
+  color: var(--bright-blue);
+  padding: 0.7rem 1.5rem;
+  border-radius: 60px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
+  align-self: flex-start;
+}
+
+.service-btn:hover {
+  background: var(--bright-blue);
+  color: white;
+  transform: translateY(-1px);
+}
 
     /* advantage cards */
     .advantage-grid {
