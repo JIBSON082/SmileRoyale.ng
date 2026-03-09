@@ -17,26 +17,19 @@
   <!-- Custom CSS -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body x-data="{ mobileMenu: false }" @keydown.window.escape="mobileMenu = false">
+<body x-data="{ mobileMenu: false, selectedService: '' }" @keydown.window.escape="mobileMenu = false">
 
-  <!-- TOP BAR - All social links HORIZONTAL -->
+  <!-- top bar with WhatsApp enquiry links -->
   <div class="top-bar">
     <div class="container">
       <div class="top-contact">
-        <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-whatsapp"></i> 08103564479
-        </a>
-        <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-instagram"></i> @smileroyale.ng
-        </a>
-        <a href="https://x.com/Dr_Pharouk" target="_blank" rel="noopener noreferrer">
-          <i class="fab fa-x-twitter"></i> @Dr_Pharouk
-        </a>
+        <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> 08103564479</a>
+        <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> @smileroyale.ng</a>
       </div>
     </div>
   </div>
 
-  <!-- HEADER -->
+  <!-- header -->
   <header class="header">
     <div class="container">
       <div class="logo">
@@ -48,8 +41,6 @@
           <span class="sub">ROYALE</span>
         </div>
       </div>
-      
-      <!-- Desktop Navigation -->
       <nav class="nav">
         <a href="#hero">Home</a>
         <a href="#about">About</a>
@@ -60,15 +51,11 @@
         <a href="#booking">Appointment</a>
         <a href="#booking" class="btn-nav">Book now</a>
       </nav>
-      
-      <!-- Mobile Menu Button - SIMPLE, NO ANIMATION -->
-      <button class="mobile-menu-btn" @click="mobileMenu = !mobileMenu">
-        <i class="fas fa-bars"></i>
-      </button>
+      <button class="mobile-menu-btn" @click="mobileMenu = !mobileMenu"><i class="fas fa-bars"></i></button>
     </div>
     
-    <!-- Mobile Dropdown - SIMPLE OPEN/CLOSE, NO TRANSITIONS -->
-    <div x-show="mobileMenu" class="mobile-menu-dropdown" @click.outside="mobileMenu = false">
+    <!-- mobile dropdown -->
+    <div x-show="mobileMenu" class="mobile-menu-dropdown" x-transition.duration.300ms @click.outside="mobileMenu = false">
       <a href="#hero" @click="mobileMenu = false">Home</a>
       <a href="#about" @click="mobileMenu = false">About</a>
       <a href="#services" @click="mobileMenu = false">Services</a>
@@ -76,11 +63,11 @@
       <a href="#doctor" @click="mobileMenu = false">Our Dentist</a>
       <a href="#testimonials" @click="mobileMenu = false">Testimonials</a>
       <a href="#booking" @click="mobileMenu = false">Appointment</a>
-      <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" class="mobile-wa-btn">Book on WhatsApp</a>
+      <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" class="mobile-wa-btn">Book an appointment</a>
     </div>
   </header>
 
-  <!-- HERO - LEFT ALIGNED -->
+  <!-- HERO -->
   <section id="hero" class="hero">
     <div class="container">
       <div class="hero-content" data-aos="fade-up" data-aos-duration="900">
@@ -99,7 +86,7 @@
     </div>
   </section>
 
-  <!-- ABOUT - LEFT ALIGNED -->
+  <!-- About -->
   <section id="about" class="section">
     <div class="container">
       <div class="about-heading" data-aos="fade-right">
@@ -119,7 +106,7 @@
     </div>
   </section>
 
-  <!-- SERVICES - LEFT ALIGNED -->
+  <!-- SERVICES SECTION WITH IMAGES -->
   <section id="services" class="section" style="background: var(--off-white);">
     <div class="container">
       <h2 class="section-title" data-aos="fade-down">Comprehensive Dental Solutions</h2>
@@ -136,7 +123,8 @@
               onload="this.classList.add('loaded'); this.closest('.service-image').classList.remove('loading');"
               onerror="this.classList.add('error'); this.closest('.service-image').classList.add('has-error'); this.closest('.service-image').classList.remove('loading');">
             <div class="error-message">
-              <i class="fas fa-image"></i> Image unavailable
+              <i class="fas fa-image" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
+              Image unavailable
             </div>
           </div>
           <div class="service-content">
@@ -156,7 +144,8 @@
               onload="this.classList.add('loaded'); this.closest('.service-image').classList.remove('loading');"
               onerror="this.classList.add('error'); this.closest('.service-image').classList.add('has-error'); this.closest('.service-image').classList.remove('loading');">
             <div class="error-message">
-              <i class="fas fa-image"></i> Image unavailable
+              <i class="fas fa-image" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
+              Image unavailable
             </div>
           </div>
           <div class="service-content">
@@ -176,7 +165,8 @@
               onload="this.classList.add('loaded'); this.closest('.service-image').classList.remove('loading');"
               onerror="this.classList.add('error'); this.closest('.service-image').classList.add('has-error'); this.closest('.service-image').classList.remove('loading');">
             <div class="error-message">
-              <i class="fas fa-image"></i> Image unavailable
+              <i class="fas fa-image" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
+              Image unavailable
             </div>
           </div>
           <div class="service-content">
@@ -196,7 +186,8 @@
               onload="this.classList.add('loaded'); this.closest('.service-image').classList.remove('loading');"
               onerror="this.classList.add('error'); this.closest('.service-image').classList.add('has-error'); this.closest('.service-image').classList.remove('loading');">
             <div class="error-message">
-              <i class="fas fa-image"></i> Image unavailable
+              <i class="fas fa-image" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
+              Image unavailable
             </div>
           </div>
           <div class="service-content">
@@ -216,7 +207,8 @@
               onload="this.classList.add('loaded'); this.closest('.service-image').classList.remove('loading');"
               onerror="this.classList.add('error'); this.closest('.service-image').classList.add('has-error'); this.closest('.service-image').classList.remove('loading');">
             <div class="error-message">
-              <i class="fas fa-image"></i> Image unavailable
+              <i class="fas fa-image" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
+              Image unavailable
             </div>
           </div>
           <div class="service-content">
@@ -242,7 +234,7 @@
     </div>
   </section>
 
-  <!-- DOCTOR'S PROFILE -->
+  <!-- DOCTOR'S PROFILE SECTION -->
   <section id="doctor" class="section" style="background: var(--pure-white);">
     <div class="container">
       <h2 class="section-title" data-aos="fade-down">Meet Your Dentist</h2>
@@ -285,7 +277,7 @@
     </div>
   </section>
 
-  <!-- TESTIMONIALS -->
+  <!-- TESTIMONIALS / SMILE TRANSFORMATIONS SECTION -->
   <section id="testimonials" class="section" style="background: var(--off-white);">
     <div class="container">
       <h2 class="section-title" data-aos="fade-down">Smile Transformations</h2>
@@ -325,7 +317,7 @@
     </div>
   </section>
 
-  <!-- BOOKING - LEFT ALIGNED -->
+  <!-- BOOKING section -->
   <section id="booking" class="section" style="background: #f2f6fc;">
     <div class="container">
       <h2 class="section-title" data-aos="fade-down">Book an Appointment</h2>
@@ -333,17 +325,7 @@
         <div class="booking-info">
           <h3>Ready to Transform Your Smile?</h3>
           <p>Don't wait for a dental emergency. Schedule your visit with me today and experience the Smile Royale difference.</p>
-          <div class="booking-contact-horizontal">
-            <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" class="booking-highlight">
-              <i class="fab fa-whatsapp"></i> 08103564479
-            </a>
-            <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer" class="booking-highlight">
-              <i class="fab fa-instagram"></i> @smileroyale.ng
-            </a>
-            <a href="https://x.com/Dr_Pharouk" target="_blank" rel="noopener noreferrer" class="booking-highlight">
-              <i class="fab fa-x-twitter"></i> @Dr_Pharouk
-            </a>
-          </div>
+          <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" class="booking-highlight"><i class="fab fa-whatsapp"></i> 08103564479</a>
         </div>
         <div class="booking-form">
           <form id="waForm" @submit.prevent="sendToWhatsApp">
@@ -382,30 +364,27 @@
     </div>
   </section>
 
-  <!-- FOOTER - All social links HORIZONTAL -->
+  <!-- footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
-        <!-- Brand column -->
         <div class="footer-brand">
           <div class="footer-logo">
             <span class="main">SMILE ROYALE</span>
             <span class="sub">Your Smile. Our Passion. Our Pride.</span>
           </div>
-          <div class="footer-contact-horizontal">
-            <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" class="footer-contact-item">
-              <i class="fab fa-whatsapp"></i> 08103564479
-            </a>
-            <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer" class="footer-contact-item">
-              <i class="fab fa-instagram"></i> @smileroyale.ng
-            </a>
-            <a href="https://x.com/Dr_Pharouk" target="_blank" rel="noopener noreferrer" class="footer-contact-item">
-              <i class="fab fa-x-twitter"></i> @Dr_Pharouk
-            </a>
+          <div class="footer-contact">
+            <div class="footer-contact-item">
+              <i class="fab fa-whatsapp"></i>
+              <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer">08103564479</a>
+            </div>
+            <div class="footer-contact-item">
+              <i class="fab fa-instagram"></i>
+              <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer">@smileroyale.ng</a>
+            </div>
           </div>
         </div>
         
-        <!-- Quick Links column -->
         <div class="footer-links">
           <h4>Quick Links</h4>
           <ul>
@@ -419,24 +398,13 @@
           </ul>
         </div>
         
-        <!-- Social column - HORIZONTAL icons -->
         <div class="footer-social">
           <h4>Connect With Us</h4>
-          <div class="social-icons-horizontal">
-            <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <i class="fab fa-instagram"></i>
-            </a>
-            <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-              <i class="fab fa-whatsapp"></i>
-            </a>
-            <a href="https://x.com/Dr_Pharouk" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
-              <i class="fab fa-x-twitter"></i>
-            </a>
+          <div class="social-icons">
+            <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
           </div>
-          <div class="social-usernames-horizontal">
-            <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer">@smileroyale.ng</a>
-            <a href="https://x.com/Dr_Pharouk" target="_blank" rel="noopener noreferrer">@Dr_Pharouk</a>
-          </div>
+          <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer" class="footer-instagram">@smileroyale.ng</a>
         </div>
       </div>
       
@@ -446,7 +414,7 @@
     </div>
   </footer>
 
-  <!-- JavaScript -->
+  <!-- Custom JavaScript -->
   <script src="script.js"></script>
 </body>
 </html>
