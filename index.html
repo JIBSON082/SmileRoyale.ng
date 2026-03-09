@@ -963,19 +963,386 @@
     }
     a, button { cursor: pointer; }
     
-    /* Prevent horizontal scroll on all devices */
-    html, body {
-      max-width: 100%;
-      overflow-x: hidden;
-      position: relative;
+      /* ===== IMPROVED RESPONSIVENESS ===== */
+  
+  /* Prevent horizontal scroll on all devices */
+  html, body {
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+  }
+  
+  /* Ensure all sections stay within viewport */
+  section, header, footer, .container {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  
+  /* Improved container responsiveness */
+  .container {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 3rem;
+    box-sizing: border-box;
+  }
+  
+  /* Better responsive breakpoints */
+  @media (max-width: 1200px) {
+    .container {
+      padding: 0 2.5rem;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .container {
+      padding: 0 2rem;
     }
     
-    /* Ensure all sections stay within viewport */
-    section, header, footer, div {
-      max-width: 100vw;
-      overflow-x: hidden;
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
     }
-  </style>
+  }
+  
+  @media (max-width: 768px) { 
+    .container {
+      padding: 0 1.5rem;
+    }
+    
+    .section {
+      padding: 4rem 0;
+    }
+    
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.2rem;
+    }
+    
+    .service-image {
+      height: 180px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .container {
+      padding: 0 1.2rem;
+    }
+    
+    .services-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .service-image {
+      height: 200px;
+    }
+    
+    .hero-content {
+      text-align: left;
+    }
+    
+    .hero h1 {
+      font-size: 3rem;
+    }
+    
+    .hero h2 {
+      font-size: 2.5rem;
+    }
+  }
+  
+  @media (max-width: 380px) {
+    .container {
+      padding: 0 1rem;
+    }
+    
+    .service-image {
+      height: 180px;
+    }
+    
+    .hero h1 {
+      font-size: 2.5rem;
+    }
+    
+    .hero h2 {
+      font-size: 2rem;
+    }
+    
+    .btn {
+      padding: 0.8rem 1.5rem;
+      font-size: 0.9rem;
+      width: 100%;
+      text-align: center;
+    }
+    
+    .hero-buttons {
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+  }
+  
+  /* Ensure images don't overflow */
+  img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Fix for flexbox and grid children */
+  .service-card,
+  .doctor-grid,
+  .testimonials-item,
+  .advantage-card,
+  .booking-grid {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Improve touch scrolling */
+  * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+  }
+  
+  /* Better mobile navigation */
+  @media (max-width: 900px) {
+    .mobile-menu-dropdown {
+      max-height: 80vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+  }
+  
+  /* Fix for flexbox wrapping issues */
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 1.5rem;
+    width: 100%;
+  }
+  
+  @media (max-width: 1200px) {
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .services-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .services-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Improve booking form on mobile */
+  @media (max-width: 768px) {
+    .booking-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .booking-info, .booking-form {
+      padding: 2rem 1.5rem;
+    }
+    
+    .form-group {
+      margin-bottom: 1rem;
+    }
+    
+    input, select, textarea {
+      padding: 0.9rem 1.2rem;
+      font-size: 16px; /* Prevents zoom on iOS */
+    }
+  }
+  
+  /* Fix for absolute positioned elements */
+  .doctor-image {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+  
+  /* Improve gallery on mobile */
+  @media (max-width: 768px) {
+    .testimonials-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    
+    .testimonials-item {
+      max-width: 100%;
+    }
+    
+    .gallery-image {
+      width: 100%;
+      height: auto;
+    }
+  }
+  
+  /* Fix for footer on mobile */
+  @media (max-width: 768px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .footer-contact-item {
+      justify-content: center;
+    }
+    
+    .footer-links ul {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    
+    .footer-links a {
+      text-align: center;
+    }
+    
+    .social-icons {
+      justify-content: center;
+    }
+    
+    .footer-instagram {
+      text-align: center;
+      display: block;
+    }
+  }
+  
+  /* Ensure no overflow from absolute positioned elements */
+  .hero::before,
+  .hero::after,
+  .doctor-image::before,
+  .doctor-image::after {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+  
+  /* Fix for iOS input zoom */
+  @media screen and (-webkit-min-device-pixel-ratio:0) { 
+    select,
+    textarea,
+    input {
+      font-size: 16px !important;
+    }
+  }
+  
+  /* Smooth transitions for all interactive elements */
+  a, button, .service-card, .advantage-card, .btn {
+    transition: all 0.3s ease;
+  }
+  
+  /* Prevent content shift on mobile */
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+  }
+  
+  /* Fix for flexbox centering issues */
+  .doctor-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 3rem;
+    align-items: center;
+    width: 100%;
+  }
+  
+  @media (max-width: 900px) {
+    .doctor-grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    
+    .doctor-image {
+      margin-bottom: 1rem;
+    }
+  }
+  
+  /* Improve spacing on mobile */
+  @media (max-width: 576px) {
+    .section-title {
+      font-size: 2rem;
+      text-align: center;
+      display: block;
+    }
+    
+    .section-title::after {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+    
+    .section-subhead {
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .hero-badge {
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .hero .motto-line {
+      align-items: center;
+      text-align: center;
+      width: 100%;
+    }
+    
+    .hero-content {
+      text-align: center;
+    }
+  }
+  
+  /* Fix for hover states on mobile */
+  @media (hover: none) {
+    .service-card:hover,
+    .advantage-card:hover,
+    .btn:hover,
+    .service-btn:hover {
+      transform: none;
+    }
+    
+    .service-card:hover .service-image img.loaded {
+      transform: none;
+    }
+  }
+  
+  /* Improve loading states */
+  .service-image {
+    background-color: #eef2f6;
+    min-height: 200px;
+  }
+  
+  /* Ensure buttons are tappable on mobile */
+  .service-btn, .btn, .booking-highlight {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* Fix for grid gaps on mobile */
+  @media (max-width: 576px) {
+    .expertise-grid {
+      gap: 0.8rem;
+    }
+    
+    .advantage-grid {
+      gap: 1.2rem;
+    }
+  }
+</style>
 </head>
 <body x-data="{ mobileMenu: false, selectedService: '' }" @keydown.window.escape="mobileMenu = false">
 
