@@ -339,6 +339,7 @@ body {
   position: relative;
   padding-bottom: 0.75rem;
   display: inline-block;
+  text-align: left;
 }
 
 .section-title::after {
@@ -357,6 +358,7 @@ body {
   color: var(--soft-gray);
   max-width: 760px;
   margin-bottom: 2rem;
+  text-align: left;
 }
 
 /* about section with heading above videos */
@@ -503,6 +505,7 @@ body {
   font-weight: 700;
   color: var(--deep-blue);
   margin-bottom: 0.8rem;
+  text-align: left;
 }
 
 .service-card p { 
@@ -511,6 +514,7 @@ body {
   margin-bottom: 1.5rem;
   line-height: 1.6;
   flex-grow: 1;
+  text-align: left;
 }
 
 .service-btn {
@@ -560,7 +564,17 @@ body {
   margin-bottom: 1.2rem;
 }
 
-.advantage-card h4 { font-size: 1.3rem; color: var(--deep-blue); margin-bottom: 0.6rem; font-weight: 700; }
+.advantage-card h4 { 
+  font-size: 1.3rem; 
+  color: var(--deep-blue); 
+  margin-bottom: 0.6rem; 
+  font-weight: 700;
+  text-align: left;
+}
+
+.advantage-card p {
+  text-align: left;
+}
 
 /* ===== DOCTOR'S PROFILE SECTION ===== */
 .doctor-grid {
@@ -605,6 +619,7 @@ body {
   color: var(--deep-blue);
   margin-bottom: 0.3rem;
   line-height: 1.2;
+  text-align: left;
 }
 
 .doctor-title {
@@ -613,6 +628,7 @@ body {
   margin-bottom: 1.5rem;
   font-weight: 500;
   line-height: 1.4;
+  text-align: left;
 }
 
 .doctor-bio {
@@ -621,6 +637,7 @@ body {
   line-height: 1.7;
   font-size: 1rem;
   max-width: 100%;
+  text-align: left;
 }
 
 .expertise-grid {
@@ -643,12 +660,14 @@ body {
   margin-bottom: 0.5rem;
   font-size: 1.1rem;
   font-weight: 600;
+  text-align: left;
 }
 
 .expertise-item p {
   color: var(--soft-gray);
   font-size: 0.9rem;
   line-height: 1.5;
+  text-align: left;
 }
 
 .membership {
@@ -659,6 +678,7 @@ body {
   margin-top: 1rem;
   font-weight: 500;
   font-size: 0.95rem;
+  text-align: left;
 }
 
 .membership i {
@@ -679,16 +699,16 @@ body {
   }
   
   .doctor-name {
-    text-align: center;
+    text-align: left;
   }
   
   .doctor-title {
-    text-align: center;
+    text-align: left;
   }
   
   .membership {
-    display: block;
-    text-align: center;
+    display: inline-block;
+    text-align: left;
   }
   
   .doctor-image img {
@@ -723,7 +743,7 @@ body {
     font-size: 0.85rem;
     padding: 0.8rem 1rem;
     width: 100%;
-    text-align: center;
+    text-align: left;
   }
 }
 
@@ -794,8 +814,19 @@ body {
   padding: 3rem 2.8rem;
 }
 
-.booking-info h3 { font-size: clamp(1.8rem, 4vw, 2.2rem); margin-bottom: 1rem; font-weight: 700; }
-.booking-info p { font-size: clamp(1rem, 2.5vw, 1.2rem); margin-bottom: 2rem; opacity: 0.9; }
+.booking-info h3 { 
+  font-size: clamp(1.8rem, 4vw, 2.2rem); 
+  margin-bottom: 1rem; 
+  font-weight: 700; 
+  text-align: left;
+}
+
+.booking-info p { 
+  font-size: clamp(1rem, 2.5vw, 1.2rem); 
+  margin-bottom: 2rem; 
+  opacity: 0.9; 
+  text-align: left;
+}
 
 .booking-highlight {
   display: inline-flex;
@@ -826,6 +857,7 @@ body {
   font-weight: 600;
   color: var(--deep-blue);
   font-size: 0.95rem;
+  text-align: left;
 }
 
 input, select, textarea {
@@ -859,7 +891,15 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--b
 
 .btn-submit:hover { background: #0d5bbd; transform: translateY(-2px); }
 
-@media (max-width:700px){ .booking-grid{ grid-template-columns:1fr; } }
+@media (max-width:700px){ 
+  .booking-grid{ grid-template-columns:1fr; } 
+  
+  .booking-info h3,
+  .booking-info p,
+  .form-label {
+    text-align: left;
+  }
+}
 
 /* footer with quick links */
 .footer {
@@ -893,12 +933,14 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--b
   color: white;
   letter-spacing: -0.02em;
   line-height: 1.1;
+  text-align: left;
 }
 
 .footer-brand .footer-logo .sub {
   color: #9ac7ff;
   font-weight: 500;
   font-size: 1rem;
+  text-align: left;
 }
 
 .footer-contact {
@@ -932,6 +974,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--b
   margin-bottom: 1.2rem;
   position: relative;
   padding-bottom: 0.5rem;
+  text-align: left;
 }
 
 .footer-links h4::after {
@@ -958,6 +1001,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--b
   text-decoration: none;
   transition: color 0.15s ease, transform 0.1s ease;
   display: inline-block;
+  text-align: left;
 }
 
 .footer-links a:hover {
@@ -972,6 +1016,7 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--b
   margin-bottom: 1.2rem;
   position: relative;
   padding-bottom: 0.5rem;
+  text-align: left;
 }
 
 .footer-social h4::after {
@@ -1012,6 +1057,8 @@ input:focus, select:focus, textarea:focus { outline: none; border-color: var(--b
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.15s ease;
+  text-align: left;
+  display: inline-block;
 }
 
 .footer-instagram:hover { text-decoration: underline; color: white; }
@@ -1088,6 +1135,7 @@ section, header, footer, .container {
   }
 }
 
+/* Mobile responsive - KEEPING TEXT LEFT-ALIGNED */
 @media (max-width: 576px) {
   .container {
     padding: 0 1.2rem;
@@ -1102,6 +1150,7 @@ section, header, footer, .container {
     height: 200px;
   }
   
+  /* Keep text left-aligned on mobile */
   .hero-content {
     text-align: left;
   }
@@ -1114,36 +1163,36 @@ section, header, footer, .container {
     font-size: 2.5rem;
   }
   
+  /* Section titles left-aligned with underline starting from left */
   .section-title {
     font-size: 2rem;
-    text-align: center;
-    display: block;
+    text-align: left;
+    display: inline-block;
   }
   
   .section-title::after {
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    transform: none;
   }
   
+  /* Section descriptions left-aligned */
   .section-subhead {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
+    text-align: left;
+    margin-left: 0;
+    margin-right: 0;
   }
   
+  /* Hero badge left-aligned */
   .hero-badge {
-    margin-left: auto;
+    margin-left: 0;
     margin-right: auto;
   }
   
+  /* Motto line left-aligned */
   .hero .motto-line {
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
     width: 100%;
-  }
-  
-  .hero-content {
-    text-align: center;
   }
   
   .expertise-grid {
@@ -1152,6 +1201,29 @@ section, header, footer, .container {
   
   .advantage-grid {
     gap: 1.2rem;
+  }
+  
+  /* Ensure all text elements stay left-aligned */
+  .service-card h3,
+  .service-card p,
+  .advantage-card h4,
+  .advantage-card p,
+  .doctor-name,
+  .doctor-title,
+  .doctor-bio,
+  .expertise-item h4,
+  .expertise-item p,
+  .membership,
+  .booking-info h3,
+  .booking-info p,
+  .form-label,
+  .footer-brand .footer-logo .main,
+  .footer-brand .footer-logo .sub,
+  .footer-links h4,
+  .footer-links a,
+  .footer-social h4,
+  .footer-instagram {
+    text-align: left;
   }
 }
 
@@ -1298,26 +1370,26 @@ img, video {
   }
   
   .footer-contact-item {
-    justify-content: center;
+    justify-content: flex-start;
   }
   
   .footer-links ul {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
   }
   
   .footer-links a {
-    text-align: center;
+    text-align: left;
   }
   
   .social-icons {
-    justify-content: center;
+    justify-content: flex-start;
   }
   
   .footer-instagram {
-    text-align: center;
-    display: block;
+    text-align: left;
+    display: inline-block;
   }
 }
 
@@ -1351,12 +1423,12 @@ body {
   position: relative;
 }
 
-/* Fix for flexbox centering issues */
+/* Fix for flexbox centering issues - text remains left-aligned */
 .doctor-grid {
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 3rem;
-  align-items: center;
+  align-items: start;
   width: 100%;
 }
 
