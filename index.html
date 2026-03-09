@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
   <title>Smile Royale | Your Smile. Our Passion. Our Pride.</title>
   <!-- meta -->
   <meta name="description" content="Smile Royale Dental: expert dentist in a modern clinic. Book your appointment for comprehensive care.">
@@ -11,9 +11,8 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <!-- Alpine for mobile -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <!-- AOS -->
+  <!-- AOS - only include what we need -->
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
     :root {
@@ -40,6 +39,8 @@
       overflow-x: hidden;
       width: 100%;
       position: relative;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
     .container {
       width: 100%;
@@ -361,90 +362,87 @@
       .about-video-grid { grid-template-columns:1fr; } 
     }
 
-    /* ===== UPDATED SERVICES CARDS WITH IMAGES ===== */
+    /* ===== OPTIMIZED SERVICES SECTION - NO HANGING ===== */
+    .services-section {
+      background: var(--off-white);
+      will-change: transform; /* Optimize for animations */
+    }
+
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+      gap: 1.5rem; /* Reduced gap for better performance */
       margin-top: 1.5rem;
     }
 
     .service-card {
       background: var(--pure-white);
-      border-radius: 2rem;
+      border-radius: 1.5rem; /* Slightly smaller radius for performance */
       overflow: hidden;
-      box-shadow: var(--card-shadow);
+      box-shadow: 0 5px 15px -5px rgba(0,43,74,0.08); /* Lighter shadow */
       border: 1px solid var(--light-border);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.2s ease, box-shadow 0.2s ease; /* Faster transition */
       display: flex;
       flex-direction: column;
       height: 100%;
+      will-change: transform; /* Hardware acceleration hint */
     }
 
     .service-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 25px 35px -15px rgba(0,43,74,0.15);
+      transform: translateY(-3px); /* Smaller hover effect */
+      box-shadow: 0 12px 20px -10px rgba(0,43,74,0.12);
     }
 
-    /* Image loading animations */
+    /* Image container - optimized */
+    .service-image {
+      width: 100%;
+      height: 200px; /* Fixed height for consistent rendering */
+      overflow: hidden;
+      position: relative;
+      background: #eef2f6;
+      contain: strict; /* Optimize rendering */
+    }
+
+    /* Simple loading state - no complex animations that cause hanging */
+    .service-image.loading {
+      background: linear-gradient(90deg, #eef2f6 0%, #e0e6ec 50%, #eef2f6 100%);
+      background-size: 200% 100%;
+      animation: shimmer 1.2s infinite linear; /* Optimized animation */
+    }
+
     @keyframes shimmer {
       0% { background-position: -200% 0; }
       100% { background-position: 200% 0; }
     }
 
-    @keyframes fadeInScale {
-      0% {
-        opacity: 0;
-        transform: scale(1.05);
-      }
-      100% {
-        opacity: 1;
-        transform: scale(1);
-      }
-    }
-
-    /* Service image container */
-    .service-image {
-      width: 100%;
-      height: 220px;
-      overflow: hidden;
-      position: relative;
-      background: #eef2f6;
-    }
-
-    /* Loading shimmer effect */
-    .service-image.loading {
-      background: linear-gradient(
-        90deg,
-        #eef2f6 25%,
-        #e0e6ec 50%,
-        #eef2f6 75%
-      );
-      background-size: 200% 100%;
-      animation: shimmer 1.5s infinite;
-    }
-
-    /* Image styling */
+    /* Image styling - optimized */
     .service-image img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: transform 0.5s ease;
       opacity: 0;
+      transition: opacity 0.2s ease, transform 0.3s ease; /* Faster transitions */
+      will-change: opacity, transform;
     }
 
-    /* Image loaded state */
     .service-image img.loaded {
       opacity: 1;
-      animation: fadeInScale 0.5s ease forwards;
     }
 
-    /* Hover effect on image */
+    /* Hover effect - smoother */
     .service-card:hover .service-image img.loaded {
-      transform: scale(1.08);
+      transform: scale(1.05); /* Smaller scale to reduce motion blur */
     }
 
-    /* Error state styling */
+    /* Error state */
+    .service-image.has-error {
+      background: #f8f9fa;
+    }
+
+    .service-image.has-error img {
+      display: none;
+    }
+
     .service-image .error-message {
       display: none;
       position: absolute;
@@ -454,42 +452,32 @@
       text-align: center;
       color: #6c757d;
       font-size: 0.9rem;
-      width: 100%;
-      padding: 1rem;
     }
 
     .service-image.has-error .error-message {
       display: block;
     }
 
-    .service-image.has-error {
-      background: #f8f9fa;
-    }
-
-    .service-image.has-error img {
-      display: none;
-    }
-
-    /* Service content - NO ICON */
+    /* Service content */
     .service-content {
-      padding: 1.8rem 1.5rem 2rem;
+      padding: 1.5rem 1.5rem 1.8rem;
       display: flex;
       flex-direction: column;
       flex-grow: 1;
     }
 
     .service-card h3 {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
       font-weight: 700;
       color: var(--deep-blue);
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.6rem;
     }
 
     .service-card p { 
       color: #3e4e5d; 
-      font-size: 0.95rem; 
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
+      font-size: 0.9rem; 
+      margin-bottom: 1.2rem;
+      line-height: 1.5;
       flex-grow: 1;
     }
 
@@ -497,10 +485,10 @@
       background: transparent;
       border: 2px solid var(--bright-blue);
       color: var(--bright-blue);
-      padding: 0.7rem 1.5rem;
+      padding: 0.6rem 1.2rem;
       border-radius: 60px;
       font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 0.9rem;
       cursor: pointer;
       transition: all 0.15s ease;
       text-decoration: none;
@@ -512,31 +500,58 @@
     .service-btn:hover {
       background: var(--bright-blue);
       color: white;
-      transform: translateY(-1px);
     }
 
-    /* advantage cards */
+    /* Responsive adjustments for mobile */
+    @media (max-width: 768px) {
+      .services-grid {
+        gap: 1rem;
+      }
+      
+      .service-card {
+        border-radius: 1.2rem;
+      }
+      
+      .service-image {
+        height: 180px;
+      }
+      
+      .service-content {
+        padding: 1.2rem 1.2rem 1.5rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .service-image {
+        height: 160px;
+      }
+    }
+
+    /* advantage cards - optimized */
     .advantage-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-      gap: 2rem;
+      gap: 1.5rem;
       margin: 2rem 0;
     }
+    
     .advantage-card {
       background: var(--pure-white);
-      border-radius: 2rem;
-      padding: 2.2rem 1.8rem;
+      border-radius: 1.5rem;
+      padding: 1.8rem 1.5rem;
       border: 1px solid var(--light-border);
-      box-shadow: 0 8px 20px -12px rgba(0,43,74,0.08);
+      box-shadow: 0 5px 15px -8px rgba(0,43,74,0.05);
       transition: transform 0.2s ease;
+      will-change: transform;
     }
-    .advantage-card:hover { transform: translateY(-4px); }
+    
+    .advantage-card:hover { transform: translateY(-3px); }
     .advantage-card i {
-      font-size: 2.5rem;
+      font-size: 2rem;
       color: var(--bright-blue);
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
     }
-    .advantage-card h4 { font-size: 1.3rem; color: var(--deep-blue); margin-bottom: 0.6rem; font-weight: 700; }
+    .advantage-card h4 { font-size: 1.2rem; color: var(--deep-blue); margin-bottom: 0.5rem; font-weight: 700; }
 
     /* ===== DOCTOR'S PROFILE SECTION ===== */
     .doctor-grid {
@@ -561,12 +576,12 @@
       aspect-ratio: 1/1;
       object-fit: cover;
       object-position: center;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.2s ease;
+      will-change: transform;
     }
 
     .doctor-image img:hover {
-      transform: scale(1.02);
-      box-shadow: 0 25px 35px -15px rgba(0,43,74,0.25);
+      transform: scale(1.01);
     }
 
     .doctor-info {
@@ -642,7 +657,6 @@
       margin-right: 0.5rem;
     }
 
-    /* Tablet Responsive */
     @media (max-width: 900px) {
       .doctor-grid {
         grid-template-columns: 1fr;
@@ -668,75 +682,43 @@
       }
     }
 
-    /* Mobile Responsive */
-    @media (max-width: 900px) {
-      .doctor-image img {
-        max-width: 340px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .doctor-image img {
-        max-width: 280px;
-        border-radius: 1.5rem;
-        border-width: 3px;
-      }
-      
-      .doctor-name {
-        font-size: 1.8rem;
-      }
-      
-      .doctor-title {
-        font-size: 1.1rem;
-      }
-      
-      .expertise-grid {
-        grid-template-columns: 1fr;
-      }
-      
-      .expertise-item {
-        padding: 1rem;
-      }
-      
-      .membership {
-        font-size: 0.85rem;
-        padding: 0.8rem 1rem;
-        width: 100%;
-        text-align: center;
-      }
-    }
-
-    /* ===== TESTIMONIALS/SMILE TRANSFORMATIONS SECTION ===== */
+    /* ===== TESTIMONIALS ===== */
     .testimonials-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 2rem;
+      gap: 1.5rem;
       margin-top: 2rem;
     }
+    
     .testimonials-item {
       background: var(--pure-white);
-      border-radius: 2rem;
+      border-radius: 1.5rem;
       overflow: hidden;
       box-shadow: var(--card-shadow);
       border: 1px solid var(--light-border);
     }
+    
     .testimonials-video {
       width: 100%;
       height: auto;
       display: block;
     }
+    
     .testimonials-caption {
-      padding: 1.5rem;
+      padding: 1.2rem;
       text-align: center;
     }
+    
     .testimonials-caption h4 {
       color: var(--deep-blue);
-      margin-bottom: 0.3rem;
+      margin-bottom: 0.2rem;
     }
+    
     .testimonials-caption p {
       color: var(--bright-blue);
       font-weight: 600;
     }
+    
     .gallery-image {
       width: 100%;
       height: auto;
@@ -754,232 +736,268 @@
       grid-template-columns: 1fr 1fr;
       gap: 2rem;
       background: var(--pure-white);
-      border-radius: 3rem;
-      box-shadow: 0 20px 35px -18px rgba(0,43,74,0.15);
+      border-radius: 2rem;
+      box-shadow: 0 15px 25px -15px rgba(0,43,74,0.1);
       overflow: hidden;
       margin-top: 2rem;
       border: 1px solid var(--light-border);
     }
+    
     .booking-info {
       background: var(--deep-blue);
       color: white;
-      padding: 3rem 2.8rem;
+      padding: 2.5rem 2rem;
     }
-    .booking-info h3 { font-size: clamp(1.8rem, 4vw, 2.2rem); margin-bottom: 1rem; font-weight: 700; }
-    .booking-info p { font-size: clamp(1rem, 2.5vw, 1.2rem); margin-bottom: 2rem; opacity: 0.9; }
+    
+    .booking-info h3 { font-size: clamp(1.6rem, 4vw, 2rem); margin-bottom: 1rem; font-weight: 700; }
+    .booking-info p { font-size: clamp(1rem, 2.5vw, 1.1rem); margin-bottom: 1.5rem; opacity: 0.9; }
+    
     .booking-highlight {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
       background: rgba(255,255,255,0.12);
-      padding: 0.5rem 1.5rem;
+      padding: 0.5rem 1.2rem;
       border-radius: 40px;
-      font-size: clamp(1rem, 2.5vw, 1.2rem);
+      font-size: clamp(1rem, 2.5vw, 1.1rem);
       color: white;
       text-decoration: none;
       transition: background 0.15s ease;
     }
+    
     .booking-highlight i { color: var(--bright-blue); }
     .booking-highlight:hover { background: rgba(255,255,255,0.2); }
+    
     .booking-form {
-      padding: 3rem 2.8rem;
+      padding: 2.5rem 2rem;
       background: white;
     }
-    .form-group { margin-bottom: 1.4rem; }
+    
+    .form-group { margin-bottom: 1.2rem; }
     .form-label {
       display: block;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.3rem;
       font-weight: 600;
       color: var(--deep-blue);
-      font-size: 0.95rem;
+      font-size: 0.9rem;
     }
+    
     input, select, textarea {
       width: 100%;
-      padding: 1rem 1.5rem;
+      padding: 0.8rem 1.2rem;
       border: 1px solid #dde3ec;
-      border-radius: 60px;
+      border-radius: 40px;
       font-family: 'Inter', sans-serif;
-      font-size: 1rem;
+      font-size: 0.95rem;
       background: #fbfdff;
-      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      transition: border-color 0.15s ease;
     }
-    textarea { border-radius: 30px; resize: vertical; min-height: 100px; }
-    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--bright-blue); box-shadow: 0 0 0 3px rgba(26,115,232,0.2); }
+    
+    textarea { border-radius: 20px; resize: vertical; min-height: 80px; }
+    input:focus, select:focus, textarea:focus { outline: none; border-color: var(--bright-blue); }
+    
     .btn-submit {
       background: var(--bright-blue);
       color: white;
       font-weight: 700;
-      padding: 1.1rem 2rem;
+      padding: 0.9rem 2rem;
       border: none;
       border-radius: 60px;
       width: 100%;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       cursor: pointer;
-      box-shadow: 0 8px 18px -10px var(--bright-blue);
-      transition: background 0.15s ease, transform 0.1s ease;
+      box-shadow: 0 5px 15px -8px var(--bright-blue);
+      transition: background 0.15s ease;
     }
-    .btn-submit:hover { background: #0d5bbd; transform: translateY(-2px); }
+    
+    .btn-submit:hover { background: #0d5bbd; }
+    
     @media (max-width:700px){ .booking-grid{ grid-template-columns:1fr; } }
 
-    /* footer with quick links */
+    /* footer */
     .footer {
       background: var(--deep-blue);
       color: #d0e0f0;
-      padding: 3.5rem 0 2rem;
+      padding: 3rem 0 1.5rem;
       margin-top: 3rem;
       width: 100%;
     }
+    
     .footer-grid {
       display: grid;
       grid-template-columns: 2fr 1fr 1.5fr;
-      gap: 2.5rem;
-      margin-bottom: 2.5rem;
+      gap: 2rem;
+      margin-bottom: 2rem;
     }
+    
     @media (max-width: 768px) {
-      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-grid { grid-template-columns: 1fr; gap: 1.5rem; }
     }
+    
     .footer-brand .footer-logo {
       display: flex;
       flex-direction: column;
       margin-bottom: 1rem;
     }
+    
     .footer-brand .footer-logo .main {
-      font-size: 2rem;
+      font-size: 1.8rem;
       font-weight: 800;
       color: white;
       letter-spacing: -0.02em;
       line-height: 1.1;
     }
+    
     .footer-brand .footer-logo .sub {
       color: #9ac7ff;
       font-weight: 500;
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
+    
     .footer-contact {
-      margin-top: 1.5rem;
+      margin-top: 1rem;
     }
+    
     .footer-contact-item {
       display: flex;
       align-items: center;
       gap: 0.7rem;
-      margin-bottom: 0.8rem;
+      margin-bottom: 0.6rem;
     }
+    
     .footer-contact-item i {
       color: var(--bright-blue);
       width: 1.2rem;
     }
+    
     .footer-contact-item a, .footer-contact-item span {
       color: #d0e0f0;
       text-decoration: none;
+      font-size: 0.9rem;
       transition: color 0.15s ease;
     }
+    
     .footer-contact-item a:hover { color: white; text-decoration: underline; }
     
     .footer-links h4 {
       color: white;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 600;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
       position: relative;
-      padding-bottom: 0.5rem;
+      padding-bottom: 0.4rem;
     }
+    
     .footer-links h4::after {
       content: '';
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 40px;
+      width: 35px;
       height: 3px;
       background: var(--bright-blue);
       border-radius: 2px;
     }
+    
     .footer-links ul {
       list-style: none;
     }
+    
     .footer-links li {
-      margin-bottom: 0.7rem;
+      margin-bottom: 0.5rem;
     }
+    
     .footer-links a {
       color: #d0e0f0;
       text-decoration: none;
-      transition: color 0.15s ease, transform 0.1s ease;
+      font-size: 0.9rem;
+      transition: color 0.15s ease;
       display: inline-block;
     }
+    
     .footer-links a:hover {
       color: white;
-      transform: translateX(3px);
     }
     
     .footer-social h4 {
       color: white;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       font-weight: 600;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
       position: relative;
-      padding-bottom: 0.5rem;
+      padding-bottom: 0.4rem;
     }
+    
     .footer-social h4::after {
       content: '';
       position: absolute;
       bottom: 0;
       left: 0;
-      width: 40px;
+      width: 35px;
       height: 3px;
       background: var(--bright-blue);
       border-radius: 2px;
     }
+    
     .social-icons {
       display: flex;
-      gap: 1rem;
-      margin-bottom: 1.5rem;
+      gap: 0.8rem;
+      margin-bottom: 1rem;
     }
+    
     .social-icons a {
       background: #1e4c6e;
-      width: 42px;
-      height: 42px;
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       color: white;
       text-decoration: none;
-      font-size: 1.3rem;
-      transition: background 0.15s ease, transform 0.1s ease;
+      font-size: 1.2rem;
+      transition: background 0.15s ease;
     }
-    .social-icons a:hover { background: var(--bright-blue); transform: translateY(-2px); }
+    
+    .social-icons a:hover { background: var(--bright-blue); }
+    
     .footer-instagram {
       color: #9ac7ff;
       text-decoration: none;
-      font-size: 1rem;
+      font-size: 0.9rem;
       transition: color 0.15s ease;
     }
+    
     .footer-instagram:hover { text-decoration: underline; color: white; }
     
     .copyright {
       border-top: 1px solid #20587a;
-      padding-top: 1.8rem;
-      font-size: 0.9rem;
+      padding-top: 1.5rem;
+      font-size: 0.85rem;
       text-align: center;
     }
+    
     a, button { cursor: pointer; }
     
-    /* Prevent horizontal scroll on all devices */
-    html, body {
+    /* Prevent horizontal scroll */
+    html, body, section, header, footer, div {
       max-width: 100%;
       overflow-x: hidden;
-      position: relative;
     }
     
-    /* Ensure all sections stay within viewport */
-    section, header, footer, div {
-      max-width: 100vw;
-      overflow-x: hidden;
+    /* Disable AOS on mobile for better performance */
+    @media (max-width: 768px) {
+      [data-aos] {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+      }
     }
   </style>
 </head>
 <body x-data="{ mobileMenu: false, selectedService: '' }" @keydown.window.escape="mobileMenu = false">
 
-  <!-- top bar with WhatsApp enquiry links -->
+  <!-- top bar -->
   <div class="top-bar">
     <div class="container">
       <div class="top-contact">
@@ -994,7 +1012,7 @@
     <div class="container">
       <div class="logo">
         <div class="logo-icon">
-          <img src="https://image2url.com/r2/default/images/1772738359714-c3bea4c7-78e3-4ba1-b90f-1bfd03bcbcdb.jpg" alt="Smile Royale Logo">
+          <img src="https://image2url.com/r2/default/images/1772738359714-c3bea4c7-78e3-4ba1-b90f-1bfd03bcbcdb.jpg" alt="Smile Royale Logo" loading="eager">
         </div>
         <div class="logo-text">
           <span class="main">SMILE</span>
@@ -1015,7 +1033,7 @@
     </div>
     
     <!-- mobile dropdown -->
-    <div x-show="mobileMenu" class="mobile-menu-dropdown" x-transition.duration.300ms @click.outside="mobileMenu = false">
+    <div x-show="mobileMenu" class="mobile-menu-dropdown" x-transition.duration.200ms @click.outside="mobileMenu = false">
       <a href="#hero" @click="mobileMenu = false">Home</a>
       <a href="#about" @click="mobileMenu = false">About</a>
       <a href="#services" @click="mobileMenu = false">Services</a>
@@ -1030,7 +1048,7 @@
   <!-- HERO -->
   <section id="hero" class="hero">
     <div class="container">
-      <div class="hero-content" data-aos="fade-up" data-aos-duration="900">
+      <div class="hero-content" data-aos="fade-up" data-aos-duration="600">
         <div class="hero-badge"><i class="fas fa-tooth"></i> Your smile is our passion</div>
         <div class="motto-line">
           <h1>Your Smile.</h1>
@@ -1053,7 +1071,7 @@
         <h2 class="section-title">Professional Care for Your Perfect Smile</h2>
         <p class="section-subhead">At Smile Royale, we believe that a healthy smile is a reflection of your overall well-being. I am a dedicated dental professional providing a wide range of oral health solutions in a comfortable and professional environment. As your expert dentist, I am driven by a single mission: to provide high-quality dental care with passion and excellence.</p>
       </div>
-      <div data-aos="zoom-in-up" data-aos-duration="800" data-aos-delay="100">
+      <div data-aos="zoom-in-up" data-aos-duration="600" data-aos-delay="50">
         <div class="about-video-grid">
           <video autoplay muted loop playsinline>
             <source src="https://image2url.com/r2/default/videos/1772715970572-d9d8d2d6-29d3-4aa7-9450-7e3ae433aec7.mp4" type="video/mp4">
@@ -1066,20 +1084,21 @@
     </div>
   </section>
 
-  <!-- ===== UPDATED SERVICES SECTION WITH IMAGES AND AOS ===== -->
-  <section id="services" class="section" style="background: var(--off-white);">
+  <!-- ===== OPTIMIZED SERVICES SECTION - SMOOTH SCROLLING ===== -->
+  <section id="services" class="section services-section">
     <div class="container">
       <h2 class="section-title" data-aos="fade-down">Comprehensive Dental Solutions</h2>
       <p class="section-subhead" data-aos="fade-down" data-aos-delay="50">I offer a full suite of dental treatments to keep your teeth healthy and your smile bright.</p>
       
       <div class="services-grid">
         <!-- Discounted Consultations -->
-        <div class="service-card" data-aos="flip-left" data-aos-duration="800">
+        <div class="service-card" data-aos="fade-up" data-aos-duration="400" data-aos-offset="50">
           <div class="service-image loading">
             <img 
               src="https://image2url.com/r2/default/images/1772933454875-5408d445-0d50-493c-bd2a-c85d1d713743.jpg" 
               alt="Discounted dental consultation"
               loading="lazy"
+              decoding="async"
               onload="this.classList.add('loaded'); this.closest('.service-image').classList.remove('loading');"
               onerror="this.classList.add('error'); this.closest('.service-image').classList.add('has-error'); this.closest('.service-image').classList.remove('loading');">
             <div class="error-message">
@@ -1095,12 +1114,13 @@
         </div>
         
         <!-- Scaling and Polishing -->
-        <div class="service-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="100">
+        <div class="service-card" data-aos="fade-up" data-aos-duration="400" data-aos-delay="50" data-aos-offset="50">
           <div class="service-image loading">
             <img 
               src="https://image2url.com/r2/default/images/1772933737652-95451b6d-46b1-4f48-89b9-816a220e3fa2.jpg" 
               alt="Scaling and polishing dental procedure"
               loading="lazy"
+              decoding="async"
               onload="this.classList.add('loaded'); this.closest('.service-image').classList.remove('loading');"
               onerror="this.classList.add('error'); this.closest('.service-image').classList.add('has-error'); this.closest('.service-image').classList.remove('loading');">
             <div class="error-message">
@@ -1116,12 +1136,13 @@
         </div>
         
         <!-- Teeth Whitening -->
-        <div class="service-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="200">
+        <div class="service-card" data-aos="fade-up" data-aos-duration="400" data-aos-delay="100" data-aos-offset="50">
           <div class="service-image loading">
             <img 
               src="https://image2url.com/r2/default/images/1772933897946-80c92104-5181-4b65-a3d5-b2ab7f155047.jpg" 
               alt="Teeth whitening treatment"
               loading="lazy"
+              decoding="async"
               onload="this.classList.add('loaded'); this.closest('.service-image').classList.remove('loading');"
               onerror="this.classList.add('error'); this.closest('.service-image').classList.add('has-error'); this.closest('.service-image').classList.remove('loading');">
             <div class="error-message">
@@ -1137,12 +1158,13 @@
         </div>
         
         <!-- Crowns & RCTs -->
-        <div class="service-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="300">
+        <div class="service-card" data-aos="fade-up" data-aos-duration="400" data-aos-delay="150" data-aos-offset="50">
           <div class="service-image loading">
             <img 
               src="https://image2url.com/r2/default/images/1772933985462-659a1692-bbc3-4b09-a8fd-2c0ae95ee647.jpg" 
               alt="Dental crown and root canal treatment"
               loading="lazy"
+              decoding="async"
               onload="this.classList.add('loaded'); this.closest('.service-image').classList.remove('loading');"
               onerror="this.classList.add('error'); this.closest('.service-image').classList.add('has-error'); this.closest('.service-image').classList.remove('loading');">
             <div class="error-message">
@@ -1158,12 +1180,13 @@
         </div>
         
         <!-- General Procedures -->
-        <div class="service-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="400">
+        <div class="service-card" data-aos="fade-up" data-aos-duration="400" data-aos-delay="200" data-aos-offset="50">
           <div class="service-image loading">
             <img 
               src="https://image2url.com/r2/default/images/1772955501327-30f1e658-7e21-4a9e-b5dc-0e2b66395f1b.jpg" 
               alt="General dental procedures"
               loading="lazy"
+              decoding="async"
               onload="this.classList.add('loaded'); this.closest('.service-image').classList.remove('loading');"
               onerror="this.classList.add('error'); this.closest('.service-image').classList.add('has-error'); this.closest('.service-image').classList.remove('loading');">
             <div class="error-message">
@@ -1186,10 +1209,10 @@
     <div class="container">
       <h2 class="section-title" data-aos="fade-up">The Smile Royale Advantage</h2>
       <div class="advantage-grid">
-        <div class="advantage-card" data-aos="zoom-in"><i class="fas fa-heart"></i><h4>Passion-Driven Care</h4><p>"Your Smile is My Passion." I care about the person behind the teeth.</p></div>
-        <div class="advantage-card" data-aos="zoom-in" data-aos-delay="80"><i class="fas fa-user-md"></i><h4>Expert Dentist</h4><p>Highly skilled professional dedicated to the latest dental practices.</p></div>
-        <div class="advantage-card" data-aos="zoom-in" data-aos-delay="160"><i class="fas fa-coins"></i><h4>Affordable Excellence</h4><p>Quality dental care accessible to all – discounted consultations.</p></div>
-        <div class="advantage-card" data-aos="zoom-in" data-aos-delay="240"><i class="fas fa-clinic-medical"></i><h4>Comprehensive Care</h4><p>From preventive care to restorative surgery, your one-stop shop.</p></div>
+        <div class="advantage-card" data-aos="fade-up" data-aos-duration="400"><i class="fas fa-heart"></i><h4>Passion-Driven Care</h4><p>"Your Smile is My Passion." I care about the person behind the teeth.</p></div>
+        <div class="advantage-card" data-aos="fade-up" data-aos-duration="400" data-aos-delay="50"><i class="fas fa-user-md"></i><h4>Expert Dentist</h4><p>Highly skilled professional dedicated to the latest dental practices.</p></div>
+        <div class="advantage-card" data-aos="fade-up" data-aos-duration="400" data-aos-delay="100"><i class="fas fa-coins"></i><h4>Affordable Excellence</h4><p>Quality dental care accessible to all – discounted consultations.</p></div>
+        <div class="advantage-card" data-aos="fade-up" data-aos-duration="400" data-aos-delay="150"><i class="fas fa-clinic-medical"></i><h4>Comprehensive Care</h4><p>From preventive care to restorative surgery, your one-stop shop.</p></div>
       </div>
     </div>
   </section>
@@ -1203,7 +1226,8 @@
       <div class="doctor-grid">
         <div class="doctor-image" data-aos="fade-right">
           <img src="https://image2url.com/r2/default/images/1772889924884-a9da39dc-856d-4411-aac2-f3f59a7e3884.jpg" 
-               alt="Dr. Farouk Adebiyi">
+               alt="Dr. Farouk Adebiyi"
+               loading="lazy">
         </div>
         
         <div class="doctor-info" data-aos="fade-left">
@@ -1244,7 +1268,7 @@
       <p class="section-subhead" data-aos="fade-down" data-aos-delay="50">Real results from our happy patients</p>
       
       <div class="testimonials-grid">
-        <div class="testimonials-item" data-aos="zoom-in">
+        <div class="testimonials-item" data-aos="fade-up" data-aos-duration="400">
           <video class="testimonials-video" autoplay muted loop playsinline>
             <source src="https://image2url.com/r2/default/videos/1772888015053-2c6f0de0-f226-40da-9b5a-6c625bccfaa7.mp4" type="video/mp4">
           </video>
@@ -1254,7 +1278,7 @@
           </div>
         </div>
         
-        <div class="testimonials-item" data-aos="zoom-in" data-aos-delay="100">
+        <div class="testimonials-item" data-aos="fade-up" data-aos-duration="400" data-aos-delay="50">
           <video class="testimonials-video" autoplay muted loop playsinline>
             <source src="https://image2url.com/r2/default/videos/1772888063863-6b5271e1-81da-432c-86cc-c34dfadced3b.mp4" type="video/mp4">
           </video>
@@ -1266,8 +1290,8 @@
       </div>
       
       <div class="testimonials-grid" style="margin-top: 2rem;">
-        <div class="testimonials-item" data-aos="zoom-in" style="grid-column: 1/-1; max-width: 600px; margin: 0 auto;">
-          <img src="https://image2url.com/r2/default/images/1772887670391-d8bfbae1-a8b6-4617-86a3-1991a4185400.jpg" alt="Dental transformation before and after" class="gallery-image">
+        <div class="testimonials-item" data-aos="fade-up" style="grid-column: 1/-1; max-width: 600px; margin: 0 auto;">
+          <img src="https://image2url.com/r2/default/images/1772887670391-d8bfbae1-a8b6-4617-86a3-1991a4185400.jpg" alt="Dental transformation before and after" class="gallery-image" loading="lazy">
           <div class="testimonials-caption">
             <h4>Complete Restoration</h4>
             <p>Before & After</p>
@@ -1281,7 +1305,7 @@
   <section id="booking" class="section" style="background: #f2f6fc;">
     <div class="container">
       <h2 class="section-title" data-aos="fade-down">Book an Appointment</h2>
-      <div class="booking-grid" data-aos="fade-up" data-aos-duration="900">
+      <div class="booking-grid" data-aos="fade-up" data-aos-duration="600">
         <div class="booking-info">
           <h3>Ready to Transform Your Smile?</h3>
           <p>Don't wait for a dental emergency. Schedule your visit with me today and experience the Smile Royale difference.</p>
@@ -1309,7 +1333,7 @@
                 <option value="Other">Other (please specify)</option>
               </select>
             </div>
-            <div class="form-group" x-show="selectedService === 'Other'" x-transition>
+            <div class="form-group" x-show="selectedService === 'Other'" x-transition.duration.200ms>
               <label class="form-label">Describe your needs</label>
               <textarea id="waOtherText" placeholder="Please describe the service you need" rows="2"></textarea>
             </div>
@@ -1374,11 +1398,31 @@
     </div>
   </footer>
 
-  <!-- AOS + video + WhatsApp logic -->
+  <!-- AOS + video + WhatsApp logic - OPTIMIZED -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function() {
-      AOS.init({ duration: 750, once: false, offset: 30 });
+      // Initialize AOS with performance settings
+      AOS.init({ 
+        duration: 400, 
+        once: true, // Only animate once to reduce repaints
+        offset: 20,
+        delay: 0,
+        disable: window.innerWidth < 768 // Disable on mobile for performance
+      });
+      
+      // Play videos
       document.querySelectorAll('video').forEach(v => v.play().catch(()=>{}));
+      
+      // Lazy load images immediately
+      const images = document.querySelectorAll('.service-image img');
+      images.forEach(img => {
+        if (img.complete) {
+          img.classList.add('loaded');
+          const container = img.closest('.service-image');
+          if (container) container.classList.remove('loading');
+        }
+      });
     });
 
     function sendToWhatsApp() {
@@ -1462,100 +1506,6 @@
         sendToWhatsApp
       }));
     });
-  </script>
-
-  <!-- ENHANCED IMAGE LOADING WITH INTERSECTION OBSERVER -->
-  <script>
-    (function() {
-      'use strict';
-      
-      document.addEventListener('DOMContentLoaded', function() {
-        if ('IntersectionObserver' in window) {
-          console.log('✅ IntersectionObserver supported - enabling lazy loading');
-          
-          const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                const img = entry.target;
-                const container = img.closest('.service-image');
-                
-                if (container && !img.classList.contains('loaded') && !img.classList.contains('error')) {
-                  container.classList.add('loading');
-                  console.log('🖼️ Image entering viewport:', img.alt);
-                }
-                
-                observer.unobserve(img);
-              }
-            });
-          }, {
-            rootMargin: '50px',
-            threshold: 0.01
-          });
-
-          const serviceImages = document.querySelectorAll('.service-image img');
-          serviceImages.forEach(img => {
-            imageObserver.observe(img);
-          });
-          
-          console.log(`👀 Observing ${serviceImages.length} images`);
-        } else {
-          console.log('⚠️ IntersectionObserver not supported - using fallback');
-          document.querySelectorAll('.service-image').forEach(container => {
-            container.classList.add('loading');
-          });
-        }
-        
-        function preloadFirstRow() {
-          const serviceCards = document.querySelectorAll('.service-card');
-          const firstRowCards = [];
-          
-          if (window.innerWidth > 900) {
-            for (let i = 0; i < Math.min(3, serviceCards.length); i++) {
-              firstRowCards.push(serviceCards[i]);
-            }
-          } else if (window.innerWidth > 600) {
-            for (let i = 0; i < Math.min(2, serviceCards.length); i++) {
-              firstRowCards.push(serviceCards[i]);
-            }
-          } else {
-            firstRowCards.push(serviceCards[0]);
-          }
-          
-          firstRowCards.forEach(card => {
-            const img = card.querySelector('img');
-            const container = card.querySelector('.service-image');
-            if (img && container && !img.classList.contains('loaded')) {
-              container.classList.add('loading');
-              img.fetchPriority = 'high';
-            }
-          });
-        }
-        
-        setTimeout(preloadFirstRow, 100);
-        
-        window.addEventListener('error', function(e) {
-          if (e.target.tagName === 'IMG') {
-            const img = e.target;
-            const container = img.closest('.service-image');
-            
-            if (container) {
-              container.classList.add('has-error');
-              container.classList.remove('loading');
-              img.classList.add('error');
-              console.warn('❌ Image failed to load:', img.alt || img.src);
-            }
-          }
-        }, true);
-        
-        let resizeTimer;
-        window.addEventListener('resize', function() {
-          clearTimeout(resizeTimer);
-          resizeTimer = setTimeout(function() {
-            preloadFirstRow();
-          }, 250);
-        });
-      });
-    })();
   </script>
 </body>
 </html>
