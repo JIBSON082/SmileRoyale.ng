@@ -19,12 +19,13 @@
 </head>
 <body x-data="{ mobileMenu: false, selectedService: '' }" @keydown.window.escape="mobileMenu = false">
 
-  <!-- top bar with WhatsApp enquiry links -->
+  <!-- top bar with WhatsApp, Instagram, and Twitter links -->
   <div class="top-bar">
     <div class="container">
       <div class="top-contact">
         <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> 08103564479</a>
         <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> @smileroyale.ng</a>
+        <a href="https://x.com/Dr_Pharouk" target="_blank" rel="noopener noreferrer"><i class="fab fa-x-twitter"></i> @Dr_Pharouk</a>
       </div>
     </div>
   </div>
@@ -54,7 +55,7 @@
       <button class="mobile-menu-btn" @click="mobileMenu = !mobileMenu"><i class="fas fa-bars"></i></button>
     </div>
     
-    <!-- mobile dropdown -->
+    <!-- mobile dropdown with all social links -->
     <div x-show="mobileMenu" class="mobile-menu-dropdown" x-transition.duration.300ms @click.outside="mobileMenu = false">
       <a href="#hero" @click="mobileMenu = false">Home</a>
       <a href="#about" @click="mobileMenu = false">About</a>
@@ -63,7 +64,8 @@
       <a href="#doctor" @click="mobileMenu = false">Our Dentist</a>
       <a href="#testimonials" @click="mobileMenu = false">Testimonials</a>
       <a href="#booking" @click="mobileMenu = false">Appointment</a>
-      <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" class="mobile-wa-btn">Book an appointment</a>
+      <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" class="mobile-wa-btn">Book on WhatsApp</a>
+      <a href="https://x.com/Dr_Pharouk" target="_blank" rel="noopener noreferrer" class="mobile-wa-btn" style="background: #000; margin-top: 0.5rem;">Follow on X</a>
     </div>
   </header>
 
@@ -364,10 +366,11 @@
     </div>
   </section>
 
-  <!-- footer -->
+  <!-- footer with all social links -->
   <footer class="footer">
     <div class="container">
       <div class="footer-grid">
+        <!-- Brand column -->
         <div class="footer-brand">
           <div class="footer-logo">
             <span class="main">SMILE ROYALE</span>
@@ -382,9 +385,14 @@
               <i class="fab fa-instagram"></i>
               <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer">@smileroyale.ng</a>
             </div>
+            <div class="footer-contact-item">
+              <i class="fab fa-x-twitter"></i>
+              <a href="https://x.com/Dr_Pharouk" target="_blank" rel="noopener noreferrer">@Dr_Pharouk</a>
+            </div>
           </div>
         </div>
         
+        <!-- Quick Links column -->
         <div class="footer-links">
           <h4>Quick Links</h4>
           <ul>
@@ -398,13 +406,16 @@
           </ul>
         </div>
         
+        <!-- Social column with all icons -->
         <div class="footer-social">
           <h4>Connect With Us</h4>
           <div class="social-icons">
             <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
             <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://x.com/Dr_Pharouk" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-x-twitter"></i></a>
           </div>
           <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer" class="footer-instagram">@smileroyale.ng</a>
+          <a href="https://x.com/Dr_Pharouk" target="_blank" rel="noopener noreferrer" class="footer-instagram" style="margin-top: 0.5rem;">@Dr_Pharouk</a>
         </div>
       </div>
       
