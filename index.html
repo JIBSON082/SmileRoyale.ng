@@ -52,21 +52,23 @@
         <a href="#booking">Appointment</a>
         <a href="#booking" class="btn-nav">Book now</a>
       </nav>
-      <button class="mobile-menu-btn" @click="mobileMenu = !mobileMenu"><i class="fas fa-bars"></i></button>
-    </div>
-    
-    <!-- mobile dropdown with all social links -->
-    <div x-show="mobileMenu" class="mobile-menu-dropdown" x-transition.duration.300ms @click.outside="mobileMenu = false">
-      <a href="#hero" @click="mobileMenu = false">Home</a>
-      <a href="#about" @click="mobileMenu = false">About</a>
-      <a href="#services" @click="mobileMenu = false">Services</a>
-      <a href="#why" @click="mobileMenu = false">Why us</a>
-      <a href="#doctor" @click="mobileMenu = false">Our Dentist</a>
-      <a href="#testimonials" @click="mobileMenu = false">Testimonials</a>
-      <a href="#booking" @click="mobileMenu = false">Appointment</a>
-      <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" class="mobile-wa-btn">Book on WhatsApp</a>
-      <a href="https://x.com/Dr_Pharouk" target="_blank" rel="noopener noreferrer" class="mobile-wa-btn" style="background: #000; margin-top: 0.5rem;">Follow on X</a>
-    </div>
+      <!-- mobile menu button and dropdown -->
+<button class="mobile-menu-btn" @click="mobileMenu = !mobileMenu" aria-label="Menu">
+  <i class="fas fa-bars"></i>
+</button>
+
+<!-- mobile dropdown - horizontal layout -->
+<div x-show="mobileMenu" class="mobile-menu-dropdown" x-transition.duration.300ms @click.outside="mobileMenu = false">
+  <a href="#hero" @click="mobileMenu = false">Home</a>
+  <a href="#about" @click="mobileMenu = false">About</a>
+  <a href="#services" @click="mobileMenu = false">Services</a>
+  <a href="#why" @click="mobileMenu = false">Why us</a>
+  <a href="#doctor" @click="mobileMenu = false">Our Dentist</a>
+  <a href="#testimonials" @click="mobileMenu = false">Testimonials</a>
+  <a href="#booking" @click="mobileMenu = false">Appointment</a>
+  <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" class="mobile-wa-btn">Book now</a>
+  <a href="https://x.com/Dr_Pharouk" target="_blank" rel="noopener noreferrer" class="mobile-wa-btn" style="background: #000;">X</a>
+</div>
   </header>
 
   <!-- HERO -->
