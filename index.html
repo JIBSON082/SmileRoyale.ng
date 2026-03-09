@@ -362,174 +362,64 @@
     }
 
     /* services cards with book button - FIXED */
-   /* services cards with images and loading animations */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 2rem;
-  margin-top: 1.5rem;
-}
-
-.service-card {
-  background: var(--pure-white);
-  border-radius: 2rem;
-  overflow: hidden; /* Important for image corners */
-  box-shadow: var(--card-shadow);
-  border: 1px solid var(--light-border);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-}
-
-.service-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 25px 35px -15px rgba(0,43,74,0.15);
-}
-
-/* ===== IMAGE LOADING ANIMATIONS ===== */
-
-/* Shimmer loading animation */
-@keyframes shimmer {
-  0% {
-    background-position: -200% 0;
-  }
-  100% {
-    background-position: 200% 0;
-  }
-}
-
-/* Fade-in animation for loaded images */
-@keyframes fadeInScale {
-  0% {
-    opacity: 0;
-    transform: scale(1.05);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-/* Service image container */
-.service-image {
-  width: 100%;
-  height: 220px;
-  overflow: hidden;
-  position: relative;
-  background: #eef2f6; /* Base color while loading */
-}
-
-/* Loading shimmer effect */
-.service-image.loading {
-  background: linear-gradient(
-    90deg,
-    #eef2f6 25%,
-    #e0e6ec 50%,
-    #eef2f6 75%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-}
-
-/* Image styling */
-.service-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-  opacity: 0;
-}
-
-/* Image loaded state */
-.service-image img.loaded {
-  opacity: 1;
-  animation: fadeInScale 0.5s ease forwards;
-}
-
-/* Hover effect on image */
-.service-card:hover .service-image img.loaded {
-  transform: scale(1.08);
-}
-
-/* Error state styling */
-.service-image .error-message {
-  display: none;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  color: #6c757d;
-  font-size: 0.9rem;
-  width: 100%;
-  padding: 1rem;
-}
-
-.service-image.has-error .error-message {
-  display: block;
-}
-
-.service-image.has-error {
-  background: #f8f9fa;
-}
-
-.service-image.has-error img {
-  display: none;
-}
-
-.service-icon {
-  background: #eaf1fd;
-  width: 56px;
-  height: 56px;
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 1.2rem;
-}
-
-.service-icon i {
-  font-size: 1.8rem;
-  color: var(--bright-blue);
-}
-
-.service-card h3 {
-  font-size: 1.4rem;
-  font-weight: 700;
-  color: var(--deep-blue);
-  margin-bottom: 0.6rem;
-}
-
-.service-card p { 
-  color: #3e4e5d; 
-  font-size: 0.95rem; 
-  margin-bottom: 1.5rem;
-  line-height: 1.6;
-  flex-grow: 1;
-}
-
-.service-btn {
-  background: transparent;
-  border: 2px solid var(--bright-blue);
-  color: var(--bright-blue);
-  padding: 0.7rem 1.5rem;
-  border-radius: 60px;
-  font-weight: 600;
-  font-size: 0.95rem;
-  cursor: pointer;
-  transition: all 0.15s ease;
-  text-decoration: none;
-  display: inline-block;
-  text-align: center;
-  align-self: flex-start;
-}
-
-.service-btn:hover {
-  background: var(--bright-blue);
-  color: white;
-  transform: translateY(-1px);
-}
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+    .service-card {
+      background: var(--pure-white);
+      border-radius: 2.2rem;
+      padding: 2.2rem 1.8rem;
+      box-shadow: var(--card-shadow);
+      border: 1px solid var(--light-border);
+      transition: transform 0.2s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .service-card:hover { transform: translateY(-4px); }
+    .service-icon {
+      background: #eaf1fd;
+      width: 64px; height: 64px;
+      border-radius: 22px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem;
+    }
+    .service-icon i { font-size: 2.2rem; color: var(--bright-blue); }
+    .service-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--deep-blue);
+      margin-bottom: 0.6rem;
+    }
+    .service-card p { 
+      color: #3e4e5d; 
+      font-size: 0.95rem; 
+      margin-bottom: 1.5rem;
+      flex-grow: 1;
+    }
+    .service-btn {
+      background: transparent;
+      border: 2px solid var(--bright-blue);
+      color: var(--bright-blue);
+      padding: 0.7rem 1.5rem;
+      border-radius: 60px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
+      margin-top: 0.5rem;
+      align-self: flex-start;
+    }
+    .service-btn:hover {
+      background: var(--bright-blue);
+      color: white;
+      transform: translateY(-1px);
+    }
 
     /* advantage cards */
     .advantage-grid {
@@ -1085,120 +975,46 @@
   </section>
 
   <!-- SERVICES with book buttons - FIXED -->
-<<!-- SERVICES with images, loading animations, and AOS -->
-<section id="services" class="section" style="background: var(--off-white);">
-  <div class="container">
-    <h2 class="section-title" data-aos="fade-down">Comprehensive Dental Solutions</h2>
-    <p class="section-subhead" data-aos="fade-down" data-aos-delay="50">I offer a full suite of dental treatments to keep your teeth healthy and your smile bright.</p>
-    
-    <div class="services-grid">
-      <!-- Discounted Consultations -->
-      <div class="service-card" data-aos="flip-left" data-aos-duration="800">
-        <div class="service-image loading">
-          <img 
-            src="https://image2url.com/r2/default/images/1772933454875-5408d445-0d50-493c-bd2a-c85d1d713743.jpg" 
-            alt="Discounted dental consultation"
-            loading="lazy"
-            onload="this.classList.add('loaded'); this.closest('.service-image').classList.remove('loading');"
-            onerror="this.classList.add('error'); this.closest('.service-image').classList.add('has-error'); this.closest('.service-image').classList.remove('loading');">
-          <div class="error-message">
-            <i class="fas fa-image" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
-            Image unavailable
-          </div>
-        </div>
-        <div class="service-content">
+  <section id="services" class="section" style="background: var(--off-white);">
+    <div class="container">
+      <h2 class="section-title" data-aos="fade-down">Comprehensive Dental Solutions</h2>
+      <p class="section-subhead" data-aos="fade-down" data-aos-delay="50">I offer a full suite of dental treatments to keep your teeth healthy and your smile bright.</p>
+      <div class="services-grid">
+        <div class="service-card" data-aos="flip-left">
+          <div class="service-icon"><i class="fas fa-comments"></i></div>
           <h3>Discounted Consultations</h3>
-          <p>Professional dental advice and examinations at affordable rates to get you started on your oral health journey.</p>
+          <p>Professional dental advice and examinations at affordable rates to get you started.</p>
           <a href="#booking" class="service-btn" @click="selectedService = 'Consultation'">Book appointment</a>
         </div>
-      </div>
-      
-      <!-- Scaling and Polishing -->
-      <div class="service-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="100">
-        <div class="service-image loading">
-          <img 
-            src="https://image2url.com/r2/default/images/1772933737652-95451b6d-46b1-4f48-89b9-816a220e3fa2.jpg" 
-            alt="Scaling and polishing dental procedure"
-            loading="lazy"
-            onload="this.classList.add('loaded'); this.closest('.service-image').classList.remove('loading');"
-            onerror="this.classList.add('error'); this.closest('.service-image').classList.add('has-error'); this.closest('.service-image').classList.remove('loading');">
-          <div class="error-message">
-            <i class="fas fa-image" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
-            Image unavailable
-          </div>
-        </div>
-        <div class="service-content">
+        <div class="service-card" data-aos="flip-left" data-aos-delay="70">
+          <div class="service-icon"><i class="fas fa-teeth"></i></div>
           <h3>Scaling and Polishing</h3>
-          <p>Professional cleaning to remove plaque and tartar, preventing gum disease and leaving your teeth smooth and fresh.</p>
+          <p>Professional cleaning to remove plaque and tartar, preventing gum disease.</p>
+          <!-- FIXED: Changed from 'Scaling & Polishing' to 'Scaling and Polishing' -->
           <a href="#booking" class="service-btn" @click="selectedService = 'Scaling and Polishing'">Book appointment</a>
         </div>
-      </div>
-      
-      <!-- Teeth Whitening -->
-      <div class="service-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="200">
-        <div class="service-image loading">
-          <img 
-            src="https://image2url.com/r2/default/images/1772933897946-80c92104-5181-4b65-a3d5-b2ab7f155047.jpg" 
-            alt="Teeth whitening treatment"
-            loading="lazy"
-            onload="this.classList.add('loaded'); this.closest('.service-image').classList.remove('loading');"
-            onerror="this.classList.add('error'); this.closest('.service-image').classList.add('has-error'); this.closest('.service-image').classList.remove('loading');">
-          <div class="error-message">
-            <i class="fas fa-image" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
-            Image unavailable
-          </div>
-        </div>
-        <div class="service-content">
+        <div class="service-card" data-aos="flip-left" data-aos-delay="140">
+          <div class="service-icon"><i class="fas fa-star"></i></div>
           <h3>Teeth Whitening</h3>
-          <p>Advanced whitening treatments to brighten your smile by several shades and remove stubborn stains effectively.</p>
+          <p>Advanced whitening treatments to brighten your smile and remove stains.</p>
           <a href="#booking" class="service-btn" @click="selectedService = 'Teeth Whitening'">Book appointment</a>
         </div>
-      </div>
-      
-      <!-- Crowns & RCTs -->
-      <div class="service-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="300">
-        <div class="service-image loading">
-          <img 
-            src="https://image2url.com/r2/default/images/1772933985462-659a1692-bbc3-4b09-a8fd-2c0ae95ee647.jpg" 
-            alt="Dental crown and root canal treatment"
-            loading="lazy"
-            onload="this.classList.add('loaded'); this.closest('.service-image').classList.remove('loading');"
-            onerror="this.classList.add('error'); this.closest('.service-image').classList.add('has-error'); this.closest('.service-image').classList.remove('loading');">
-          <div class="error-message">
-            <i class="fas fa-image" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
-            Image unavailable
-          </div>
-        </div>
-        <div class="service-content">
+        <div class="service-card" data-aos="flip-left" data-aos-delay="210">
+          <div class="service-icon"><i class="fas fa-crown"></i></div>
           <h3>Crowns & RCTs</h3>
-          <p>Restorative solutions to save damaged teeth and restore their natural function, strength, and appearance.</p>
+          <p>Restorative solutions to save damaged teeth and restore natural function.</p>
           <a href="#booking" class="service-btn" @click="selectedService = 'Crown / RCT'">Book appointment</a>
         </div>
-      </div>
-      
-      <!-- General Procedures -->
-      <div class="service-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="400">
-        <div class="service-image loading">
-          <img 
-            src="https://image2url.com/r2/default/images/1772955501327-30f1e658-7e21-4a9e-b5dc-0e2b66395f1b.jpg" 
-            alt="General dental procedures"
-            loading="lazy"
-            onload="this.classList.add('loaded'); this.closest('.service-image').classList.remove('loading');"
-            onerror="this.classList.add('error'); this.closest('.service-image').classList.add('has-error'); this.closest('.service-image').classList.remove('loading');">
-          <div class="error-message">
-            <i class="fas fa-image" style="font-size: 2rem; margin-bottom: 0.5rem; display: block;"></i>
-            Image unavailable
-          </div>
-        </div>
-        <div class="service-content">
+        <div class="service-card" data-aos="flip-left" data-aos-delay="280">
+          <div class="service-icon"><i class="fas fa-tools"></i></div>
           <h3>General Procedures</h3>
-          <p>Fillings, extractions, and specialized treatments – comprehensive care for all your dental needs in one place.</p>
+          <p>Fillings, extractions, and specialized treatments – all your needs.</p>
           <a href="#booking" class="service-btn" @click="selectedService = 'General checkup'">Book appointment</a>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
   <!-- WHY SMILE ROYALE -->
   <section id="why" class="section">
     <div class="container">
@@ -1493,7 +1309,7 @@
   window.open(whatsappURL, '_blank', 'noopener,noreferrer');
 }
     // expose function to Alpine scope
-        document.addEventListener('alpine:init', () => {
+    document.addEventListener('alpine:init', () => {
       Alpine.data('waForm', () => ({
         otherService: false,
         selectedService: '',
@@ -1501,188 +1317,5 @@
       }));
     });
   </script>
-
-  <!-- ===== ENHANCED IMAGE LOADING WITH INTERSECTION OBSERVER ===== -->
-  <script>
-    (function() {
-      'use strict';
-      
-      // Wait for DOM to be fully loaded
-      document.addEventListener('DOMContentLoaded', function() {
-        
-        // ===== INTERSECTION OBSERVER FOR LAZY LOADING =====
-        // This detects when images enter the viewport
-        if ('IntersectionObserver' in window) {
-          console.log('✅ IntersectionObserver supported - enabling lazy loading');
-          
-          const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-              // If image is in viewport
-              if (entry.isIntersecting) {
-                const img = entry.target;
-                const container = img.closest('.service-image');
-                
-                // Add loading class when image enters viewport
-                if (container && !img.classList.contains('loaded') && !img.classList.contains('error')) {
-                  container.classList.add('loading');
-                  
-                  // Optional: Log for debugging
-                  console.log('🖼️ Image entering viewport:', img.alt);
-                }
-                
-                // Stop observing once image is in view
-                observer.unobserve(img);
-              }
-            });
-          }, {
-            rootMargin: '50px', // Start loading when image is 50px from viewport
-            threshold: 0.01      // Trigger when even 1% is visible
-          });
-
-          // Observe all service images
-          const serviceImages = document.querySelectorAll('.service-image img');
-          serviceImages.forEach(img => {
-            imageObserver.observe(img);
-          });
-          
-          console.log(`👀 Observing ${serviceImages.length} images`);
-        } 
-        
-        // ===== FALLBACK FOR OLDER BROWSERS =====
-        else {
-          console.log('⚠️ IntersectionObserver not supported - using fallback');
-          
-          // Simply add loading class to all containers
-          document.querySelectorAll('.service-image').forEach(container => {
-            container.classList.add('loading');
-          });
-          
-          // Load all images immediately
-          document.querySelectorAll('.service-image img').forEach(img => {
-            if (!img.classList.contains('loaded') && !img.classList.contains('error')) {
-              // Force browser to load the image
-              const src = img.src;
-              img.src = '';
-              img.src = src;
-            }
-          });
-        }
-        
-        // ===== PRELOAD FIRST VISIBLE IMAGES =====
-        // This ensures the first row of images loads faster
-        function preloadFirstRow() {
-          const serviceCards = document.querySelectorAll('.service-card');
-          const firstRowCards = [];
-          
-          // Simple detection: assume first 3 cards are in first row on desktop
-          if (window.innerWidth > 900) {
-            // Desktop: first 3 cards
-            for (let i = 0; i < Math.min(3, serviceCards.length); i++) {
-              firstRowCards.push(serviceCards[i]);
-            }
-          } else if (window.innerWidth > 600) {
-            // Tablet: first 2 cards
-            for (let i = 0; i < Math.min(2, serviceCards.length); i++) {
-              firstRowCards.push(serviceCards[i]);
-            }
-          } else {
-            // Mobile: first card
-            firstRowCards.push(serviceCards[0]);
-          }
-          
-          // Add priority loading to first row images
-          firstRowCards.forEach(card => {
-            const img = card.querySelector('img');
-            const container = card.querySelector('.service-image');
-            if (img && container && !img.classList.contains('loaded')) {
-              container.classList.add('loading');
-              // Set fetch priority to high for first row
-              img.fetchPriority = 'high';
-            }
-          });
-        }
-        
-        // Run preload after a tiny delay to ensure DOM is ready
-        setTimeout(preloadFirstRow, 100);
-        
-        // ===== GLOBAL IMAGE ERROR HANDLER =====
-        // This catches any images that fail to load
-        window.addEventListener('error', function(e) {
-          if (e.target.tagName === 'IMG') {
-            const img = e.target;
-            const container = img.closest('.service-image');
-            
-            if (container) {
-              // Mark as error
-              container.classList.add('has-error');
-              container.classList.remove('loading');
-              img.classList.add('error');
-              
-              console.warn('❌ Image failed to load:', img.alt || img.src);
-              
-              // Optional: Try to reload once more
-              if (!img.hasAttribute('data-reload-attempted')) {
-                img.setAttribute('data-reload-attempted', 'true');
-                setTimeout(() => {
-                  const src = img.src;
-                  img.src = '';
-                  img.src = src;
-                }, 1000);
-              }
-            }
-          }
-        }, true);
-        
-        // ===== RESIZE HANDLER =====
-        // Update preload on resize
-        let resizeTimer;
-        window.addEventListener('resize', function() {
-          clearTimeout(resizeTimer);
-          resizeTimer = setTimeout(function() {
-            preloadFirstRow();
-          }, 250);
-        });
-        
-        // ===== PERFORMANCE MONITORING (Optional) =====
-        // Log when all images are loaded
-        function checkAllImagesLoaded() {
-          const images = document.querySelectorAll('.service-image img');
-          const totalImages = images.length;
-          let loadedCount = 0;
-          let errorCount = 0;
-          
-          images.forEach(img => {
-            if (img.classList.contains('loaded')) loadedCount++;
-            if (img.classList.contains('error')) errorCount++;
-          });
-          
-          if (loadedCount + errorCount === totalImages) {
-            console.log(`✅ All images processed: ${loadedCount} loaded, ${errorCount} failed`);
-          }
-        }
-        
-        // Check every second until done
-        const checkInterval = setInterval(function() {
-          const images = document.querySelectorAll('.service-image img');
-          const totalImages = images.length;
-          let loadedCount = 0;
-          let errorCount = 0;
-          
-          images.forEach(img => {
-            if (img.classList.contains('loaded')) loadedCount++;
-            if (img.classList.contains('error')) errorCount++;
-          });
-          
-          if (loadedCount + errorCount === totalImages) {
-            clearInterval(checkInterval);
-            console.log(`📊 Final stats: ${loadedCount}/${totalImages} images loaded successfully`);
-          }
-        }, 1000);
-        
-      }); // End DOMContentLoaded
-      
-    })(); // End IIFE
-  </script>
-
 </body>
 </html>
