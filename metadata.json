@@ -1,18 +1,12 @@
 {
-  "name": "Smile Royale Dental",
-  "version": "1.0.0",
-  "description": "Professional dental website with appointment booking system",
-  "author": "David Ajibua",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yourusername/smile-royale"
+  "name": "Smile Royale Dental Home",
+  "description": "Professional dental care website for Smile Royale Dental Home",
+  "version": "2.0.0",
+  "author": "Dr. Farouk Adebiyi",
+  "contact": {
+    "whatsapp": "2348103564479",
+    "instagram": "@smileroyale.ng"
   },
-  "keywords": [
-    "dental",
-    "clinic",
-    "appointment-booking",
-    "react",
-    "typescript",
-    "vite"
-  ]
+  "framework": "React + Vite + TypeScript",
+  "buildTool": "Vite 5"
 }
