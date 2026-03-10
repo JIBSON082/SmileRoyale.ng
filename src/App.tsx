@@ -1,69 +1,61 @@
 import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
 import './index.css'
 
 function App() {
   const [mobileMenu, setMobileMenu] = useState(false)
   const [selectedService, setSelectedService] = useState('')
-  const [otherService, setOtherService] = useState(false)
+  const [showOther, setShowOther] = useState(false)
 
   useEffect(() => {
     // Smooth scroll for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', function (e) {
+    const handleAnchorClick = (e: Event) => {
+      const target = e.target as HTMLAnchorElement
+      if (target.hash && target.hash.startsWith('#')) {
         e.preventDefault()
-        const href = this.getAttribute('href')
-        if (href && href !== '#') {
-          const element = document.querySelector(href)
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' })
-          }
+        const element = document.querySelector(target.hash)
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+          setMobileMenu(false)
         }
-      })
-    })
-
-    // AOS-like scroll animations with Intersection Observer
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('aos-animate')
-        }
-      })
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' })
-
-    document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el))
-
-    // Show/hide other service field
-    const serviceSelect = document.getElementById('waService') as HTMLSelectElement
-    if (serviceSelect) {
-      serviceSelect.addEventListener('change', (e) => {
-        const target = e.target as HTMLSelectElement
-        setSelectedService(target.value)
-        setOtherService(target.value === 'Other')
-      })
+      }
     }
 
-    return () => observer.disconnect()
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', handleAnchorClick)
+    })
+
+    return () => {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.removeEventListener('click', handleAnchorClick)
+      })
+    }
   }, [])
 
-  // WhatsApp form submit function
+  const handleServiceChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const value = e.target.value
+    setSelectedService(value)
+    setShowOther(value === 'Other')
+  }
+
+  const handleBookNow = (service: string) => {
+    setSelectedService(service)
+    setShowOther(false)
+    const bookingSection = document.querySelector('#booking')
+    if (bookingSection) {
+      bookingSection.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   const sendToWhatsApp = (e: React.FormEvent) => {
     e.preventDefault()
     
-    const form = e.target as HTMLFormElement
-    const nameInput = document.getElementById('waName') as HTMLInputElement
-    const phoneInput = document.getElementById('waPhone') as HTMLInputElement
-    const serviceSelect = document.getElementById('waService') as HTMLSelectElement
-    const otherTextarea = document.getElementById('waOtherText') as HTMLTextAreaElement
-    const dateInput = document.getElementById('waDate') as HTMLInputElement
+    const name = (document.getElementById('waName') as HTMLInputElement)?.value.trim()
+    const phone = (document.getElementById('waPhone') as HTMLInputElement)?.value.trim()
+    const service = (document.getElementById('waService') as HTMLSelectElement)?.value
+    const otherText = (document.getElementById('waOtherText') as HTMLTextAreaElement)?.value.trim() || ''
+    const date = (document.getElementById('waDate') as HTMLInputElement)?.value
 
-    const name = nameInput?.value.trim()
-    const phone = phoneInput?.value.trim()
-    const service = serviceSelect?.value
-    const otherText = otherTextarea?.value.trim() || ''
-    const dateInputValue = dateInput?.value
-
-    if (!name || !phone || !service || !dateInputValue) {
+    if (!name || !phone || !service || !date) {
       alert('Please fill in name, phone, service, and date')
       return
     }
@@ -76,7 +68,7 @@ function App() {
       return
     }
 
-    const dateObj = new Date(dateInputValue + 'T12:00:00')
+    const dateObj = new Date(date + 'T12:00:00')
     const day = dateObj.getDate()
     const month = dateObj.toLocaleDateString('en-GB', { month: 'long' })
     const year = dateObj.getFullYear()
@@ -93,44 +85,14 @@ function App() {
     
     const formattedDate = `${dayWithSuffix} ${month} ${year}`
     
-    const now = new Date()
-    const timestamp = now.toLocaleString('en-GB', { 
-      day: 'numeric', 
-      month: 'long', 
-      year: 'numeric', 
-      hour: '2-digit', 
-      minute: '2-digit' 
-    })
-
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbwZO_LpHcS7QILTUduxtefqtZX7ultwC7YaNY66UN3kbfuhRhJubqDNxX17oxefPPc/exec'
-    
-    const emailData = {
-      name: name,
-      phone: phone,
-      service: serviceDetail,
-      date: formattedDate,
-      timestamp: timestamp
-    }
-
-    fetch(scriptURL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(emailData)
-    }).catch(error => {
-      console.log('Email sent in background')
-    })
-
     const message = `Hello Smile Royale,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}.`
     const whatsappURL = `https://wa.me/2348103564479?text=${message}`
     
-    window.open(whatsappURL, '_blank', 'noopener,noreferrer')
+    window.open(whatsappURL, '_blank')
   }
 
   return (
-    <div className="app">
+    <div>
       {/* Top Bar */}
       <div className="top-bar">
         <div className="container">
@@ -178,13 +140,13 @@ function App() {
         {/* Mobile dropdown */}
         {mobileMenu && (
           <div className="mobile-menu-dropdown">
-            <a href="#hero" onClick={() => setMobileMenu(false)}>Home</a>
-            <a href="#about" onClick={() => setMobileMenu(false)}>About</a>
-            <a href="#services" onClick={() => setMobileMenu(false)}>Services</a>
-            <a href="#why" onClick={() => setMobileMenu(false)}>Why us</a>
-            <a href="#doctor" onClick={() => setMobileMenu(false)}>Our Dentist</a>
-            <a href="#testimonials" onClick={() => setMobileMenu(false)}>Testimonials</a>
-            <a href="#booking" onClick={() => setMobileMenu(false)}>Appointment</a>
+            <a href="#hero">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#why">Why us</a>
+            <a href="#doctor">Our Dentist</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#booking">Appointment</a>
             <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" className="mobile-wa-btn">Book an appointment</a>
           </div>
         )}
@@ -193,12 +155,7 @@ function App() {
       {/* Hero Section */}
       <section id="hero" className="hero">
         <div className="container">
-          <motion.div 
-            className="hero-content"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          <div className="hero-content">
             <div className="hero-badge">
               <i className="fas fa-tooth"></i> Your smile is our passion
             </div>
@@ -212,18 +169,18 @@ function App() {
               <a href="#booking" className="btn btn-primary">Book an appointment</a>
               <a href="#services" className="btn btn-outline-light">Our services</a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* About Section */}
       <section id="about" className="section">
         <div className="container">
-          <div className="about-heading" data-aos="fade-right">
+          <div className="about-heading">
             <h2 className="section-title">Professional Care for Your Perfect Smile</h2>
             <p className="section-subhead">At Smile Royale, we believe that a healthy smile is a reflection of your overall well-being. I am a dedicated dental professional providing a wide range of oral health solutions in a comfortable and professional environment. As your expert dentist, I am driven by a single mission: to provide high-quality dental care with passion and excellence.</p>
           </div>
-          <div data-aos="zoom-in-up" data-aos-duration="800" data-aos-delay="100">
+          <div>
             <div className="about-video-grid">
               <video autoPlay muted loop playsInline>
                 <source src="https://image2url.com/r2/default/videos/1772715970572-d9d8d2d6-29d3-4aa7-9450-7e3ae433aec7.mp4" type="video/mp4" />
@@ -239,25 +196,21 @@ function App() {
       {/* Services Section */}
       <section id="services" className="section" style={{ background: 'var(--off-white)' }}>
         <div className="container">
-          <h2 className="section-title" data-aos="fade-down">Comprehensive Dental Solutions</h2>
-          <p className="section-subhead" data-aos="fade-down" data-aos-delay="50">I offer a full suite of dental treatments to keep your teeth healthy and your smile bright.</p>
+          <h2 className="section-title">Comprehensive Dental Solutions</h2>
+          <p className="section-subhead">I offer a full suite of dental treatments to keep your teeth healthy and your smile bright.</p>
           
           <div className="services-grid">
             {/* Discounted Consultations */}
-            <div className="service-card" data-aos="flip-left" data-aos-duration="800">
+            <div className="service-card">
               <div className="service-image loading">
                 <img 
                   src="https://image2url.com/r2/default/images/1772933454875-5408d445-0d50-493c-bd2a-c85d1d713743.jpg" 
                   alt="Discounted dental consultation"
                   loading="lazy"
                   onLoad={(e) => {
-                    e.currentTarget.classList.add('loaded')
-                    e.currentTarget.closest('.service-image')?.classList.remove('loading')
-                  }}
-                  onError={(e) => {
-                    e.currentTarget.classList.add('error')
-                    e.currentTarget.closest('.service-image')?.classList.add('has-error')
-                    e.currentTarget.closest('.service-image')?.classList.remove('loading')
+                    const img = e.target as HTMLImageElement
+                    img.classList.add('loaded')
+                    img.closest('.service-image')?.classList.remove('loading')
                   }} />
                 <div className="error-message">
                   <i className="fas fa-image" style={{ fontSize: '2rem', marginBottom: '0.5rem', display: 'block' }}></i>
@@ -267,25 +220,21 @@ function App() {
               <div className="service-content">
                 <h3>Discounted Consultations</h3>
                 <p>Professional dental advice and examinations at affordable rates to get you started on your oral health journey.</p>
-                <a href="#booking" className="service-btn" onClick={() => setSelectedService('Consultation')}>Book appointment</a>
+                <button className="service-btn" onClick={() => handleBookNow('Consultation')}>Book appointment</button>
               </div>
             </div>
             
             {/* Scaling and Polishing */}
-            <div className="service-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="100">
+            <div className="service-card">
               <div className="service-image loading">
                 <img 
                   src="https://image2url.com/r2/default/images/1772933737652-95451b6d-46b1-4f48-89b9-816a220e3fa2.jpg" 
                   alt="Scaling and polishing dental procedure"
                   loading="lazy"
                   onLoad={(e) => {
-                    e.currentTarget.classList.add('loaded')
-                    e.currentTarget.closest('.service-image')?.classList.remove('loading')
-                  }}
-                  onError={(e) => {
-                    e.currentTarget.classList.add('error')
-                    e.currentTarget.closest('.service-image')?.classList.add('has-error')
-                    e.currentTarget.closest('.service-image')?.classList.remove('loading')
+                    const img = e.target as HTMLImageElement
+                    img.classList.add('loaded')
+                    img.closest('.service-image')?.classList.remove('loading')
                   }} />
                 <div className="error-message">
                   <i className="fas fa-image" style={{ fontSize: '2rem', marginBottom: '0.5rem', display: 'block' }}></i>
@@ -295,25 +244,21 @@ function App() {
               <div className="service-content">
                 <h3>Scaling and Polishing</h3>
                 <p>Professional cleaning to remove plaque and tartar, preventing gum disease and leaving your teeth smooth and fresh.</p>
-                <a href="#booking" className="service-btn" onClick={() => setSelectedService('Scaling and Polishing')}>Book appointment</a>
+                <button className="service-btn" onClick={() => handleBookNow('Scaling and Polishing')}>Book appointment</button>
               </div>
             </div>
             
             {/* Teeth Whitening */}
-            <div className="service-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="200">
+            <div className="service-card">
               <div className="service-image loading">
                 <img 
                   src="https://image2url.com/r2/default/images/1772933897946-80c92104-5181-4b65-a3d5-b2ab7f155047.jpg" 
                   alt="Teeth whitening treatment"
                   loading="lazy"
                   onLoad={(e) => {
-                    e.currentTarget.classList.add('loaded')
-                    e.currentTarget.closest('.service-image')?.classList.remove('loading')
-                  }}
-                  onError={(e) => {
-                    e.currentTarget.classList.add('error')
-                    e.currentTarget.closest('.service-image')?.classList.add('has-error')
-                    e.currentTarget.closest('.service-image')?.classList.remove('loading')
+                    const img = e.target as HTMLImageElement
+                    img.classList.add('loaded')
+                    img.closest('.service-image')?.classList.remove('loading')
                   }} />
                 <div className="error-message">
                   <i className="fas fa-image" style={{ fontSize: '2rem', marginBottom: '0.5rem', display: 'block' }}></i>
@@ -323,25 +268,21 @@ function App() {
               <div className="service-content">
                 <h3>Teeth Whitening</h3>
                 <p>Advanced whitening treatments to brighten your smile by several shades and remove stubborn stains effectively.</p>
-                <a href="#booking" className="service-btn" onClick={() => setSelectedService('Teeth Whitening')}>Book appointment</a>
+                <button className="service-btn" onClick={() => handleBookNow('Teeth Whitening')}>Book appointment</button>
               </div>
             </div>
             
             {/* Crowns & RCTs */}
-            <div className="service-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="300">
+            <div className="service-card">
               <div className="service-image loading">
                 <img 
                   src="https://image2url.com/r2/default/images/1772933985462-659a1692-bbc3-4b09-a8fd-2c0ae95ee647.jpg" 
                   alt="Dental crown and root canal treatment"
                   loading="lazy"
                   onLoad={(e) => {
-                    e.currentTarget.classList.add('loaded')
-                    e.currentTarget.closest('.service-image')?.classList.remove('loading')
-                  }}
-                  onError={(e) => {
-                    e.currentTarget.classList.add('error')
-                    e.currentTarget.closest('.service-image')?.classList.add('has-error')
-                    e.currentTarget.closest('.service-image')?.classList.remove('loading')
+                    const img = e.target as HTMLImageElement
+                    img.classList.add('loaded')
+                    img.closest('.service-image')?.classList.remove('loading')
                   }} />
                 <div className="error-message">
                   <i className="fas fa-image" style={{ fontSize: '2rem', marginBottom: '0.5rem', display: 'block' }}></i>
@@ -351,25 +292,21 @@ function App() {
               <div className="service-content">
                 <h3>Crowns & RCTs</h3>
                 <p>Restorative solutions to save damaged teeth and restore their natural function, strength, and appearance.</p>
-                <a href="#booking" className="service-btn" onClick={() => setSelectedService('Crown / RCT')}>Book appointment</a>
+                <button className="service-btn" onClick={() => handleBookNow('Crown / RCT')}>Book appointment</button>
               </div>
             </div>
             
             {/* General Procedures */}
-            <div className="service-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="400">
+            <div className="service-card">
               <div className="service-image loading">
                 <img 
                   src="https://image2url.com/r2/default/images/1772955501327-30f1e658-7e21-4a9e-b5dc-0e2b66395f1b.jpg" 
                   alt="General dental procedures"
                   loading="lazy"
                   onLoad={(e) => {
-                    e.currentTarget.classList.add('loaded')
-                    e.currentTarget.closest('.service-image')?.classList.remove('loading')
-                  }}
-                  onError={(e) => {
-                    e.currentTarget.classList.add('error')
-                    e.currentTarget.closest('.service-image')?.classList.add('has-error')
-                    e.currentTarget.closest('.service-image')?.classList.remove('loading')
+                    const img = e.target as HTMLImageElement
+                    img.classList.add('loaded')
+                    img.closest('.service-image')?.classList.remove('loading')
                   }} />
                 <div className="error-message">
                   <i className="fas fa-image" style={{ fontSize: '2rem', marginBottom: '0.5rem', display: 'block' }}></i>
@@ -379,7 +316,7 @@ function App() {
               <div className="service-content">
                 <h3>General Procedures</h3>
                 <p>Fillings, extractions, and specialized treatments – comprehensive care for all your dental needs in one place.</p>
-                <a href="#booking" className="service-btn" onClick={() => setSelectedService('General checkup')}>Book appointment</a>
+                <button className="service-btn" onClick={() => handleBookNow('General checkup')}>Book appointment</button>
               </div>
             </div>
           </div>
@@ -389,24 +326,24 @@ function App() {
       {/* Why Us Section */}
       <section id="why" className="section">
         <div className="container">
-          <h2 className="section-title" data-aos="fade-up">The Smile Royale Advantage</h2>
+          <h2 className="section-title">The Smile Royale Advantage</h2>
           <div className="advantage-grid">
-            <div className="advantage-card" data-aos="zoom-in">
+            <div className="advantage-card">
               <i className="fas fa-heart"></i>
               <h4>Passion-Driven Care</h4>
               <p>"Your Smile is My Passion." I care about the person behind the teeth.</p>
             </div>
-            <div className="advantage-card" data-aos="zoom-in" data-aos-delay="80">
+            <div className="advantage-card">
               <i className="fas fa-user-md"></i>
               <h4>Expert Dentist</h4>
               <p>Highly skilled professional dedicated to the latest dental practices.</p>
             </div>
-            <div className="advantage-card" data-aos="zoom-in" data-aos-delay="160">
+            <div className="advantage-card">
               <i className="fas fa-coins"></i>
               <h4>Affordable Excellence</h4>
               <p>Quality dental care accessible to all – discounted consultations.</p>
             </div>
-            <div className="advantage-card" data-aos="zoom-in" data-aos-delay="240">
+            <div className="advantage-card">
               <i className="fas fa-clinic-medical"></i>
               <h4>Comprehensive Care</h4>
               <p>From preventive care to restorative surgery, your one-stop shop.</p>
@@ -418,18 +355,18 @@ function App() {
       {/* Doctor Profile Section */}
       <section id="doctor" className="section" style={{ background: 'var(--pure-white)' }}>
         <div className="container">
-          <h2 className="section-title" data-aos="fade-down">Meet Your Dentist</h2>
-          <p className="section-subhead" data-aos="fade-down" data-aos-delay="50">Expert care with a personal touch</p>
+          <h2 className="section-title">Meet Your Dentist</h2>
+          <p className="section-subhead">Expert care with a personal touch</p>
           
           <div className="doctor-grid">
-            <div className="doctor-image" data-aos="fade-right">
+            <div className="doctor-image">
               <img 
                 src="https://image2url.com/r2/default/images/1772889924884-a9da39dc-856d-4411-aac2-f3f59a7e3884.jpg" 
                 alt="Dr. Farouk Adebiyi"
                 loading="lazy" />
             </div>
             
-            <div className="doctor-info" data-aos="fade-left">
+            <div className="doctor-info">
               <h2 className="doctor-name">Dr. Farouk Adebiyi</h2>
               <div className="doctor-title">Dentist | Founder, Smile Royale Dental Home</div>
               
@@ -463,11 +400,11 @@ function App() {
       {/* Testimonials Section */}
       <section id="testimonials" className="section" style={{ background: 'var(--off-white)' }}>
         <div className="container">
-          <h2 className="section-title" data-aos="fade-down">Smile Transformations</h2>
-          <p className="section-subhead" data-aos="fade-down" data-aos-delay="50">Real results from our happy patients</p>
+          <h2 className="section-title">Smile Transformations</h2>
+          <p className="section-subhead">Real results from our happy patients</p>
           
           <div className="testimonials-grid">
-            <div className="testimonials-item" data-aos="zoom-in">
+            <div className="testimonials-item">
               <video className="testimonials-video" autoPlay muted loop playsInline>
                 <source src="https://image2url.com/r2/default/videos/1772888015053-2c6f0de0-f226-40da-9b5a-6c625bccfaa7.mp4" type="video/mp4" />
               </video>
@@ -477,7 +414,7 @@ function App() {
               </div>
             </div>
             
-            <div className="testimonials-item" data-aos="zoom-in" data-aos-delay="100">
+            <div className="testimonials-item">
               <video className="testimonials-video" autoPlay muted loop playsInline>
                 <source src="https://image2url.com/r2/default/videos/1772888063863-6b5271e1-81da-432c-86cc-c34dfadced3b.mp4" type="video/mp4" />
               </video>
@@ -489,7 +426,7 @@ function App() {
           </div>
           
           <div className="testimonials-grid" style={{ marginTop: '2rem' }}>
-            <div className="testimonials-item" data-aos="zoom-in" style={{ gridColumn: '1/-1', maxWidth: '600px', margin: '0 auto' }}>
+            <div className="testimonials-item" style={{ gridColumn: '1/-1', maxWidth: '600px', margin: '0 auto' }}>
               <img 
                 src="https://image2url.com/r2/default/images/1772887670391-d8bfbae1-a8b6-4617-86a3-1991a4185400.jpg" 
                 alt="Dental transformation before and after" 
@@ -507,8 +444,8 @@ function App() {
       {/* Booking Section */}
       <section id="booking" className="section" style={{ background: '#f2f6fc' }}>
         <div className="container">
-          <h2 className="section-title" data-aos="fade-down">Book an Appointment</h2>
-          <div className="booking-grid" data-aos="fade-up" data-aos-duration="900">
+          <h2 className="section-title">Book an Appointment</h2>
+          <div className="booking-grid">
             <div className="booking-info">
               <h3>Ready to Transform Your Smile?</h3>
               <p>Don't wait for a dental emergency. Schedule your visit with me today and experience the Smile Royale difference.</p>
@@ -528,10 +465,7 @@ function App() {
                 </div>
                 <div className="form-group">
                   <label className="form-label">Service Required</label>
-                  <select id="waService" value={selectedService} onChange={(e) => {
-                    setSelectedService(e.target.value)
-                    setOtherService(e.target.value === 'Other')
-                  }} required>
+                  <select id="waService" value={selectedService} onChange={handleServiceChange} required>
                     <option value="" disabled>Select a service</option>
                     <option value="Consultation">Consultation</option>
                     <option value="Scaling and Polishing">Scaling and Polishing</option>
@@ -541,7 +475,7 @@ function App() {
                     <option value="Other">Other (please specify)</option>
                   </select>
                 </div>
-                {otherService && (
+                {showOther && (
                   <div className="form-group">
                     <label className="form-label">Describe your needs</label>
                     <textarea id="waOtherText" placeholder="Please describe the service you need" rows={2}></textarea>
