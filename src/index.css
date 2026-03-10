@@ -27,7 +27,7 @@
   --radius-md:   1.5rem;
   --radius-lg:   2.5rem;
   --radius-pill: 60px;
-  --transition:  0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition:  0.15s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 html {
@@ -66,11 +66,11 @@ button { font-family: inherit; }
 .reveal {
   opacity: 0;
   transform: translateY(32px);
-  transition: opacity 0.65s var(--transition), transform 0.65s var(--transition);
+  transition: opacity 0.3s var(--transition), transform 0.3s var(--transition);
 }
 .reveal--left  { transform: translateX(-40px); }
 .reveal--right { transform: translateX(40px); }
-.reveal--delay { transition-delay: 0.15s; }
+.reveal--delay { transition-delay: 0.08s; }
 .reveal--visible { opacity: 1; transform: none; }
 
 /* ── Section helpers ──────────────────────────────────────── */
@@ -413,7 +413,7 @@ button { font-family: inherit; }
 /* Cinematic staggered entry */
 .hero-content > * {
   opacity: 0;
-  transition: opacity 0.9s var(--transition), transform 0.9s var(--transition);
+  transition: opacity 0.4s var(--transition), transform 0.4s var(--transition);
 }
 
 .hero-content > *:nth-child(1) { transform: translateY(20px); }
@@ -421,10 +421,10 @@ button { font-family: inherit; }
 .hero-content > *:nth-child(3) { transform: translateY(25px); }
 .hero-content > *:nth-child(4) { transform: translateX(-20px); }
 
-.hero-content--visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.15s; }
-.hero-content--visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.35s; }
-.hero-content--visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.58s; }
-.hero-content--visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.75s; }
+.hero-content--visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.05s; }
+.hero-content--visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.12s; }
+.hero-content--visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.20s; }
+.hero-content--visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.28s; }
 
 .hero-badge {
   display: inline-flex;
