@@ -49,13 +49,13 @@ const SERVICES: ServiceCard[] = [
 ]
 
 const ADVANTAGES = [
-  { icon: 'fas fa-heart', title: 'Passion-Driven Care', desc: '"Your Smile is My Passion." I care about the person behind the teeth.' },
-  { icon: 'fas fa-user-md', title: 'Expert Dentist', desc: 'Highly skilled professional dedicated to the latest dental practices.' },
-  { icon: 'fas fa-coins', title: 'Affordable Excellence', desc: 'Quality dental care accessible to all – discounted consultations.' },
-  { icon: 'fas fa-clinic-medical', title: 'Comprehensive Care', desc: 'From preventive care to restorative surgery, your one-stop shop.' },
+  { icon: 'fas fa-heart',           title: 'Passion-Driven Care',   desc: '"Your Smile is My Passion." I care about the person behind the teeth.' },
+  { icon: 'fas fa-user-md',         title: 'Expert Dentist',        desc: 'Highly skilled professional dedicated to the latest dental practices.' },
+  { icon: 'fas fa-coins',           title: 'Affordable Excellence', desc: 'Quality dental care accessible to all – discounted consultations.' },
+  { icon: 'fas fa-clinic-medical',  title: 'Comprehensive Care',    desc: 'From preventive care to restorative surgery, your one-stop shop.' },
 ]
 
-// ─── Hooks ───────────────────────────────────────────────────────────────────
+// ─── Hook ─────────────────────────────────────────────────────────────────────
 function useIntersectionObserver(threshold = 0.15) {
   const ref = useRef<HTMLElement>(null)
   const [isVisible, setIsVisible] = useState(false)
@@ -74,16 +74,22 @@ function useIntersectionObserver(threshold = 0.15) {
   return { ref, isVisible }
 }
 
-// ─── Sub-components ──────────────────────────────────────────────────────────
+// ─── TopBar ───────────────────────────────────────────────────────────────────
 function TopBar() {
   return (
     <div className="top-bar">
       <div className="container">
         <div className="top-contact">
-          <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services."
+            target="_blank" rel="noopener noreferrer"
+          >
             <i className="fab fa-whatsapp" /> 08103564479
           </a>
-          <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer">
+          <a
+            href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw=="
+            target="_blank" rel="noopener noreferrer"
+          >
             <i className="fab fa-instagram" /> @smileroyale.ng
           </a>
         </div>
@@ -92,7 +98,14 @@ function TopBar() {
   )
 }
 
-function Header({ mobileOpen, setMobileOpen }: { mobileOpen: boolean; setMobileOpen: (v: boolean) => void }) {
+// ─── Header ───────────────────────────────────────────────────────────────────
+function Header({
+  mobileOpen,
+  setMobileOpen,
+}: {
+  mobileOpen: boolean
+  setMobileOpen: (v: boolean) => void
+}) {
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -102,13 +115,13 @@ function Header({ mobileOpen, setMobileOpen }: { mobileOpen: boolean; setMobileO
   }, [])
 
   const navLinks = [
-    { href: '#hero', label: 'Home' },
-    { href: '#about', label: 'About' },
-    { href: '#services', label: 'Services' },
-    { href: '#why', label: 'Why us' },
-    { href: '#doctor', label: 'Our Dentist' },
+    { href: '#hero',         label: 'Home' },
+    { href: '#about',        label: 'About' },
+    { href: '#services',     label: 'Services' },
+    { href: '#why',          label: 'Why us' },
+    { href: '#doctor',       label: 'Our Dentist' },
     { href: '#testimonials', label: 'Testimonials' },
-    { href: '#booking', label: 'Appointment' },
+    { href: '#booking',      label: 'Appointment' },
   ]
 
   return (
@@ -116,7 +129,10 @@ function Header({ mobileOpen, setMobileOpen }: { mobileOpen: boolean; setMobileO
       <div className="container">
         <a href="#hero" className="logo" onClick={() => setMobileOpen(false)}>
           <div className="logo-icon">
-            <img src="https://image2url.com/r2/default/images/1772738359714-c3bea4c7-78e3-4ba1-b90f-1bfd03bcbcdb.jpg" alt="Smile Royale Logo" />
+            <img
+              src="https://image2url.com/r2/default/images/1772738359714-c3bea4c7-78e3-4ba1-b90f-1bfd03bcbcdb.jpg"
+              alt="Smile Royale Logo"
+            />
           </div>
           <div className="logo-text">
             <span className="logo-main">SMILE</span>
@@ -143,12 +159,17 @@ function Header({ mobileOpen, setMobileOpen }: { mobileOpen: boolean; setMobileO
 
       <div className={`mobile-dropdown ${mobileOpen ? 'mobile-dropdown--open' : ''}`}>
         {navLinks.map(l => (
-          <a key={l.href} href={l.href} className="mobile-link" onClick={() => setMobileOpen(false)}>{l.label}</a>
+          <a
+            key={l.href} href={l.href}
+            className="mobile-link"
+            onClick={() => setMobileOpen(false)}
+          >
+            {l.label}
+          </a>
         ))}
         <a
           href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services."
-          target="_blank"
-          rel="noopener noreferrer"
+          target="_blank" rel="noopener noreferrer"
           className="mobile-wa-btn"
           onClick={() => setMobileOpen(false)}
         >
@@ -159,6 +180,7 @@ function Header({ mobileOpen, setMobileOpen }: { mobileOpen: boolean; setMobileO
   )
 }
 
+// ─── Hero ─────────────────────────────────────────────────────────────────────
 function Hero() {
   const [loaded, setLoaded] = useState(false)
   useEffect(() => { setTimeout(() => setLoaded(true), 100) }, [])
@@ -171,6 +193,7 @@ function Hero() {
           <div key={i} className={`particle particle-${i + 1}`} />
         ))}
       </div>
+
       <div className="container">
         <div className={`hero-content ${loaded ? 'hero-content--visible' : ''}`}>
           <div className="hero-badge">
@@ -182,8 +205,8 @@ function Hero() {
             <h2>Our Pride.</h2>
           </div>
           <p>
-            Experience professional dental care tailored to your needs. From routine checkups to advanced procedures,
-            we are committed to giving you a reason to smile.
+            Experience professional dental care tailored to your needs. From routine checkups
+            to advanced procedures, we are committed to giving you a reason to smile.
           </p>
           <div className="hero-buttons">
             <a href="#booking" className="btn btn-primary">
@@ -195,6 +218,7 @@ function Hero() {
           </div>
         </div>
       </div>
+
       <div className="hero-scroll-indicator">
         <span />
       </div>
@@ -202,6 +226,7 @@ function Hero() {
   )
 }
 
+// ─── About ────────────────────────────────────────────────────────────────────
 function About() {
   const { ref, isVisible } = useIntersectionObserver()
   return (
@@ -210,10 +235,10 @@ function About() {
         <div className={`about-heading reveal ${isVisible ? 'reveal--visible' : ''}`}>
           <h2 className="section-title">Professional Care for Your Perfect Smile</h2>
           <p className="section-subhead">
-            At Smile Royale, we believe that a healthy smile is a reflection of your overall well-being. I am a dedicated
-            dental professional providing a wide range of oral health solutions in a comfortable and professional
-            environment. As your expert dentist, I am driven by a single mission: to provide high-quality dental care
-            with passion and excellence.
+            At Smile Royale, we believe that a healthy smile is a reflection of your overall
+            well-being. I am a dedicated dental professional providing a wide range of oral health
+            solutions in a comfortable and professional environment. As your expert dentist, I am
+            driven by a single mission: to provide high-quality dental care with passion and excellence.
           </p>
         </div>
         <div className={`about-video-grid reveal reveal--delay ${isVisible ? 'reveal--visible' : ''}`}>
@@ -233,9 +258,18 @@ function About() {
   )
 }
 
-function ServiceCardItem({ service, index, onBook }: { service: ServiceCard; index: number; onBook: (key: string) => void }) {
+// ─── Service Card ─────────────────────────────────────────────────────────────
+function ServiceCardItem({
+  service,
+  index,
+  onBook,
+}: {
+  service: ServiceCard
+  index: number
+  onBook: (key: string) => void
+}) {
   const [imgLoaded, setImgLoaded] = useState(false)
-  const [imgError, setImgError] = useState(false)
+  const [imgError, setImgError]   = useState(false)
   const { ref, isVisible } = useIntersectionObserver(0.1)
 
   return (
@@ -273,6 +307,7 @@ function ServiceCardItem({ service, index, onBook }: { service: ServiceCard; ind
   )
 }
 
+// ─── Services ─────────────────────────────────────────────────────────────────
 function Services({ onServiceSelect }: { onServiceSelect: (s: string) => void }) {
   const { ref, isVisible } = useIntersectionObserver()
   return (
@@ -280,7 +315,9 @@ function Services({ onServiceSelect }: { onServiceSelect: (s: string) => void })
       <div className="container">
         <div className={`section-header reveal ${isVisible ? 'reveal--visible' : ''}`}>
           <h2 className="section-title">Comprehensive Dental Solutions</h2>
-          <p className="section-subhead">I offer a full suite of dental treatments to keep your teeth healthy and your smile bright.</p>
+          <p className="section-subhead">
+            I offer a full suite of dental treatments to keep your teeth healthy and your smile bright.
+          </p>
         </div>
         <div className="services-grid">
           {SERVICES.map((s, i) => (
@@ -292,6 +329,7 @@ function Services({ onServiceSelect }: { onServiceSelect: (s: string) => void })
   )
 }
 
+// ─── Why ──────────────────────────────────────────────────────────────────────
 function Why() {
   const { ref, isVisible } = useIntersectionObserver()
   return (
@@ -320,6 +358,7 @@ function Why() {
   )
 }
 
+// ─── Doctor ───────────────────────────────────────────────────────────────────
 function Doctor() {
   const { ref, isVisible } = useIntersectionObserver()
   return (
@@ -338,24 +377,28 @@ function Doctor() {
               />
             </div>
           </div>
+
           <div className={`doctor-info reveal reveal--right ${isVisible ? 'reveal--visible' : ''}`}>
             <h2 className="doctor-name">Dr. Farouk Adebiyi</h2>
-            <div className="doctor-title-badge">Dentist | Founder, Smile Royale Dental Home</div>
+            <div className="doctor-title-badge">
+              Dentist | Founder, Smile Royale Dental Home
+            </div>
             <p className="doctor-bio">
-              Dr. Farouk Adebiyi is a dedicated Dental Surgeon and the visionary founder of Smile Royale Dental Home.
-              With a passion for blending clinical excellence with modern digital engagement, he has established himself
-              as a prominent voice in Nigerian dentistry.
+              Dr. Farouk Adebiyi is a dedicated Dental Surgeon and the visionary founder of Smile
+              Royale Dental Home. With a passion for blending clinical excellence with modern digital
+              engagement, he has established himself as a prominent voice in Nigerian dentistry.
             </p>
             <p className="doctor-bio">
-              Dr. Adebiyi is widely recognized for his work as an oral health influencer, using his platform to demystify
-              dental procedures and promote preventive care to a global audience. His unique background as a Digital Product
-              Manager allows him to integrate technology-driven solutions into patient care, ensuring a seamless end-to-end journey.
+              Dr. Adebiyi is widely recognized for his work as an oral health influencer, using his
+              platform to demystify dental procedures and promote preventive care to a global audience.
+              His unique background as a Digital Product Manager allows him to integrate
+              technology-driven solutions into patient care, ensuring a seamless end-to-end journey.
             </p>
             <div className="expertise-grid">
               {[
-                { title: 'Preventive Dentistry', desc: 'Dedicated to educating patients on long-term oral hygiene' },
+                { title: 'Preventive Dentistry',   desc: 'Dedicated to educating patients on long-term oral hygiene' },
                 { title: 'Restorative Procedures', desc: 'Skilled in restoring both function and aesthetics to your smile' },
-                { title: 'Oral Health Advocacy', desc: 'Leading digital campaigns for dental literacy and accessibility' },
+                { title: 'Oral Health Advocacy',   desc: 'Leading digital campaigns for dental literacy and accessibility' },
               ].map(e => (
                 <div key={e.title} className="expertise-item">
                   <h4>{e.title}</h4>
@@ -373,6 +416,7 @@ function Doctor() {
   )
 }
 
+// ─── Testimonials ─────────────────────────────────────────────────────────────
 function Testimonials() {
   const { ref, isVisible } = useIntersectionObserver()
   return (
@@ -385,7 +429,7 @@ function Testimonials() {
         <div className="testimonials-grid">
           {[
             { src: 'https://image2url.com/r2/default/videos/1772888015053-2c6f0de0-f226-40da-9b5a-6c625bccfaa7.mp4', title: 'Teeth Whitening', delay: 0 },
-            { src: 'https://image2url.com/r2/default/videos/1772888063863-6b5271e1-81da-432c-86cc-c34dfadced3b.mp4', title: 'Smile Makeover', delay: 100 },
+            { src: 'https://image2url.com/r2/default/videos/1772888063863-6b5271e1-81da-432c-86cc-c34dfadced3b.mp4', title: 'Smile Makeover',  delay: 100 },
           ].map(v => (
             <div
               key={v.title}
@@ -404,7 +448,11 @@ function Testimonials() {
             </div>
           ))}
         </div>
-        <div className={`testimonials-single reveal ${isVisible ? 'reveal--visible' : ''}`} style={{ transitionDelay: '200ms' }}>
+
+        <div
+          className={`testimonials-single reveal ${isVisible ? 'reveal--visible' : ''}`}
+          style={{ transitionDelay: '200ms' }}
+        >
           <div className="testimonials-item">
             <div className="testimonials-media">
               <img
@@ -423,10 +471,17 @@ function Testimonials() {
   )
 }
 
-function BookingForm({ selectedService, setSelectedService }: { selectedService: string; setSelectedService: (s: string) => void }) {
-  const [name, setName] = useState('')
-  const [phone, setPhone] = useState('')
-  const [date, setDate] = useState('')
+// ─── Booking Form ─────────────────────────────────────────────────────────────
+function BookingForm({
+  selectedService,
+  setSelectedService,
+}: {
+  selectedService: string
+  setSelectedService: (s: string) => void
+}) {
+  const [name,      setName]      = useState('')
+  const [phone,     setPhone]     = useState('')
+  const [date,      setDate]      = useState('')
   const [otherText, setOtherText] = useState('')
 
   const sendToWhatsApp = useCallback(() => {
@@ -434,6 +489,7 @@ function BookingForm({ selectedService, setSelectedService }: { selectedService:
       alert('Please fill in name, phone, service, and date')
       return
     }
+
     let serviceDetail = selectedService
     if (selectedService === 'Other') {
       if (!otherText.trim()) { alert('Please describe the service you need'); return }
@@ -441,23 +497,29 @@ function BookingForm({ selectedService, setSelectedService }: { selectedService:
     }
 
     const dateObj = new Date(date + 'T12:00:00')
-    const day = dateObj.getDate()
+    const day   = dateObj.getDate()
     const month = dateObj.toLocaleDateString('en-GB', { month: 'long' })
-    const year = dateObj.getFullYear()
+    const year  = dateObj.getFullYear()
     const suffixes = ['th', 'st', 'nd', 'rd']
-    const v = day % 100
+    const v      = day % 100
     const suffix = suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0]
     const formattedDate = `${day}${suffix} ${month} ${year}`
 
     const now = new Date()
-    const timestamp = now.toLocaleString('en-GB', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+    const timestamp = now.toLocaleString('en-GB', {
+      day: 'numeric', month: 'long', year: 'numeric',
+      hour: '2-digit', minute: '2-digit',
+    })
 
     const scriptURL = 'https://script.google.com/macros/s/AKfycbwZO_LpHcS7QILTUduxtefqtZX7ultwC7YaNY66UN3kbfuhRhJubqDNxX17oxefPPc/exec'
     fetch(scriptURL, {
       method: 'POST',
       mode: 'no-cors',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: name.trim(), phone: phone.trim(), service: serviceDetail, date: formattedDate, timestamp }),
+      body: JSON.stringify({
+        name: name.trim(), phone: phone.trim(),
+        service: serviceDetail, date: formattedDate, timestamp,
+      }),
     }).catch(() => {})
 
     const message = `Hello Smile Royale,%0A%0AI'm ${encodeURIComponent(name.trim())}. I want to book an appointment for ${encodeURIComponent(serviceDetail)} on ${encodeURIComponent(formattedDate)}.`
@@ -468,11 +530,17 @@ function BookingForm({ selectedService, setSelectedService }: { selectedService:
     <div className="booking-form">
       <div className="form-group">
         <label className="form-label">Full Name</label>
-        <input type="text" placeholder="Your full name" value={name} onChange={e => setName(e.target.value)} required />
+        <input
+          type="text" placeholder="Your full name"
+          value={name} onChange={e => setName(e.target.value)} required
+        />
       </div>
       <div className="form-group">
         <label className="form-label">Phone Number</label>
-        <input type="tel" placeholder="Your phone number" value={phone} onChange={e => setPhone(e.target.value)} required />
+        <input
+          type="tel" placeholder="Your phone number"
+          value={phone} onChange={e => setPhone(e.target.value)} required
+        />
       </div>
       <div className="form-group">
         <label className="form-label">Service Required</label>
@@ -499,16 +567,27 @@ function BookingForm({ selectedService, setSelectedService }: { selectedService:
       )}
       <div className="form-group">
         <label className="form-label">Preferred Date</label>
-        <input type="date" value={date} onChange={e => setDate(e.target.value)} required min={new Date().toISOString().split('T')[0]} />
+        <input
+          type="date" value={date}
+          onChange={e => setDate(e.target.value)}
+          required min={new Date().toISOString().split('T')[0]}
+        />
       </div>
       <button type="button" className="btn-submit" onClick={sendToWhatsApp}>
-        <i className="fab fa-whatsapp" /> Confirm via WhatsApp
+        <i className="fab fa-whatsapp" /> Confirm Appointment
       </button>
     </div>
   )
 }
 
-function Booking({ selectedService, setSelectedService }: { selectedService: string; setSelectedService: (s: string) => void }) {
+// ─── Booking Section ──────────────────────────────────────────────────────────
+function Booking({
+  selectedService,
+  setSelectedService,
+}: {
+  selectedService: string
+  setSelectedService: (s: string) => void
+}) {
   const { ref, isVisible } = useIntersectionObserver()
   return (
     <section id="booking" className="section section--booking" ref={ref as React.RefObject<HTMLElement>}>
@@ -519,11 +598,13 @@ function Booking({ selectedService, setSelectedService }: { selectedService: str
         <div className={`booking-grid reveal ${isVisible ? 'reveal--visible' : ''}`}>
           <div className="booking-info">
             <h3>Ready to Transform Your Smile?</h3>
-            <p>Don't wait for a dental emergency. Schedule your visit with me today and experience the Smile Royale difference.</p>
+            <p>
+              Don't wait for a dental emergency. Schedule your visit with me today and experience
+              the Smile Royale difference.
+            </p>
             <a
               href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services."
-              target="_blank"
-              rel="noopener noreferrer"
+              target="_blank" rel="noopener noreferrer"
               className="booking-wa-link"
             >
               <i className="fab fa-whatsapp" /> 08103564479
@@ -541,6 +622,7 @@ function Booking({ selectedService, setSelectedService }: { selectedService: str
   )
 }
 
+// ─── Footer ───────────────────────────────────────────────────────────────────
 function Footer() {
   return (
     <footer className="footer">
@@ -549,7 +631,10 @@ function Footer() {
           <div className="footer-brand">
             <div className="logo">
               <div className="logo-icon">
-                <img src="https://image2url.com/r2/default/images/1772738359714-c3bea4c7-78e3-4ba1-b90f-1bfd03bcbcdb.jpg" alt="Smile Royale Logo" />
+                <img
+                  src="https://image2url.com/r2/default/images/1772738359714-c3bea4c7-78e3-4ba1-b90f-1bfd03bcbcdb.jpg"
+                  alt="Smile Royale Logo"
+                />
               </div>
               <div className="logo-text">
                 <span className="logo-main">SMILE</span>
@@ -584,18 +669,14 @@ function Footer() {
 
 // ─── Root App ─────────────────────────────────────────────────────────────────
 export default function App() {
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const [selectedService, setSelectedService] = useState('')
+  const [mobileOpen,       setMobileOpen]       = useState(false)
+  const [selectedService,  setSelectedService]  = useState('')
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setMobileOpen(false) }
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [])
-
-  const handleServiceSelect = (service: string) => {
-    setSelectedService(service)
-  }
 
   return (
     <>
@@ -604,7 +685,7 @@ export default function App() {
       <main>
         <Hero />
         <About />
-        <Services onServiceSelect={handleServiceSelect} />
+        <Services onServiceSelect={setSelectedService} />
         <Why />
         <Doctor />
         <Testimonials />
