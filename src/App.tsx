@@ -1,181 +1,588 @@
-// Initialize AOS
-document.addEventListener('DOMContentLoaded', function() {
-  AOS.init({ duration: 750, once: false, offset: 30 });
-  document.querySelectorAll('video').forEach(v => v.play().catch(()=>{}));
-});
+import { useEffect } from 'react'
+import { motion } from 'framer-motion'
 
-// WhatsApp form submit function
-function sendToWhatsApp() {
-  const name = document.getElementById('waName').value.trim();
-  const phone = document.getElementById('waPhone').value.trim();
-  const serviceSelect = document.getElementById('waService');
-  const service = serviceSelect.value;
-  const otherText = document.getElementById('waOtherText')?.value.trim() || '';
-  const dateInput = document.getElementById('waDate').value;
+// Import components will be created later
+// For now, we'll place the HTML directly in App.tsx
 
-  if (!name || !phone || !service || !dateInput) {
-    alert('Please fill in name, phone, service, and date');
-    return;
+function App() {
+  useEffect(() => {
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault()
+        const href = this.getAttribute('href')
+        if (href && href !== '#') {
+          const element = document.querySelector(href)
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' })
+          }
+        }
+      })
+    })
+
+    // AOS-like scroll animations with Intersection Observer
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('aos-animate')
+        }
+      })
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' })
+
+    document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el))
+
+    return () => observer.disconnect()
+  }, [])
+
+  // WhatsApp form submit function
+  const sendToWhatsApp = (e: React.FormEvent) => {
+    e.preventDefault()
+    
+    const form = e.target as HTMLFormElement
+    const nameInput = form.querySelector('#waName') as HTMLInputElement
+    const phoneInput = form.querySelector('#waPhone') as HTMLInputElement
+    const serviceSelect = form.querySelector('#waService') as HTMLSelectElement
+    const otherTextarea = form.querySelector('#waOtherText') as HTMLTextAreaElement
+    const dateInput = form.querySelector('#waDate') as HTMLInputElement
+
+    const name = nameInput?.value.trim()
+    const phone = phoneInput?.value.trim()
+    const service = serviceSelect?.value
+    const otherText = otherTextarea?.value.trim() || ''
+    const dateInputValue = dateInput?.value
+
+    if (!name || !phone || !service || !dateInputValue) {
+      alert('Please fill in name, phone, service, and date')
+      return
+    }
+
+    let serviceDetail = service
+    if (service === 'Other' && otherText) {
+      serviceDetail = otherText
+    } else if (service === 'Other' && !otherText) {
+      alert('Please describe the service you need')
+      return
+    }
+
+    const dateObj = new Date(dateInputValue + 'T12:00:00')
+    const day = dateObj.getDate()
+    const month = dateObj.toLocaleDateString('en-GB', { month: 'long' })
+    const year = dateObj.getFullYear()
+    
+    let dayWithSuffix = day.toString()
+    if (day > 3 && day < 21) dayWithSuffix = day + 'th'
+    else {
+      const lastDigit = day % 10
+      if (lastDigit === 1) dayWithSuffix = day + 'st'
+      else if (lastDigit === 2) dayWithSuffix = day + 'nd'
+      else if (lastDigit === 3) dayWithSuffix = day + 'rd'
+      else dayWithSuffix = day + 'th'
+    }
+    
+    const formattedDate = `${dayWithSuffix} ${month} ${year}`
+    
+    const now = new Date()
+    const timestamp = now.toLocaleString('en-GB', { 
+      day: 'numeric', 
+      month: 'long', 
+      year: 'numeric', 
+      hour: '2-digit', 
+      minute: '2-digit' 
+    })
+
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwZO_LpHcS7QILTUduxtefqtZX7ultwC7YaNY66UN3kbfuhRhJubqDNxX17oxefPPc/exec'
+    
+    const emailData = {
+      name: name,
+      phone: phone,
+      service: serviceDetail,
+      date: formattedDate,
+      timestamp: timestamp
+    }
+
+    fetch(scriptURL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(emailData)
+    }).catch(error => {
+      console.log('Email sent in background')
+    })
+
+    const message = `Hello Smile Royale,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}.`
+    const whatsappURL = `https://wa.me/2348103564479?text=${message}`
+    
+    window.open(whatsappURL, '_blank', 'noopener,noreferrer')
   }
 
-  let serviceDetail = service;
-  if (service === 'Other' && otherText) {
-    serviceDetail = otherText;
-  } else if (service === 'Other' && !otherText) {
-    alert('Please describe the service you need');
-    return;
-  }
+  return (
+    <div className="app">
+      {/* Top Bar */}
+      <div className="top-bar">
+        <div className="container">
+          <div className="top-contact">
+            <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-whatsapp"></i> 08103564479
+            </a>
+            <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer">
+              <i className="fab fa-instagram"></i> @smileroyale.ng
+            </a>
+          </div>
+        </div>
+      </div>
 
-  const dateObj = new Date(dateInput + 'T12:00:00');
-  const day = dateObj.getDate();
-  const month = dateObj.toLocaleDateString('en-GB', { month: 'long' });
-  const year = dateObj.getFullYear();
-  
-  let dayWithSuffix = day;
-  if (day > 3 && day < 21) dayWithSuffix = day + 'th';
-  else {
-    const lastDigit = day % 10;
-    if (lastDigit === 1) dayWithSuffix = day + 'st';
-    else if (lastDigit === 2) dayWithSuffix = day + 'nd';
-    else if (lastDigit === 3) dayWithSuffix = day + 'rd';
-    else dayWithSuffix = day + 'th';
-  }
-  
-  const formattedDate = `${dayWithSuffix} ${month} ${year}`;
-  
-  const now = new Date();
-  const timestamp = now.toLocaleString('en-GB', { 
-    day: 'numeric', 
-    month: 'long', 
-    year: 'numeric', 
-    hour: '2-digit', 
-    minute: '2-digit' 
-  });
+      {/* Header */}
+      <header className="header">
+        <div className="container">
+          <div className="logo">
+            <div className="logo-icon">
+              <img 
+                src="https://image2url.com/r2/default/images/1772738359714-c3bea4c7-78e3-4ba1-b90f-1bfd03bcbcdb.jpg" 
+                alt="Smile Royale Logo"
+                loading="lazy"
+              />
+            </div>
+            <div className="logo-text">
+              <span className="main">SMILE</span>
+              <span className="sub">ROYALE</span>
+            </div>
+          </div>
+          <nav className="nav">
+            <a href="#hero">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#why">Why us</a>
+            <a href="#doctor">Our Dentist</a>
+            <a href="#testimonials">Testimonials</a>
+            <a href="#booking">Appointment</a>
+            <a href="#booking" className="btn-nav">Book now</a>
+          </nav>
+          <button className="mobile-menu-btn" onClick={() => {}}>
+            <i className="fas fa-bars"></i>
+          </button>
+        </div>
+      </header>
 
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbwZO_LpHcS7QILTUduxtefqtZX7ultwC7YaNY66UN3kbfuhRhJubqDNxX17oxefPPc/exec';
-  
-  const emailData = {
-    name: name,
-    phone: phone,
-    service: serviceDetail,
-    date: formattedDate,
-    timestamp: timestamp
-  };
+      {/* Hero Section */}
+      <section id="hero" className="hero">
+        <div className="container">
+          <motion.div 
+            className="hero-content"
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+            <div className="hero-badge">
+              <i className="fas fa-tooth"></i> Your smile is our passion
+            </div>
+            <div className="motto-line">
+              <h1>Your Smile.</h1>
+              <h2>Our Passion.</h2>
+              <h2>Our Pride.</h2>
+            </div>
+            <p>Experience professional dental care tailored to your needs. From routine checkups to advanced procedures, we are committed to giving you a reason to smile.</p>
+            <div className="hero-buttons">
+              <a href="#booking" className="btn btn-primary">Book an appointment</a>
+              <a href="#services" className="btn btn-outline-light">Our services</a>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
-  fetch(scriptURL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(emailData)
-  }).catch(error => {
-    console.log('Email sent in background');
-  });
+      {/* About Section */}
+      <section id="about" className="section">
+        <div className="container">
+          <div className="about-heading" data-aos="fade-right">
+            <h2 className="section-title">Professional Care for Your Perfect Smile</h2>
+            <p className="section-subhead">At Smile Royale, we believe that a healthy smile is a reflection of your overall well-being. I am a dedicated dental professional providing a wide range of oral health solutions in a comfortable and professional environment. As your expert dentist, I am driven by a single mission: to provide high-quality dental care with passion and excellence.</p>
+          </div>
+          <div data-aos="zoom-in-up" data-aos-duration="800" data-aos-delay="100">
+            <div className="about-video-grid">
+              <video autoPlay muted loop playsInline>
+                <source src="https://image2url.com/r2/default/videos/1772715970572-d9d8d2d6-29d3-4aa7-9450-7e3ae433aec7.mp4" type="video/mp4" />
+              </video>
+              <video autoPlay muted loop playsInline>
+                <source src="https://image2url.com/r2/default/videos/1772716102573-be632a4c-6946-44ec-bcb4-1dd7e4d028a9.mp4" type="video/mp4" />
+              </video>
+            </div>
+          </div>
+        </div>
+      </section>
 
-  const message = `Hello Smile Royale,%0A%0AI'm ${name}. I want to book an appointment for ${serviceDetail} on ${formattedDate}.`;
-  const whatsappURL = `https://wa.me/2348103564479?text=${message}`;
-  
-  window.open(whatsappURL, '_blank', 'noopener,noreferrer');
+      {/* Services Section */}
+      <section id="services" className="section" style={{ background: 'var(--off-white)' }}>
+        <div className="container">
+          <h2 className="section-title" data-aos="fade-down">Comprehensive Dental Solutions</h2>
+          <p className="section-subhead" data-aos="fade-down" data-aos-delay="50">I offer a full suite of dental treatments to keep your teeth healthy and your smile bright.</p>
+          
+          <div className="services-grid">
+            {/* Discounted Consultations */}
+            <div className="service-card" data-aos="flip-left" data-aos-duration="800">
+              <div className="service-image loading">
+                <img 
+                  src="https://image2url.com/r2/default/images/1772933454875-5408d445-0d50-493c-bd2a-c85d1d713743.jpg" 
+                  alt="Discounted dental consultation"
+                  loading="lazy"
+                  onLoad={(e) => {
+                    e.currentTarget.classList.add('loaded')
+                    e.currentTarget.closest('.service-image')?.classList.remove('loading')
+                  }}
+                  onError={(e) => {
+                    e.currentTarget.classList.add('error')
+                    e.currentTarget.closest('.service-image')?.classList.add('has-error')
+                    e.currentTarget.closest('.service-image')?.classList.remove('loading')
+                  }} />
+                <div className="error-message">
+                  <i className="fas fa-image" style={{ fontSize: '2rem', marginBottom: '0.5rem', display: 'block' }}></i>
+                  Image unavailable
+                </div>
+              </div>
+              <div className="service-content">
+                <h3>Discounted Consultations</h3>
+                <p>Professional dental advice and examinations at affordable rates to get you started on your oral health journey.</p>
+                <a href="#booking" className="service-btn">Book appointment</a>
+              </div>
+            </div>
+            
+            {/* Scaling and Polishing */}
+            <div className="service-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="100">
+              <div className="service-image loading">
+                <img 
+                  src="https://image2url.com/r2/default/images/1772933737652-95451b6d-46b1-4f48-89b9-816a220e3fa2.jpg" 
+                  alt="Scaling and polishing dental procedure"
+                  loading="lazy"
+                  onLoad={(e) => {
+                    e.currentTarget.classList.add('loaded')
+                    e.currentTarget.closest('.service-image')?.classList.remove('loading')
+                  }}
+                  onError={(e) => {
+                    e.currentTarget.classList.add('error')
+                    e.currentTarget.closest('.service-image')?.classList.add('has-error')
+                    e.currentTarget.closest('.service-image')?.classList.remove('loading')
+                  }} />
+                <div className="error-message">
+                  <i className="fas fa-image" style={{ fontSize: '2rem', marginBottom: '0.5rem', display: 'block' }}></i>
+                  Image unavailable
+                </div>
+              </div>
+              <div className="service-content">
+                <h3>Scaling and Polishing</h3>
+                <p>Professional cleaning to remove plaque and tartar, preventing gum disease and leaving your teeth smooth and fresh.</p>
+                <a href="#booking" className="service-btn">Book appointment</a>
+              </div>
+            </div>
+            
+            {/* Teeth Whitening */}
+            <div className="service-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="200">
+              <div className="service-image loading">
+                <img 
+                  src="https://image2url.com/r2/default/images/1772933897946-80c92104-5181-4b65-a3d5-b2ab7f155047.jpg" 
+                  alt="Teeth whitening treatment"
+                  loading="lazy"
+                  onLoad={(e) => {
+                    e.currentTarget.classList.add('loaded')
+                    e.currentTarget.closest('.service-image')?.classList.remove('loading')
+                  }}
+                  onError={(e) => {
+                    e.currentTarget.classList.add('error')
+                    e.currentTarget.closest('.service-image')?.classList.add('has-error')
+                    e.currentTarget.closest('.service-image')?.classList.remove('loading')
+                  }} />
+                <div className="error-message">
+                  <i className="fas fa-image" style={{ fontSize: '2rem', marginBottom: '0.5rem', display: 'block' }}></i>
+                  Image unavailable
+                </div>
+              </div>
+              <div className="service-content">
+                <h3>Teeth Whitening</h3>
+                <p>Advanced whitening treatments to brighten your smile by several shades and remove stubborn stains effectively.</p>
+                <a href="#booking" className="service-btn">Book appointment</a>
+              </div>
+            </div>
+            
+            {/* Crowns & RCTs */}
+            <div className="service-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="300">
+              <div className="service-image loading">
+                <img 
+                  src="https://image2url.com/r2/default/images/1772933985462-659a1692-bbc3-4b09-a8fd-2c0ae95ee647.jpg" 
+                  alt="Dental crown and root canal treatment"
+                  loading="lazy"
+                  onLoad={(e) => {
+                    e.currentTarget.classList.add('loaded')
+                    e.currentTarget.closest('.service-image')?.classList.remove('loading')
+                  }}
+                  onError={(e) => {
+                    e.currentTarget.classList.add('error')
+                    e.currentTarget.closest('.service-image')?.classList.add('has-error')
+                    e.currentTarget.closest('.service-image')?.classList.remove('loading')
+                  }} />
+                <div className="error-message">
+                  <i className="fas fa-image" style={{ fontSize: '2rem', marginBottom: '0.5rem', display: 'block' }}></i>
+                  Image unavailable
+                </div>
+              </div>
+              <div className="service-content">
+                <h3>Crowns & RCTs</h3>
+                <p>Restorative solutions to save damaged teeth and restore their natural function, strength, and appearance.</p>
+                <a href="#booking" className="service-btn">Book appointment</a>
+              </div>
+            </div>
+            
+            {/* General Procedures */}
+            <div className="service-card" data-aos="flip-left" data-aos-duration="800" data-aos-delay="400">
+              <div className="service-image loading">
+                <img 
+                  src="https://image2url.com/r2/default/images/1772955501327-30f1e658-7e21-4a9e-b5dc-0e2b66395f1b.jpg" 
+                  alt="General dental procedures"
+                  loading="lazy"
+                  onLoad={(e) => {
+                    e.currentTarget.classList.add('loaded')
+                    e.currentTarget.closest('.service-image')?.classList.remove('loading')
+                  }}
+                  onError={(e) => {
+                    e.currentTarget.classList.add('error')
+                    e.currentTarget.closest('.service-image')?.classList.add('has-error')
+                    e.currentTarget.closest('.service-image')?.classList.remove('loading')
+                  }} />
+                <div className="error-message">
+                  <i className="fas fa-image" style={{ fontSize: '2rem', marginBottom: '0.5rem', display: 'block' }}></i>
+                  Image unavailable
+                </div>
+              </div>
+              <div className="service-content">
+                <h3>General Procedures</h3>
+                <p>Fillings, extractions, and specialized treatments – comprehensive care for all your dental needs in one place.</p>
+                <a href="#booking" className="service-btn">Book appointment</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Us Section */}
+      <section id="why" className="section">
+        <div className="container">
+          <h2 className="section-title" data-aos="fade-up">The Smile Royale Advantage</h2>
+          <div className="advantage-grid">
+            <div className="advantage-card" data-aos="zoom-in">
+              <i className="fas fa-heart"></i>
+              <h4>Passion-Driven Care</h4>
+              <p>"Your Smile is My Passion." I care about the person behind the teeth.</p>
+            </div>
+            <div className="advantage-card" data-aos="zoom-in" data-aos-delay="80">
+              <i className="fas fa-user-md"></i>
+              <h4>Expert Dentist</h4>
+              <p>Highly skilled professional dedicated to the latest dental practices.</p>
+            </div>
+            <div className="advantage-card" data-aos="zoom-in" data-aos-delay="160">
+              <i className="fas fa-coins"></i>
+              <h4>Affordable Excellence</h4>
+              <p>Quality dental care accessible to all – discounted consultations.</p>
+            </div>
+            <div className="advantage-card" data-aos="zoom-in" data-aos-delay="240">
+              <i className="fas fa-clinic-medical"></i>
+              <h4>Comprehensive Care</h4>
+              <p>From preventive care to restorative surgery, your one-stop shop.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Doctor Profile Section */}
+      <section id="doctor" className="section" style={{ background: 'var(--pure-white)' }}>
+        <div className="container">
+          <h2 className="section-title" data-aos="fade-down">Meet Your Dentist</h2>
+          <p className="section-subhead" data-aos="fade-down" data-aos-delay="50">Expert care with a personal touch</p>
+          
+          <div className="doctor-grid">
+            <div className="doctor-image" data-aos="fade-right">
+              <img 
+                src="https://image2url.com/r2/default/images/1772889924884-a9da39dc-856d-4411-aac2-f3f59a7e3884.jpg" 
+                alt="Dr. Farouk Adebiyi"
+                loading="lazy" />
+            </div>
+            
+            <div className="doctor-info" data-aos="fade-left">
+              <h2 className="doctor-name">Dr. Farouk Adebiyi</h2>
+              <div className="doctor-title">Dentist | Founder, Smile Royale Dental Home</div>
+              
+              <p className="doctor-bio">Dr. Farouk Adebiyi is a dedicated Dental Surgeon and the visionary founder of Smile Royale Dental Home. With a passion for blending clinical excellence with modern digital engagement, he has established himself as a prominent voice in Nigerian dentistry.</p>
+              
+              <p className="doctor-bio">Dr. Adebiyi is widely recognized for his work as an oral health influencer, using his platform to demystify dental procedures and promote preventive care to a global audience. His unique background as a Digital Product Manager allows him to integrate technology-driven solutions into patient care, ensuring a seamless end-to-end journey.</p>
+              
+              <div className="expertise-grid">
+                <div className="expertise-item">
+                  <h4>Preventive Dentistry</h4>
+                  <p>Dedicated to educating patients on long-term oral hygiene</p>
+                </div>
+                <div className="expertise-item">
+                  <h4>Restorative Procedures</h4>
+                  <p>Skilled in restoring both function and aesthetics to your smile</p>
+                </div>
+                <div className="expertise-item">
+                  <h4>Oral Health Advocacy</h4>
+                  <p>Leading digital campaigns for dental literacy and accessibility</p>
+                </div>
+              </div>
+              
+              <div className="membership">
+                <i className="fas fa-certificate"></i> Inducted Member: Medical and Dental Council of Nigeria (MDCN)
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section id="testimonials" className="section" style={{ background: 'var(--off-white)' }}>
+        <div className="container">
+          <h2 className="section-title" data-aos="fade-down">Smile Transformations</h2>
+          <p className="section-subhead" data-aos="fade-down" data-aos-delay="50">Real results from our happy patients</p>
+          
+          <div className="testimonials-grid">
+            <div className="testimonials-item" data-aos="zoom-in">
+              <video className="testimonials-video" autoPlay muted loop playsInline>
+                <source src="https://image2url.com/r2/default/videos/1772888015053-2c6f0de0-f226-40da-9b5a-6c625bccfaa7.mp4" type="video/mp4" />
+              </video>
+              <div className="testimonials-caption">
+                <h4>Teeth Whitening</h4>
+                <p>Before & After</p>
+              </div>
+            </div>
+            
+            <div className="testimonials-item" data-aos="zoom-in" data-aos-delay="100">
+              <video className="testimonials-video" autoPlay muted loop playsInline>
+                <source src="https://image2url.com/r2/default/videos/1772888063863-6b5271e1-81da-432c-86cc-c34dfadced3b.mp4" type="video/mp4" />
+              </video>
+              <div className="testimonials-caption">
+                <h4>Smile Makeover</h4>
+                <p>Before & After</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="testimonials-grid" style={{ marginTop: '2rem' }}>
+            <div className="testimonials-item" data-aos="zoom-in" style={{ gridColumn: '1/-1', maxWidth: '600px', margin: '0 auto' }}>
+              <img 
+                src="https://image2url.com/r2/default/images/1772887670391-d8bfbae1-a8b6-4617-86a3-1991a4185400.jpg" 
+                alt="Dental transformation before and after" 
+                className="gallery-image"
+                loading="lazy" />
+              <div className="testimonials-caption">
+                <h4>Complete Restoration</h4>
+                <p>Before & After</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Booking Section */}
+      <section id="booking" className="section" style={{ background: '#f2f6fc' }}>
+        <div className="container">
+          <h2 className="section-title" data-aos="fade-down">Book an Appointment</h2>
+          <div className="booking-grid" data-aos="fade-up" data-aos-duration="900">
+            <div className="booking-info">
+              <h3>Ready to Transform Your Smile?</h3>
+              <p>Don't wait for a dental emergency. Schedule your visit with me today and experience the Smile Royale difference.</p>
+              <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" className="booking-highlight">
+                <i className="fab fa-whatsapp"></i> 08103564479
+              </a>
+            </div>
+            <div className="booking-form">
+              <form onSubmit={sendToWhatsApp}>
+                <div className="form-group">
+                  <label className="form-label">Full Name</label>
+                  <input type="text" id="waName" placeholder="Your full name" required />
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Phone Number</label>
+                  <input type="tel" id="waPhone" placeholder="Your phone number" required />
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Service Required</label>
+                  <select id="waService" required>
+                    <option value="" disabled selected>Select a service</option>
+                    <option value="Consultation">Consultation</option>
+                    <option value="Scaling and Polishing">Scaling and Polishing</option>
+                    <option value="Teeth Whitening">Teeth Whitening</option>
+                    <option value="Crown / RCT">Crown / RCT</option>
+                    <option value="General procedures">General procedures</option>
+                    <option value="Other">Other (please specify)</option>
+                  </select>
+                </div>
+                <div className="form-group" id="otherServiceGroup" style={{ display: 'none' }}>
+                  <label className="form-label">Describe your needs</label>
+                  <textarea id="waOtherText" placeholder="Please describe the service you need" rows={2}></textarea>
+                </div>
+                <div className="form-group">
+                  <label className="form-label">Select Date</label>
+                  <input type="date" id="waDate" required />
+                </div>
+                <button type="submit" className="btn-submit">Confirm Appointment</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="footer">
+        <div className="container">
+          <div className="footer-grid">
+            <div className="footer-brand">
+              <div className="footer-logo">
+                <span className="main">SMILE ROYALE</span>
+                <span className="sub">Your Smile. Our Passion. Our Pride.</span>
+              </div>
+              <div className="footer-contact">
+                <div className="footer-contact-item">
+                  <i className="fab fa-whatsapp"></i>
+                  <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer">08103564479</a>
+                </div>
+                <div className="footer-contact-item">
+                  <i className="fab fa-instagram"></i>
+                  <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer">@smileroyale.ng</a>
+                </div>
+              </div>
+            </div>
+            
+            <div className="footer-links">
+              <h4>Quick Links</h4>
+              <ul>
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#why">Why Us</a></li>
+                <li><a href="#doctor">Our Dentist</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#booking">Contact</a></li>
+              </ul>
+            </div>
+            
+            <div className="footer-social">
+              <h4>Connect With Us</h4>
+              <div className="social-icons">
+                <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                  <i className="fab fa-instagram"></i>
+                </a>
+                <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                  <i className="fab fa-whatsapp"></i>
+                </a>
+              </div>
+              <a href="https://www.instagram.com/smileroyale.ng?igsh=MW55NHI5cGNxejFpdw==" target="_blank" rel="noopener noreferrer" className="footer-instagram">@smileroyale.ng</a>
+            </div>
+          </div>
+          
+          <div className="copyright">
+            <p>© 2026 Smile Royale Dental. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  )
 }
 
-// Alpine.js data
-document.addEventListener('alpine:init', () => {
-  Alpine.data('waForm', () => ({
-    otherService: false,
-    selectedService: '',
-    sendToWhatsApp
-  }));
-});
-
-// Enhanced image loading with Intersection Observer
-(function() {
-  'use strict';
-  
-  document.addEventListener('DOMContentLoaded', function() {
-    if ('IntersectionObserver' in window) {
-      console.log('✅ IntersectionObserver supported - enabling lazy loading');
-      
-      const imageObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const img = entry.target;
-            const container = img.closest('.service-image');
-            
-            if (container && !img.classList.contains('loaded') && !img.classList.contains('error')) {
-              container.classList.add('loading');
-              console.log('🖼️ Image entering viewport:', img.alt);
-            }
-            
-            observer.unobserve(img);
-          }
-        });
-      }, {
-        rootMargin: '50px',
-        threshold: 0.01
-      });
-
-      const serviceImages = document.querySelectorAll('.service-image img');
-      serviceImages.forEach(img => {
-        imageObserver.observe(img);
-      });
-      
-      console.log(`👀 Observing ${serviceImages.length} images`);
-    } else {
-      console.log('⚠️ IntersectionObserver not supported - using fallback');
-      document.querySelectorAll('.service-image').forEach(container => {
-        container.classList.add('loading');
-      });
-    }
-    
-    function preloadFirstRow() {
-      const serviceCards = document.querySelectorAll('.service-card');
-      const firstRowCards = [];
-      
-      if (window.innerWidth > 900) {
-        for (let i = 0; i < Math.min(3, serviceCards.length); i++) {
-          firstRowCards.push(serviceCards[i]);
-        }
-      } else if (window.innerWidth > 600) {
-        for (let i = 0; i < Math.min(2, serviceCards.length); i++) {
-          firstRowCards.push(serviceCards[i]);
-        }
-      } else {
-        firstRowCards.push(serviceCards[0]);
-      }
-      
-      firstRowCards.forEach(card => {
-        const img = card.querySelector('img');
-        const container = card.querySelector('.service-image');
-        if (img && container && !img.classList.contains('loaded')) {
-          container.classList.add('loading');
-          img.fetchPriority = 'high';
-        }
-      });
-    }
-    
-    setTimeout(preloadFirstRow, 100);
-    
-    window.addEventListener('error', function(e) {
-      if (e.target.tagName === 'IMG') {
-        const img = e.target;
-        const container = img.closest('.service-image');
-        
-        if (container) {
-          container.classList.add('has-error');
-          container.classList.remove('loading');
-          img.classList.add('error');
-          console.warn('❌ Image failed to load:', img.alt || img.src);
-        }
-      }
-    }, true);
-    
-    let resizeTimer;
-    window.addEventListener('resize', function() {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(function() {
-        preloadFirstRow();
-      }, 250);
-    });
-  });
-})();
+export default App
