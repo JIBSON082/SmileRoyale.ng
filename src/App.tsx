@@ -1,10 +1,12 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-
-// Import components will be created later
-// For now, we'll place the HTML directly in App.tsx
+import './index.css'
 
 function App() {
+  const [mobileMenu, setMobileMenu] = useState(false)
+  const [selectedService, setSelectedService] = useState('')
+  const [otherService, setOtherService] = useState(false)
+
   useEffect(() => {
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -31,6 +33,16 @@ function App() {
 
     document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el))
 
+    // Show/hide other service field
+    const serviceSelect = document.getElementById('waService') as HTMLSelectElement
+    if (serviceSelect) {
+      serviceSelect.addEventListener('change', (e) => {
+        const target = e.target as HTMLSelectElement
+        setSelectedService(target.value)
+        setOtherService(target.value === 'Other')
+      })
+    }
+
     return () => observer.disconnect()
   }, [])
 
@@ -39,11 +51,11 @@ function App() {
     e.preventDefault()
     
     const form = e.target as HTMLFormElement
-    const nameInput = form.querySelector('#waName') as HTMLInputElement
-    const phoneInput = form.querySelector('#waPhone') as HTMLInputElement
-    const serviceSelect = form.querySelector('#waService') as HTMLSelectElement
-    const otherTextarea = form.querySelector('#waOtherText') as HTMLTextAreaElement
-    const dateInput = form.querySelector('#waDate') as HTMLInputElement
+    const nameInput = document.getElementById('waName') as HTMLInputElement
+    const phoneInput = document.getElementById('waPhone') as HTMLInputElement
+    const serviceSelect = document.getElementById('waService') as HTMLSelectElement
+    const otherTextarea = document.getElementById('waOtherText') as HTMLTextAreaElement
+    const dateInput = document.getElementById('waDate') as HTMLInputElement
 
     const name = nameInput?.value.trim()
     const phone = phoneInput?.value.trim()
@@ -141,7 +153,6 @@ function App() {
               <img 
                 src="https://image2url.com/r2/default/images/1772738359714-c3bea4c7-78e3-4ba1-b90f-1bfd03bcbcdb.jpg" 
                 alt="Smile Royale Logo"
-                loading="lazy"
               />
             </div>
             <div className="logo-text">
@@ -159,10 +170,24 @@ function App() {
             <a href="#booking">Appointment</a>
             <a href="#booking" className="btn-nav">Book now</a>
           </nav>
-          <button className="mobile-menu-btn" onClick={() => {}}>
+          <button className="mobile-menu-btn" onClick={() => setMobileMenu(!mobileMenu)}>
             <i className="fas fa-bars"></i>
           </button>
         </div>
+        
+        {/* Mobile dropdown */}
+        {mobileMenu && (
+          <div className="mobile-menu-dropdown">
+            <a href="#hero" onClick={() => setMobileMenu(false)}>Home</a>
+            <a href="#about" onClick={() => setMobileMenu(false)}>About</a>
+            <a href="#services" onClick={() => setMobileMenu(false)}>Services</a>
+            <a href="#why" onClick={() => setMobileMenu(false)}>Why us</a>
+            <a href="#doctor" onClick={() => setMobileMenu(false)}>Our Dentist</a>
+            <a href="#testimonials" onClick={() => setMobileMenu(false)}>Testimonials</a>
+            <a href="#booking" onClick={() => setMobileMenu(false)}>Appointment</a>
+            <a href="https://wa.me/2348103564479?text=Hello%20Smile%20Royale%2C%20I%20would%20like%20to%20make%20enquiries%20about%20your%20dental%20services." target="_blank" rel="noopener noreferrer" className="mobile-wa-btn">Book an appointment</a>
+          </div>
+        )}
       </header>
 
       {/* Hero Section */}
@@ -242,7 +267,7 @@ function App() {
               <div className="service-content">
                 <h3>Discounted Consultations</h3>
                 <p>Professional dental advice and examinations at affordable rates to get you started on your oral health journey.</p>
-                <a href="#booking" className="service-btn">Book appointment</a>
+                <a href="#booking" className="service-btn" onClick={() => setSelectedService('Consultation')}>Book appointment</a>
               </div>
             </div>
             
@@ -270,7 +295,7 @@ function App() {
               <div className="service-content">
                 <h3>Scaling and Polishing</h3>
                 <p>Professional cleaning to remove plaque and tartar, preventing gum disease and leaving your teeth smooth and fresh.</p>
-                <a href="#booking" className="service-btn">Book appointment</a>
+                <a href="#booking" className="service-btn" onClick={() => setSelectedService('Scaling and Polishing')}>Book appointment</a>
               </div>
             </div>
             
@@ -298,7 +323,7 @@ function App() {
               <div className="service-content">
                 <h3>Teeth Whitening</h3>
                 <p>Advanced whitening treatments to brighten your smile by several shades and remove stubborn stains effectively.</p>
-                <a href="#booking" className="service-btn">Book appointment</a>
+                <a href="#booking" className="service-btn" onClick={() => setSelectedService('Teeth Whitening')}>Book appointment</a>
               </div>
             </div>
             
@@ -326,7 +351,7 @@ function App() {
               <div className="service-content">
                 <h3>Crowns & RCTs</h3>
                 <p>Restorative solutions to save damaged teeth and restore their natural function, strength, and appearance.</p>
-                <a href="#booking" className="service-btn">Book appointment</a>
+                <a href="#booking" className="service-btn" onClick={() => setSelectedService('Crown / RCT')}>Book appointment</a>
               </div>
             </div>
             
@@ -354,7 +379,7 @@ function App() {
               <div className="service-content">
                 <h3>General Procedures</h3>
                 <p>Fillings, extractions, and specialized treatments – comprehensive care for all your dental needs in one place.</p>
-                <a href="#booking" className="service-btn">Book appointment</a>
+                <a href="#booking" className="service-btn" onClick={() => setSelectedService('General checkup')}>Book appointment</a>
               </div>
             </div>
           </div>
@@ -503,20 +528,25 @@ function App() {
                 </div>
                 <div className="form-group">
                   <label className="form-label">Service Required</label>
-                  <select id="waService" required>
-                    <option value="" disabled selected>Select a service</option>
+                  <select id="waService" value={selectedService} onChange={(e) => {
+                    setSelectedService(e.target.value)
+                    setOtherService(e.target.value === 'Other')
+                  }} required>
+                    <option value="" disabled>Select a service</option>
                     <option value="Consultation">Consultation</option>
                     <option value="Scaling and Polishing">Scaling and Polishing</option>
                     <option value="Teeth Whitening">Teeth Whitening</option>
                     <option value="Crown / RCT">Crown / RCT</option>
-                    <option value="General procedures">General procedures</option>
+                    <option value="General checkup">General checkup</option>
                     <option value="Other">Other (please specify)</option>
                   </select>
                 </div>
-                <div className="form-group" id="otherServiceGroup" style={{ display: 'none' }}>
-                  <label className="form-label">Describe your needs</label>
-                  <textarea id="waOtherText" placeholder="Please describe the service you need" rows={2}></textarea>
-                </div>
+                {otherService && (
+                  <div className="form-group">
+                    <label className="form-label">Describe your needs</label>
+                    <textarea id="waOtherText" placeholder="Please describe the service you need" rows={2}></textarea>
+                  </div>
+                )}
                 <div className="form-group">
                   <label className="form-label">Select Date</label>
                   <input type="date" id="waDate" required />
