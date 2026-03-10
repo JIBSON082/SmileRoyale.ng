@@ -1,1 +1,18 @@
-
+{
+  "name": "Smile Royale Dental",
+  "version": "1.0.0",
+  "description": "Professional dental website with appointment booking system",
+  "author": "David Ajibua",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/smile-royale"
+  },
+  "keywords": [
+    "dental",
+    "clinic",
+    "appointment-booking",
+    "react",
+    "typescript",
+    "vite"
+  ]
+}
