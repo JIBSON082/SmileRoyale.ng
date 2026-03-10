@@ -7,26 +7,27 @@ function App() {
   const [showOther, setShowOther] = useState(false)
 
   useEffect(() => {
-    // Smooth scroll for anchor links
-    const handleAnchorClick = (e: Event) => {
-      const target = e.target as HTMLAnchorElement
-      if (target.hash && target.hash.startsWith('#')) {
+    // Smooth scroll for anchor links - FIXED: No 'this' binding issues
+    const anchors = document.querySelectorAll('a[href^="#"]')
+    anchors.forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
         e.preventDefault()
-        const element = document.querySelector(target.hash)
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' })
-          setMobileMenu(false)
+        const href = this.getAttribute('href')
+        if (href && href !== '#') {
+          const element = document.querySelector(href)
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' })
+            setMobileMenu(false)
+          }
         }
-      }
-    }
-
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-      anchor.addEventListener('click', handleAnchorClick)
+      })
     })
 
     return () => {
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.removeEventListener('click', handleAnchorClick)
+      anchors.forEach(anchor => {
+        anchor.removeEventListener('click', function(e) {
+          e.preventDefault()
+        })
       })
     }
   }, [])
@@ -49,11 +50,17 @@ function App() {
   const sendToWhatsApp = (e: React.FormEvent) => {
     e.preventDefault()
     
-    const name = (document.getElementById('waName') as HTMLInputElement)?.value.trim()
-    const phone = (document.getElementById('waPhone') as HTMLInputElement)?.value.trim()
-    const service = (document.getElementById('waService') as HTMLSelectElement)?.value
-    const otherText = (document.getElementById('waOtherText') as HTMLTextAreaElement)?.value.trim() || ''
-    const date = (document.getElementById('waDate') as HTMLInputElement)?.value
+    const nameInput = document.getElementById('waName') as HTMLInputElement
+    const phoneInput = document.getElementById('waPhone') as HTMLInputElement
+    const serviceSelect = document.getElementById('waService') as HTMLSelectElement
+    const otherTextarea = document.getElementById('waOtherText') as HTMLTextAreaElement
+    const dateInput = document.getElementById('waDate') as HTMLInputElement
+
+    const name = nameInput?.value?.trim() || ''
+    const phone = phoneInput?.value?.trim() || ''
+    const service = serviceSelect?.value || ''
+    const otherText = otherTextarea?.value?.trim() || ''
+    const date = dateInput?.value || ''
 
     if (!name || !phone || !service || !date) {
       alert('Please fill in name, phone, service, and date')
@@ -89,6 +96,26 @@ function App() {
     const whatsappURL = `https://wa.me/2348103564479?text=${message}`
     
     window.open(whatsappURL, '_blank')
+  }
+
+  // Helper function for image loading - FIXED: No unused 'error' variable
+  const handleImageLoad = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget
+    img.classList.add('loaded')
+    const container = img.closest('.service-image')
+    if (container) {
+      container.classList.remove('loading')
+    }
+  }
+
+  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const img = e.currentTarget
+    img.classList.add('error')
+    const container = img.closest('.service-image')
+    if (container) {
+      container.classList.add('has-error')
+      container.classList.remove('loading')
+    }
   }
 
   return (
@@ -207,11 +234,8 @@ function App() {
                   src="https://image2url.com/r2/default/images/1772933454875-5408d445-0d50-493c-bd2a-c85d1d713743.jpg" 
                   alt="Discounted dental consultation"
                   loading="lazy"
-                  onLoad={(e) => {
-                    const img = e.target as HTMLImageElement
-                    img.classList.add('loaded')
-                    img.closest('.service-image')?.classList.remove('loading')
-                  }} />
+                  onLoad={handleImageLoad}
+                  onError={handleImageError} />
                 <div className="error-message">
                   <i className="fas fa-image" style={{ fontSize: '2rem', marginBottom: '0.5rem', display: 'block' }}></i>
                   Image unavailable
@@ -231,11 +255,8 @@ function App() {
                   src="https://image2url.com/r2/default/images/1772933737652-95451b6d-46b1-4f48-89b9-816a220e3fa2.jpg" 
                   alt="Scaling and polishing dental procedure"
                   loading="lazy"
-                  onLoad={(e) => {
-                    const img = e.target as HTMLImageElement
-                    img.classList.add('loaded')
-                    img.closest('.service-image')?.classList.remove('loading')
-                  }} />
+                  onLoad={handleImageLoad}
+                  onError={handleImageError} />
                 <div className="error-message">
                   <i className="fas fa-image" style={{ fontSize: '2rem', marginBottom: '0.5rem', display: 'block' }}></i>
                   Image unavailable
@@ -255,11 +276,8 @@ function App() {
                   src="https://image2url.com/r2/default/images/1772933897946-80c92104-5181-4b65-a3d5-b2ab7f155047.jpg" 
                   alt="Teeth whitening treatment"
                   loading="lazy"
-                  onLoad={(e) => {
-                    const img = e.target as HTMLImageElement
-                    img.classList.add('loaded')
-                    img.closest('.service-image')?.classList.remove('loading')
-                  }} />
+                  onLoad={handleImageLoad}
+                  onError={handleImageError} />
                 <div className="error-message">
                   <i className="fas fa-image" style={{ fontSize: '2rem', marginBottom: '0.5rem', display: 'block' }}></i>
                   Image unavailable
@@ -279,11 +297,8 @@ function App() {
                   src="https://image2url.com/r2/default/images/1772933985462-659a1692-bbc3-4b09-a8fd-2c0ae95ee647.jpg" 
                   alt="Dental crown and root canal treatment"
                   loading="lazy"
-                  onLoad={(e) => {
-                    const img = e.target as HTMLImageElement
-                    img.classList.add('loaded')
-                    img.closest('.service-image')?.classList.remove('loading')
-                  }} />
+                  onLoad={handleImageLoad}
+                  onError={handleImageError} />
                 <div className="error-message">
                   <i className="fas fa-image" style={{ fontSize: '2rem', marginBottom: '0.5rem', display: 'block' }}></i>
                   Image unavailable
@@ -303,11 +318,8 @@ function App() {
                   src="https://image2url.com/r2/default/images/1772955501327-30f1e658-7e21-4a9e-b5dc-0e2b66395f1b.jpg" 
                   alt="General dental procedures"
                   loading="lazy"
-                  onLoad={(e) => {
-                    const img = e.target as HTMLImageElement
-                    img.classList.add('loaded')
-                    img.closest('.service-image')?.classList.remove('loading')
-                  }} />
+                  onLoad={handleImageLoad}
+                  onError={handleImageError} />
                 <div className="error-message">
                   <i className="fas fa-image" style={{ fontSize: '2rem', marginBottom: '0.5rem', display: 'block' }}></i>
                   Image unavailable
