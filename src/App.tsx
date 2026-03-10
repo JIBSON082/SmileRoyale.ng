@@ -369,7 +369,7 @@ function Doctor() {
           <p className="section-subhead">Expert care with a personal touch</p>
         </div>
         <div className="doctor-grid">
-          <div className={`doctor-image reveal reveal--left ${isVisible ? 'reveal--visible' : ''}`}>
+          <div className={`doctor-image reveal reveal--left ${isVisible ? 'reveal--visible' : ''}`} style={{ transitionDelay: '0.2s' }}>
             <div className="doctor-img-frame">
               <img
                 src="https://image2url.com/r2/default/images/1772889924884-a9da39dc-856d-4411-aac2-f3f59a7e3884.jpg"
@@ -378,7 +378,7 @@ function Doctor() {
             </div>
           </div>
 
-          <div className={`doctor-info reveal reveal--right ${isVisible ? 'reveal--visible' : ''}`}>
+          <div className={`doctor-info reveal reveal--right ${isVisible ? 'reveal--visible' : ''}`} style={{ transitionDelay: '0.35s' }}>
             <h2 className="doctor-name">Dr. Farouk Adebiyi</h2>
             <div className="doctor-title-badge">
               Dentist | Founder, Smile Royale Dental Home
