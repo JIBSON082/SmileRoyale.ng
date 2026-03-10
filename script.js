@@ -52,7 +52,7 @@ function sendToWhatsApp() {
     minute: '2-digit' 
   });
 
-  const scriptURL = 'https://script.google.com/macros/s/AKfycbzYpnlAinQ8sQlYufXvufEyNFEu3DrMOzaOvOSrivjkuhK0KYjcyHBsJu3-LWCT5Ak/exec';
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbwZO_LpHcS7QILTUduxtefqtZX7ultwC7YaNY66UN3kbfuhRhJubqDNxX17oxefPPc/exec';
   
   const emailData = {
     name: name,
