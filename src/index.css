@@ -740,7 +740,7 @@ button { font-family: inherit; }
 .doctor-img-frame { position: relative; }
 
 .doctor-img-frame img {
-  width: 95%;
+  width: 90%;
   border-radius: var(--radius-md);
   border: 3px solid var(--sky);
   box-shadow: var(--shadow-lg);
