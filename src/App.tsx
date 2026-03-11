@@ -511,7 +511,7 @@ function BookingForm({
       hour: '2-digit', minute: '2-digit',
     })
 
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyPIMtjmoI1TnbUMIxhIUwhMbdVgZXeEb9cZwyMVoNBv1lMRCANtC0Ibz32kzCGfaw/exec'
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwvvx3synK621mbn9UvVWl0fWR6C_LUv3LDu5t_7iLcrne6mBr7djy-nElak4rr4w0/exec'
     fetch(scriptURL, {
       method: 'POST',
       mode: 'no-cors',
