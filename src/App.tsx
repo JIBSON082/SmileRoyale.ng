@@ -34,14 +34,14 @@ const SERVICES: ServiceCard[] = [
   },
   {
     title: 'Crowns & RCTs',
-    description: 'Restorative solutions to save damaged teeth and restore their natural function, strength, and appearance.',
+    deion: 'Restorative solutions to save damaged teeth and restore their natural function, strength, and appearance.',
     image: 'https://image2url.com/r2/default/images/1772933985462-659a1692-bbc3-4b09-a8fd-2c0ae95ee647.jpg',
     serviceKey: 'Crown / RCT',
     alt: 'Dental crown and root canal treatment',
   },
   {
     title: 'General Procedures',
-    description: 'Fillings, extractions, and specialized treatments – comprehensive care for all your dental needs in one place.',
+    deion: 'Fillings, extractions, and specialized treatments – comprehensive care for all your dental needs in one place.',
     image: 'https://image2url.com/r2/default/images/1772955501327-30f1e658-7e21-4a9e-b5dc-0e2b66395f1b.jpg',
     serviceKey: 'General checkup',
     alt: 'General dental procedures',
@@ -298,7 +298,7 @@ function ServiceCardItem({
       </div>
       <div className="service-content">
         <h3>{service.title}</h3>
-        <p>{service.description}</p>
+        <p>{service.deion}</p>
         <a href="#booking" className="service-btn" onClick={() => onBook(service.serviceKey)}>
           Book appointment <i className="fas fa-arrow-right" />
         </a>
