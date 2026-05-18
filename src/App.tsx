@@ -130,7 +130,7 @@ function Header({
         <a href="#hero" className="logo" onClick={() => setMobileOpen(false)}>
           <div className="logo-icon">
             <img
-              src="https://image2url.com/r2/default/images/1772738359714-c3bea4c7-78e3-4ba1-b90f-1bfd03bcbcdb.jpg"
+              src="https://res.cloudinary.com/dx3k7hbnc/image/upload/v1779113635/1772738359714-c3bea4c7-78e3-4ba1-b90f-1bfd03bcbcdb_b27j47.jpg"
               alt="Smile Royale Logo"
             />
           </div>
