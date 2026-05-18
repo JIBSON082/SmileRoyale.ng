@@ -298,7 +298,7 @@ function ServiceCardItem({
       </div>
       <div className="service-content">
         <h3>{service.title}</h3>
-        <p>{service.deion}</p>
+        <p>{service.description}</p>
         <a href="#booking" className="service-btn" onClick={() => onBook(service.serviceKey)}>
           Book appointment <i className="fas fa-arrow-right" />
         </a>
